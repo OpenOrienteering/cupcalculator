@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layout aspectWidth="4" aspectHeight="3">
+	<Background image="layout_example_cup_bg.bmp"/>
+	<Font id="normal" family="Helvetica" size="0.035" lineSpacing="1.2" weight="normal" color="#000000"/>
+	<Font id="strong" family="Helvetica" size="0.035" lineSpacing="1.2" weight="bold" color="#000000"/>
+	<Font id="title" family="Helvetica" size="0.041" weight="bold" color="#333333"/>
+	<Font id="small" family="Helvetica" size="0.02" color="#555555"/>
+	
+	<Rect id="content" left="0.107" top="0.190104167" right="0.893" bottom="0.884114583" font_normal="normal" font_strong="strong"/>
+	<Point id="title" x="0.985" y="0.08984375" max_width="0.45" align_h="right" align_v="baseline" font="title"/>
+	<Point id="page_no" x="0.036" y="0.96484375" align_h="center" align_v="center" font="small"/>
+</Layout>

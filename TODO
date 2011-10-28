@@ -1,0 +1,4 @@
+- Make it possible to use presentation mode with the inclusion of results from earlier races by selecting a series scoring as base points
+- Make copying scoring files between installations work or show an error message
+- Bug: sometimes the order of the categories seems to change?
+- Write more unit tests

@@ -1,0 +1,9 @@
+Name1;Name2
+Alex;Alexander
+Stephie;Stephanie
+John;Johannes
+Chris;Christopher
+Ric;Riccardo
+Josi;Josephine
+Tom;Thomas
+Fabi;Fabian

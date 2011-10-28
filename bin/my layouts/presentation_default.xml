@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layout aspectWidth="4" aspectHeight="3">
+	<Background color="#FFFFFF"/>
+	<Font id="normal" family="Helvetica" size="0.035" lineSpacing="1.2" weight="normal" color="#000000"/>
+	<Font id="strong" family="Helvetica" size="0.035" lineSpacing="1.2" weight="bold" color="#000000"/>
+	<Font id="title" family="Helvetica" size="0.07" weight="bold" color="#333333"/>
+	<Font id="small" family="Helvetica" size="0.02" color="#555555"/>
+	
+	<Rect id="content" left="0.05" top="0.1" right="0.95" bottom="1" font_normal="normal" font_strong="strong"/>
+	<Point id="title" x="0.5" y="0.05" align_h="center" align_v="center" font="title"/>
+	<Point id="page_no" x="0.01" y="0.99" align_h="left" align_v="baseline" font="small"/>
+</Layout>
