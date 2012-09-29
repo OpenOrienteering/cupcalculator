@@ -152,5 +152,6 @@ QValidator::State DoubleValidator::validate(QString& input, int& pos) const
 	// Transform thousands group separators into decimal points to avoid confusion
 	input.replace(',', '.');
 	
-	return QDoubleValidator::validate(input, pos);
+	// Do not return QValidator::Intermediate
+	return (QDoubleValidator::validate(input, pos) == QValidator::Acceptable) ? QValidator::Acceptable : QValidator::Invalid;
 }

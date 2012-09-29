@@ -350,7 +350,7 @@ void ResultList::calculateRanks(int baseColumn, int statusColumn, bool ascending
 {
 	// Step 1: Heapsort from Wikipedia
 	const int WIDTH = 8;				// number of children of nodes
-	int val, parent, child, w, max, i;
+	int parent, child, w, max, i;	// , val
 	int num_columns = columns.size();
 	QVariant* val_data = new QVariant[num_columns];
 	int n = columns[0].size();
@@ -365,14 +365,14 @@ void ResultList::calculateRanks(int baseColumn, int statusColumn, bool ascending
 		{
 			// Part 1: construct heap
 			parent = --m;
-			val = columns[baseColumn][parent].toInt();
+			//val = columns[baseColumn][parent].toInt();
 			for (int i = 0; i < num_columns; ++i)
 				val_data[i] = columns[i][parent];
 		}
 		else if (--n )
 		{
 			// Part 2: sort
-			val = columns[baseColumn][n].toInt();
+			//val = columns[baseColumn][n].toInt();
 			for (int i = 0; i < num_columns; ++i)
 				val_data[i] = columns[i][n];
 			

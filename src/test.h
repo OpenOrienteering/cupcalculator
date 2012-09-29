@@ -33,6 +33,8 @@ Q_OBJECT
 private slots:
 	void fixedPointCalculation();
 	void timeRatioCalculation();
+	void timeRatioCalculationFormula3();
+	void timePointCalculation();
 	
 private:
 	void checkResults(ResultList* output_list, const QString& oracle);

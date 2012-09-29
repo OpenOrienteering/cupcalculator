@@ -284,17 +284,20 @@ ScoringCalculationPage::ScoringCalculationPage(Scoring* _scoring, ScoringDialog*
 	timeRatioRadio = new QRadioButton(tr("time ratio"));
 	fixedIntervalRadio = new QRadioButton(tr("fixed interval"));
 	customTableRadio = new QRadioButton(tr("point table"));
+	timePointsRadio = new QRadioButton(tr("time points"));
 	
 	QVBoxLayout* rulesLayout = new QVBoxLayout();
 	rulesLayout->addWidget(timeRatioRadio);
 	rulesLayout->addWidget(fixedIntervalRadio);
 	rulesLayout->addWidget(customTableRadio);
+	rulesLayout->addWidget(timePointsRadio);
 	rulesGroup->setLayout(rulesLayout);
 	
 	calculationButtonGroup = new QButtonGroup();
 	calculationButtonGroup->addButton(timeRatioRadio, (int)TimeRatio);
 	calculationButtonGroup->addButton(fixedIntervalRadio, (int)FixedInterval);
 	calculationButtonGroup->addButton(customTableRadio, (int)PointTable);
+	calculationButtonGroup->addButton(timePointsRadio, (int)TimePoints);
 	
 	// Settings group
 	QGroupBox* settingsGroup = new QGroupBox(tr("Settings"));
@@ -310,9 +313,22 @@ ScoringCalculationPage::ScoringCalculationPage(Scoring* _scoring, ScoringDialog*
 	ratio_2_factor = new QLineEdit();
 	ratio_2_factor->setValidator(new DoubleValidator(0));
 	
+	ratio_3 = new QRadioButton(tr("max{0,"));
+	ratio_3_bias = new QLineEdit();
+	ratio_3_bias->setValidator(new DoubleValidator(-10e10));
+	QLabel* ratio_3_label_1 = new QLabel(tr("+"));
+	ratio_3_factor = new QLineEdit();
+	ratio_3_factor->setValidator(new DoubleValidator(0));
+	QLabel* ratio_3_label_2 = new QLabel(tr("* (averaged_time - time) / averaged_time},"));
+	QLabel* ratio_3_label_3 = new QLabel(tr("         use averaged time of first"));
+	ratio_3_average_percentage = new QLineEdit();
+	ratio_3_average_percentage->setValidator(new DoubleValidator(1, 100));
+	QLabel* ratio_3_label_4 = new QLabel(tr("% of started competitors (number rounded up)"));
+	
 	ratioButtonGroup = new QButtonGroup();
-	ratioButtonGroup->addButton(ratio_1, 0);
+	ratioButtonGroup->addButton(ratio_1, 0); 
 	ratioButtonGroup->addButton(ratio_2, 1);
+	ratioButtonGroup->addButton(ratio_3, 2);
 	
 	QHBoxLayout* ratio_1_Layout = new QHBoxLayout();
 	ratio_1_Layout->addWidget(ratio_1);
@@ -320,10 +336,23 @@ ScoringCalculationPage::ScoringCalculationPage(Scoring* _scoring, ScoringDialog*
 	QHBoxLayout* ratio_2_Layout = new QHBoxLayout();
 	ratio_2_Layout->addWidget(ratio_2);
 	ratio_2_Layout->addWidget(ratio_2_factor);
+	QHBoxLayout* ratio_3_Layout = new QHBoxLayout();
+	ratio_3_Layout->addWidget(ratio_3);
+	ratio_3_Layout->addWidget(ratio_3_bias);
+	ratio_3_Layout->addWidget(ratio_3_label_1);
+	ratio_3_Layout->addWidget(ratio_3_factor);
+	ratio_3_Layout->addWidget(ratio_3_label_2);
+	QHBoxLayout* ratio_3_Layout_2 = new QHBoxLayout();
+	ratio_3_Layout_2->addWidget(ratio_3_label_3);
+	ratio_3_Layout_2->addWidget(ratio_3_average_percentage);
+	ratio_3_Layout_2->addWidget(ratio_3_label_4);
 	
 	QVBoxLayout* timeRatioLayout = new QVBoxLayout();
 	timeRatioLayout->addLayout(ratio_1_Layout);
 	timeRatioLayout->addLayout(ratio_2_Layout);
+	timeRatioLayout->addLayout(ratio_3_Layout);
+	timeRatioLayout->addLayout(ratio_3_Layout_2);
+	timeRatioLayout->addStretch(1);
 	timeRatioWidget->setLayout(timeRatioLayout);
 	
 	// Fixed interval settings
@@ -388,10 +417,39 @@ ScoringCalculationPage::ScoringCalculationPage(Scoring* _scoring, ScoringDialog*
 	customTableLayout->addWidget(customPointLabel, 3, 0, 1, 2);
 	customTableWidget->setLayout(customTableLayout);
 	
+	// Time point settings
+	QWidget* timePointWidget = new QWidget();
+	
+	timePointTable = new QTableWidget();
+	timePointTable->setColumnCount(2);
+	
+	timePointTable->setEditTriggers(QAbstractItemView::AllEditTriggers);
+	timePointTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+	timePointTable->setHorizontalHeaderLabels(QStringList() << tr("Percentage of winner time") << tr("Points"));
+	timePointTable->verticalHeader()->setVisible(false);
+	QHeaderView* header_view = timePointTable->horizontalHeader();
+	for (int i = 0; i < 2; ++i)
+		header_view->setResizeMode(i, QHeaderView::ResizeToContents);
+	header_view->setClickable(false);
+	
+	timePointAdd = new QPushButton(QIcon("images/plus.png"), "");
+	timePointRemove = new QPushButton(QIcon("images/minus.png"), "");
+	QLabel* timePointLabel = new QLabel(tr("The runners get points according to the percentage their time is behind the winner time.\nIf a runner is further behind than the percentage in the last row,\nhe or she still gets the points from this row."));
+	
+	QGridLayout* timePointLayout = new QGridLayout();
+	timePointLayout->addWidget(timePointTable, 0, 0, 3, 1);
+	timePointLayout->setRowStretch(2, 1);
+	timePointLayout->addWidget(timePointAdd, 0, 1);
+	timePointLayout->addWidget(timePointRemove, 1, 1);
+	timePointLayout->addWidget(timePointLabel, 3, 0, 1, 2);
+	timePointWidget->setLayout(timePointLayout);
+	
+	// Settings stack
 	settingsStack = new QStackedLayout(this);
 	settingsStack->addWidget(timeRatioWidget);
 	settingsStack->addWidget(fixedIntervalWidget);
 	settingsStack->addWidget(customTableWidget);
+	settingsStack->addWidget(timePointWidget);
 	settingsGroup->setLayout(settingsStack);
 	
 	// Handicap
@@ -459,7 +517,7 @@ ScoringCalculationPage::ScoringCalculationPage(Scoring* _scoring, ScoringDialog*
 		
 		QListWidgetItem* item = new QListWidgetItem(rulesetList);
 		item->setText(ruleset->name);
-		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+		item->setFlags(Qt::ItemIsSelectable | ((i == 0) ? Qt::NoItemFlags : Qt::ItemIsEditable) | Qt::ItemIsEnabled);
 		item->setData(Qt::UserRole, qVariantFromValue<void*>(ruleset));
 		
 		rulesetList->addItem(item);
@@ -478,6 +536,9 @@ ScoringCalculationPage::ScoringCalculationPage(Scoring* _scoring, ScoringDialog*
 	connect(ratioButtonGroup, SIGNAL(buttonClicked(int)), this, SLOT(formulaNumberChanged(int)));
 	connect(ratio_1_factor, SIGNAL(editingFinished()), this, SLOT(ratio1Changed()));
 	connect(ratio_2_factor, SIGNAL(editingFinished()), this, SLOT(ratio2Changed()));
+	connect(ratio_3_factor, SIGNAL(editingFinished()), this, SLOT(ratio3Changed()));
+	connect(ratio_3_bias, SIGNAL(editingFinished()), this, SLOT(ratio3Changed()));
+	connect(ratio_3_average_percentage, SIGNAL(editingFinished()), this, SLOT(ratio3Changed()));
 	
 	connect(intervalEdit, SIGNAL(editingFinished()), this, SLOT(intervalChanged()));
 	connect(lastRunnerPointsEdit, SIGNAL(editingFinished()), this, SLOT(lastRunnerPointsChanged()));
@@ -488,6 +549,11 @@ ScoringCalculationPage::ScoringCalculationPage(Scoring* _scoring, ScoringDialog*
 	connect(customPointAdd, SIGNAL(clicked()), this, SLOT(customPointAddClicked()));
 	connect(customPointRemove, SIGNAL(clicked()), this, SLOT(customPointRemoveClicked()));
 	connect(customPointList, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(customPointItemChanged(QListWidgetItem*)));
+	
+	connect(timePointAdd, SIGNAL(clicked()), this, SLOT(timePointAddClicked()));
+	connect(timePointRemove, SIGNAL(clicked()), this, SLOT(timePointRemoveClicked()));
+	connect(timePointTable, SIGNAL(cellChanged(int,int)), this, SLOT(timePointCellChanged(int,int)));
+	connect(timePointTable, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(timePointCurrentCellChanged(int,int,int,int)));
 	
 	connect(handicapCheck, SIGNAL(toggled(bool)), this, SLOT(handicapCheckToggled(bool)));
 	connect(handicapList, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(currentHandicapChanged(QListWidgetItem*,QListWidgetItem*)));
@@ -632,6 +698,74 @@ void ScoringCalculationPage::customPointItemChanged(QListWidgetItem* item)
 	react_to_changes = true;
 }
 
+void ScoringCalculationPage::timePointAddClicked()
+{
+	Ruleset* ruleset = getCurrentRuleset();
+	int cur_row = timePointTable->currentRow();
+	
+	ruleset->timePointSettings.table.insert(ruleset->timePointSettings.table.begin() + (cur_row + 1), std::make_pair(FPNumber(100.0), FPNumber(25.0)));
+	
+	timePointTable->insertRow(cur_row + 1);
+	timePointUpdateRow(cur_row + 1);
+	timePointCellChanged(cur_row + 1, 0);	// put a (probably) valid default value there
+	timePointTable->editItem(timePointTable->item(cur_row + 1, 0));
+	
+	timePointRemove->setEnabled(true);
+}
+void ScoringCalculationPage::timePointUpdateRow(int row)
+{
+	Ruleset* ruleset = getCurrentRuleset();
+	
+	react_to_changes = false;
+	
+	QTableWidgetItem* item = new QTableWidgetItem(ruleset->timePointSettings.table[row].first.toString());
+	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | ((row > 0) ? Qt::ItemIsEditable : Qt::NoItemFlags));
+	timePointTable->setItem(row, 0, item);
+	
+	item = new QTableWidgetItem(ruleset->timePointSettings.table[row].second.toString());
+	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
+	timePointTable->setItem(row, 1, item);
+	
+	react_to_changes = true;
+}
+void ScoringCalculationPage::timePointRemoveClicked()
+{
+	Ruleset* ruleset = getCurrentRuleset();
+	int cur_row = timePointTable->currentRow();
+	assert(cur_row != 0);
+	
+	timePointTable->removeRow(cur_row);
+	ruleset->timePointSettings.table.erase(ruleset->timePointSettings.table.begin() + cur_row);
+}
+void ScoringCalculationPage::timePointCellChanged(int row, int column)
+{
+	if (!react_to_changes) return;
+	
+	Ruleset* ruleset = getCurrentRuleset();
+	QTableWidgetItem* item = timePointTable->item(row, column);
+	
+	FPNumber number = FPNumber(item->text().toDouble());
+	if (column == 0)
+	{
+		if (row > 0 && number.toInt() <= ruleset->timePointSettings.table[row - 1].first.toInt())
+			number = FPNumber(ruleset->timePointSettings.table[row - 1].first.toInt() + 100);
+		else if (row < (int)ruleset->timePointSettings.table.size() - 1 && number.toInt() >= ruleset->timePointSettings.table[row + 1].first.toInt())
+			number = FPNumber(ruleset->timePointSettings.table[row + 1].first.toInt() - 100);
+		
+		ruleset->timePointSettings.table[row].first = number;
+	}
+	else if (column == 1)
+		ruleset->timePointSettings.table[row].second = number;
+	
+	react_to_changes = false;
+	item->setText(number.toString());
+	react_to_changes = true;
+}
+void ScoringCalculationPage::timePointCurrentCellChanged(int current_row, int current_column, int previous_row, int previous_column)
+{
+	timePointRemove->setEnabled(current_row != 0);
+}
+
 void ScoringCalculationPage::setCustomCategories(bool enable)
 {
 	rulesetGroup->setVisible(enable);
@@ -656,6 +790,9 @@ void ScoringCalculationPage::rulesetChanged(QListWidgetItem* current, QListWidge
 	ratioButtonGroup->button(ruleset->timeRatioSettings.formulaNumber)->setChecked(true);
 	ratio_1_factor->setText(ruleset->timeRatioSettings.formula1Factor.toString());
 	ratio_2_factor->setText(ruleset->timeRatioSettings.formula2Factor.toString());
+	ratio_3_bias->setText(ruleset->timeRatioSettings.formula3Bias.toString());
+	ratio_3_factor->setText(ruleset->timeRatioSettings.formula3Factor.toString());
+	ratio_3_average_percentage->setText(ruleset->timeRatioSettings.formula3AveragePercentage.toString());
 	
 	intervalEdit->setText(ruleset->fixedIntervalSettings.interval.toString());
 	lastRunnerPointsEdit->setText(ruleset->fixedIntervalSettings.lastRunnerPoints.toString());
@@ -674,6 +811,17 @@ void ScoringCalculationPage::rulesetChanged(QListWidgetItem* current, QListWidge
 	customPointRemove->setEnabled(size > 1);
 	if (size > 0)
 		customPointList->setCurrentRow(0);
+	
+	timePointTable->clearContents();
+	size = ruleset->timePointSettings.table.size();
+	for (int i = 0; i < size; ++i)
+	{
+		timePointTable->insertRow(i);
+		timePointUpdateRow(i);
+	}
+	timePointRemove->setEnabled(false);
+	if (size > 0)
+		timePointTable->setCurrentCell(0, 0);
 	
 	handicapCheck->setChecked(ruleset->handicapping);
 	handicapGroup->setVisible(ruleset->handicapping);
@@ -780,6 +928,13 @@ void ScoringCalculationPage::ratio2Changed()
 {
 	if (!react_to_changes)	return;
 	getCurrentRuleset()->timeRatioSettings.formula2Factor = ratio_2_factor->text().toDouble();
+}
+void ScoringCalculationPage::ratio3Changed()
+{
+	if (!react_to_changes)	return;
+	getCurrentRuleset()->timeRatioSettings.formula3Bias = ratio_3_bias->text().toDouble();
+	getCurrentRuleset()->timeRatioSettings.formula3Factor = ratio_3_factor->text().toDouble();
+	getCurrentRuleset()->timeRatioSettings.formula3AveragePercentage = ratio_3_average_percentage->text().toDouble();
 }
 
 void ScoringCalculationPage::countingRunnersPerClubChanged()

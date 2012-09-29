@@ -43,7 +43,8 @@ enum RuleType
 	// as radio button indexes for these options, don't change them without adjusting this!
 	TimeRatio = 0,
 	FixedInterval = 1,
-	PointTable = 2
+	PointTable = 2,
+	TimePoints = 3
 };
 
 struct Ruleset : public QObject
@@ -57,6 +58,9 @@ public:
 		
 		FPNumber formula1Factor;
 		FPNumber formula2Factor;
+		FPNumber formula3Factor;
+		FPNumber formula3Bias;
+		FPNumber formula3AveragePercentage;
 	};
 	struct FixedIntervalSettings
 	{
@@ -65,19 +69,14 @@ public:
 		int countingRunnersPerClub;
 		bool countTeams;
 		bool disqualifiedRunnersCount;
-		
-		/*const int MAX_SPECIAL_RULES = 5;
-		 * int numSpecialRules;
-		 * /// Points for the first numSpecialRules runners are calculated like this: [runner position] * runnerFactor + offset
-		 * struct SpecialRule
-		 * {
-		 *	int runnerFactor;
-		 *	int offset;
-		 };*/
 	};
 	struct PointTableSettings
 	{
 		std::vector<FPNumber> table;
+	};
+	struct TimePointSettings
+	{
+		std::vector< std::pair<FPNumber, FPNumber> > table;
 	};
 	struct HandicapSetting
 	{
@@ -95,6 +94,7 @@ public:
 	TimeRatioSettings timeRatioSettings;
 	FixedIntervalSettings fixedIntervalSettings;
 	PointTableSettings pointTableSettings;
+	TimePointSettings timePointSettings;
 	
 	bool handicapping;
 	std::vector<HandicapSetting*> handicaps;

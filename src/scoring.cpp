@@ -25,6 +25,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <qmath.h>
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 #include <QMessageBox>
@@ -168,6 +169,9 @@ bool Scoring::saveToFile(const QString path_prefix)
 			stream.writeAttribute("formulaNumber", QString::number(ruleset->timeRatioSettings.formulaNumber));
 			stream.writeAttribute("formula1Factor", ruleset->timeRatioSettings.formula1Factor.toString());
 			stream.writeAttribute("formula2Factor", ruleset->timeRatioSettings.formula2Factor.toString());
+			stream.writeAttribute("formula3Factor", ruleset->timeRatioSettings.formula3Factor.toString());
+			stream.writeAttribute("formula3Bias", ruleset->timeRatioSettings.formula3Bias.toString());
+			stream.writeAttribute("formula3AveragePercentage", ruleset->timeRatioSettings.formula3AveragePercentage.toString());
 		}
 		else if (ruleset->rule_type == PointTable)
 		{
@@ -178,6 +182,22 @@ bool Scoring::saveToFile(const QString path_prefix)
 			{
 				pointsString += ruleset->pointTableSettings.table[i].toString();
 				if (i < (int)ruleset->pointTableSettings.table.size() - 1)
+					pointsString += ", ";
+			}
+			stream.writeAttribute("points", pointsString);
+		}
+		else if (ruleset->rule_type == TimePoints)
+		{
+			stream.writeAttribute("type", "time points");
+			
+			QString pointsString = "";
+			for (int i = 0; i < (int)ruleset->timePointSettings.table.size(); ++i)
+			{
+				pointsString += ruleset->timePointSettings.table[i].first.toString();
+				pointsString += ", ";
+				pointsString += ruleset->timePointSettings.table[i].second.toString();
+				
+				if (i < (int)ruleset->timePointSettings.table.size() - 1)
 					pointsString += ", ";
 			}
 			stream.writeAttribute("points", pointsString);
@@ -368,6 +388,18 @@ bool Scoring::loadFromFile(QWidget* dialogParent)
 				ruleset->timeRatioSettings.formulaNumber = stream.attributes().value("formulaNumber").toString().toInt();
 				ruleset->timeRatioSettings.formula1Factor = stream.attributes().value("formula1Factor").toString().toDouble();
 				ruleset->timeRatioSettings.formula2Factor = stream.attributes().value("formula2Factor").toString().toDouble();
+				if (!stream.attributes().value("formula3Factor").isEmpty())
+				{
+					ruleset->timeRatioSettings.formula3Factor = stream.attributes().value("formula3Factor").toString().toDouble();
+					ruleset->timeRatioSettings.formula3Bias = stream.attributes().value("formula3Bias").toString().toDouble();
+					ruleset->timeRatioSettings.formula3AveragePercentage = stream.attributes().value("formula3AveragePercentage").toString().toDouble();
+				}
+				else
+				{
+					ruleset->timeRatioSettings.formula3Factor = 500;
+					ruleset->timeRatioSettings.formula3Bias = 1000;
+					ruleset->timeRatioSettings.formula3AveragePercentage = 50;
+				}
 			}
 			else if (type == "point table")
 			{
@@ -376,6 +408,14 @@ bool Scoring::loadFromFile(QWidget* dialogParent)
 				QStringList list = stream.attributes().value("points").toString().split(",");
 				for (int i = 0; i < list.size(); ++i)
 					ruleset->pointTableSettings.table.push_back(FPNumber(list[i].toDouble()));
+			}
+			else if (type == "time points")
+			{
+				ruleset->rule_type = TimePoints;
+				ruleset->timePointSettings.table.clear();
+				QStringList list = stream.attributes().value("points").toString().split(",");
+				for (int i = 0; i < list.size() - 1; i += 2)
+					ruleset->timePointSettings.table.push_back(std::make_pair(FPNumber(list[i].toDouble()), FPNumber(list[i+1].toDouble())));
 			}
 		}
 		else if (stream.name() == "Handicapping")
@@ -438,6 +478,9 @@ Ruleset* Scoring::addRuleset()
 	new_ruleset->timeRatioSettings.formulaNumber = 0;
 	new_ruleset->timeRatioSettings.formula1Factor = 100;
 	new_ruleset->timeRatioSettings.formula2Factor = 100;
+	new_ruleset->timeRatioSettings.formula3Factor = 500;
+	new_ruleset->timeRatioSettings.formula3Bias = 1000;
+	new_ruleset->timeRatioSettings.formula3AveragePercentage = 50;
 	
 	new_ruleset->fixedIntervalSettings.interval = 1;
 	new_ruleset->fixedIntervalSettings.lastRunnerPoints = 1;
@@ -446,6 +489,8 @@ Ruleset* Scoring::addRuleset()
 	new_ruleset->fixedIntervalSettings.countingRunnersPerClub = 99999;
 	
 	new_ruleset->pointTableSettings.table.push_back(FPNumber(100.0));
+	
+	new_ruleset->timePointSettings.table.push_back(std::make_pair(FPNumber(100.0), FPNumber(25.0)));
 
 	new_ruleset->handicapping = false;
 	
@@ -758,6 +803,7 @@ ResultList* Scoring::calculatePoints(ResultList* results, std::vector< ResultLis
 	int roundFactor = static_cast<int>(pow(10.0, decimal_places) + 0.5);
 	
 	double winner_seconds = -1;
+	double averaged_seconds = -1;
 	double current_points = 0;
 	double previous_points = -1;
 	int previous_point_rank = -1;
@@ -828,6 +874,39 @@ ResultList* Scoring::calculatePoints(ResultList* results, std::vector< ResultLis
 					current_points += runnersPerClub.size() * current_ruleset->fixedIntervalSettings.countingRunnersPerClub * current_ruleset->fixedIntervalSettings.interval.toDouble();
 				runnersPerClub.clear();
 			}
+			else if (current_ruleset->rule_type == TimeRatio && current_ruleset->timeRatioSettings.formulaNumber == 2)
+			{
+				// Calculate averaged_seconds
+				int num_started_runners = 0;
+				std::vector<double> averaged_times;
+				
+				for (int k = i; k < num_rows; ++k)
+				{
+					AbstractCategory* k_category = static_cast<AbstractCategory*>(results->getData(k, results->getCategoryColumn()).value<void*>());
+					if (k_category != current_category)
+						break;
+					
+					if (!results->getData(k, results->getRankColumn()).isValid() || results->getData(k, results->getRankColumn()).toInt() == -2)
+						continue;	// runner not in scoring
+					
+					ResultList::ResultType k_resultType = static_cast<ResultList::ResultType>(results->getData(k, results->getStatusColumn()).toInt());
+					if (k_resultType != ResultList::ResultDidNotStart)
+						++num_started_runners;
+					if (k_resultType != ResultList::ResultOk)
+						continue;
+					
+					averaged_times.push_back(results->getData(k, results->getTimeColumn()).toInt() * 0.01);
+				}
+				
+				int num_averaged_times = qCeil(current_ruleset->timeRatioSettings.formula3AveragePercentage.toDouble() * 0.01 * num_started_runners);
+				if (num_averaged_times < (int)averaged_times.size())
+					averaged_times.resize(num_averaged_times);
+				
+				averaged_seconds = 0;
+				for (size_t k = 0; k < averaged_times.size(); ++k)
+					averaged_seconds += averaged_times[k];
+				averaged_seconds = averaged_seconds / averaged_times.size();
+			}
 		}
 		
 		// Start creating new row
@@ -862,6 +941,12 @@ ResultList* Scoring::calculatePoints(ResultList* results, std::vector< ResultLis
 					points = current_ruleset->timeRatioSettings.formula1Factor.toDouble() * (winner_seconds / seconds);
 				else if (current_ruleset->timeRatioSettings.formulaNumber == 1)
 					points = current_ruleset->timeRatioSettings.formula2Factor.toDouble() * qMax(0.0, (2 - seconds / winner_seconds));
+				else if (current_ruleset->timeRatioSettings.formulaNumber == 2)
+				{
+					points = current_ruleset->timeRatioSettings.formula3Bias.toDouble() + current_ruleset->timeRatioSettings.formula3Factor.toDouble() *
+						(averaged_seconds - seconds) / averaged_seconds;
+					points = qMax(0.0, points);
+				}
 			}
 			else if (current_ruleset->rule_type == FixedInterval)
 			{
@@ -897,6 +982,18 @@ ResultList* Scoring::calculatePoints(ResultList* results, std::vector< ResultLis
 			{
 				int num_items = current_ruleset->pointTableSettings.table.size();
 				points = current_ruleset->pointTableSettings.table[qMin(time_based_rank - 1, num_items - 1)].toDouble();
+			}
+			else if (current_ruleset->rule_type == TimePoints)
+			{
+				double percentage_of_winner_time = 100 * (seconds / winner_seconds);
+				int num_items = current_ruleset->timePointSettings.table.size();
+				int item = 0;
+				for (; item < num_items - 1; ++item)
+				{
+					if (percentage_of_winner_time <= current_ruleset->timePointSettings.table[item].first.toDouble())
+						break;
+				}
+				points = current_ruleset->timePointSettings.table[item].second.toDouble();
 			}
 			else
 				assert(false);
@@ -1186,7 +1283,7 @@ Scoring* ScoringDB::getOrLoadScoring(const QString& name, QWidget* dialogParent)
 {
 	Scorings::iterator it = scorings.find(name);
 	if (it == scorings.end())
-		return false;
+		return NULL;
 	
 	if (*it)
 		return *it;
@@ -1196,7 +1293,7 @@ Scoring* ScoringDB::getOrLoadScoring(const QString& name, QWidget* dialogParent)
 	if (!loadedScoring->loadFromFile(dialogParent))
 	{
 		delete loadedScoring;
-		return false;
+		return NULL;
 	}
 	scorings.insert(name, loadedScoring);
 	

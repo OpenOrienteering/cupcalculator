@@ -329,7 +329,7 @@ Layout* LayoutDB::getOrLoadLayout(const QString& name, QWidget* dialogParent)
 {
 	Layouts::iterator it = layouts.find(name);
 	if (it == layouts.end())
-		return false;
+		return NULL;
 	
 	if (*it)
 		return *it;
@@ -339,7 +339,7 @@ Layout* LayoutDB::getOrLoadLayout(const QString& name, QWidget* dialogParent)
 	if (!loadedLayout->loadFromFile())
 	{
 		delete loadedLayout;
-		return false;
+		return NULL;
 	}
 	layouts.insert(name, loadedLayout);
 	

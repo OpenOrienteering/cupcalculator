@@ -735,7 +735,7 @@ SeriesScoring* SeriesScoringDB::getOrLoadScoring(const QString& name, QWidget* d
 {
 	Scorings::iterator it = scorings.find(name);
 	if (it == scorings.end())
-		return false;
+		return NULL;
 	
 	if (*it)
 		return *it;
@@ -745,7 +745,7 @@ SeriesScoring* SeriesScoringDB::getOrLoadScoring(const QString& name, QWidget* d
 	if (!loadedScoring->loadFromFile(dialogParent))
 	{
 		delete loadedScoring;
-		return false;
+		return NULL;
 	}
 	scorings.insert(name, loadedScoring);
 	

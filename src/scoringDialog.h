@@ -128,6 +128,7 @@ public slots:
 	void formulaNumberChanged(int i);
 	void ratio1Changed();
 	void ratio2Changed();
+	void ratio3Changed();
     void rulesetChanged(QListWidgetItem* current, QListWidgetItem* previous);
     void intervalChanged();
 	void lastRunnerPointsChanged();
@@ -140,6 +141,10 @@ public slots:
 	void customPointAddClicked();
 	void customPointRemoveClicked();
     void customPointItemChanged(QListWidgetItem* item);
+	void timePointAddClicked();
+	void timePointRemoveClicked();
+	void timePointCellChanged(int row, int column);
+	void timePointCurrentCellChanged(int current_row, int current_column, int previous_row, int previous_column);
     void handicapCheckToggled(bool checked);
     void currentHandicapChanged(QListWidgetItem* current, QListWidgetItem* previous);
     void handicapDataChanged();
@@ -159,6 +164,7 @@ private:
 	};
 	
 	void updateHandicapWidgets();
+	void timePointUpdateRow(int row);
 	
 	Ruleset* getCurrentRuleset();
 	
@@ -170,15 +176,20 @@ private:
 	QRadioButton* fixedIntervalRadio;
 	QRadioButton* customTableRadio;
 	QRadioButton* timeRatioRadio;
+	QRadioButton* timePointsRadio;
 	
 	QStackedLayout* settingsStack;
 	
 	// time ratio
 	QButtonGroup* ratioButtonGroup;
 	QRadioButton* ratio_1;
-	QRadioButton* ratio_2;
 	QLineEdit* ratio_1_factor;
+	QRadioButton* ratio_2;
 	QLineEdit* ratio_2_factor;
+	QRadioButton* ratio_3;
+	QLineEdit* ratio_3_bias;
+	QLineEdit* ratio_3_factor;
+	QLineEdit* ratio_3_average_percentage;
 	
 	// fixed interval
 	QLineEdit* intervalEdit;
@@ -195,6 +206,11 @@ private:
 	PointListWidget* customPointList;
 	QPushButton* customPointAdd;
 	QPushButton* customPointRemove;
+	
+	// time point table
+	QTableWidget* timePointTable;
+	QPushButton* timePointAdd;
+	QPushButton* timePointRemove;
 	
 	// handicap
 	QCheckBox* handicapCheck;

@@ -552,7 +552,8 @@ void PresentationWidget::nextAnimationFrame()
 		current_slide_dirty = true;
 	}
 	
-	update();
+	if (dirty)
+		update();
 }
 
 void PresentationWidget::showResultList(ResultList* list, int show_first_x_runners)
