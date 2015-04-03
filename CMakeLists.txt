@@ -1,11 +1,12 @@
 project(OResults)
-cmake_minimum_required(VERSION 2.6)
-find_package(Qt4 REQUIRED)
+cmake_minimum_required(VERSION 2.8.11)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Test REQUIRED)
 
 enable_testing()
 
 #set(CMAKE_BUILD_TYPE Release)
-set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Debug)
 
 add_definitions(-ansi -pedantic)
 if (CMAKE_COMPILER_IS_GNUCXX)
@@ -13,6 +14,8 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 endif (CMAKE_COMPILER_IS_GNUCXX)
 set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0 -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-g0 -O2 -s")
+
+set(CMAKE_AUTOMOC ON)
 
 include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
 
@@ -44,23 +47,21 @@ set(Common_SRCS
  src/resultCsvImport.cpp
 )
 set(OResults_SRCS ${Common_SRCS} src/main.cpp)
-qt4_automoc(${OResults_SRCS} src/main.cpp)
+#qt4_automoc(${OResults_SRCS} src/main.cpp)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 add_executable(OResults ${OResults_SRCS})
 target_link_libraries(OResults
- ${QT_QTCORE_LIBRARY}
- ${QT_QTGUI_LIBRARY}
+ Qt5::Widgets
 )
 
 # Testing
 set(OResultsTest_SRCS ${Common_SRCS} src/test.cpp)
-qt4_automoc(src/test.cpp)
+#qt4_automoc(src/test.cpp)
 add_executable(OResultsTest ${OResultsTest_SRCS})
 add_test(NAME ScoringToolTest COMMAND $<TARGET_FILE:OResultsTest>)
 
 target_link_libraries(OResultsTest
- ${QT_QTCORE_LIBRARY}
- ${QT_QTGUI_LIBRARY}
- ${QT_QTTEST_LIBRARY}
+ Qt5::Widgets
+ Qt5::Test
 )

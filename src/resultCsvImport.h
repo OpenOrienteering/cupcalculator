@@ -54,6 +54,7 @@ public:
 	CSVFile::ColumnIndexes* colCategory;
 	CSVFile::ColumnIndexes* colNotClassified;
 	bool skip_empty_club_rows;
+	QString maleString;
 	
 public slots:
 	

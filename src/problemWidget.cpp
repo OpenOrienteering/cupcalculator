@@ -20,7 +20,7 @@
 
 #include "problemWidget.h"
 
-#include <QtGui>
+#include <QtWidgets>
 
 Problem::Problem()
 {
@@ -34,9 +34,9 @@ ProblemWidget::ProblemWidget(QWidget* parent) : QTableWidget(parent)
 	QStringList labels;
 	labels << tr("Description") << tr("Action");
 	setHorizontalHeaderLabels(labels);
-	horizontalHeader()->setResizeMode(0, QHeaderView::ResizeToContents);
-	horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-	horizontalHeader()->setClickable(false);
+	horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+	horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+	horizontalHeader()->setSectionsClickable(false);
 	
 	actionSelectionDelegate = new ActionSelectionDelegate();
 	setItemDelegateForColumn(1, actionSelectionDelegate);

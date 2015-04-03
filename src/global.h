@@ -22,7 +22,7 @@
 #define GLOBAL_H
 
 #define APP_NAME qApp->translate("Global", QT_TRANSLATE_NOOP("Global", "CupCalculator"))
-#define APP_VERSION "v1.1"
+#define APP_VERSION "v1.1.1"
 
 extern char installationKey[33];	// 32 letters and terminating 0
 

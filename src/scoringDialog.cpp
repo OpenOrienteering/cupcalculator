@@ -20,7 +20,7 @@
 
 #include "scoringDialog.h"
 
-#include <QtGui>
+#include <QtWidgets>
 #include <assert.h>
 
 #include "scoring.h"
@@ -429,8 +429,8 @@ ScoringCalculationPage::ScoringCalculationPage(Scoring* _scoring, ScoringDialog*
 	timePointTable->verticalHeader()->setVisible(false);
 	QHeaderView* header_view = timePointTable->horizontalHeader();
 	for (int i = 0; i < 2; ++i)
-		header_view->setResizeMode(i, QHeaderView::ResizeToContents);
-	header_view->setClickable(false);
+		header_view->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+	header_view->setSectionsClickable(false);
 	
 	timePointAdd = new QPushButton(QIcon("images/plus.png"), "");
 	timePointRemove = new QPushButton(QIcon("images/minus.png"), "");
@@ -674,10 +674,16 @@ void ScoringCalculationPage::customPointRemoveClicked()
 	if (customPointList->count() <= 1)
 		customPointRemove->setEnabled(false);
 }
-void ScoringCalculationPage::PointListWidget::dropEvent(QDropEvent* event)
+
+void PointListWidget::dropEvent(QDropEvent* event)
 {
-    QListWidget::dropEvent(event);
-	
+    //QListWidget::dropEvent(event);
+	QListView::dropEvent(event);
+
+	QTimer::singleShot(20, this, SLOT(updateList()));
+}
+void PointListWidget::updateList()
+{
 	Ruleset* ruleset = page->getCurrentRuleset();
 	std::vector<FPNumber>* v = &ruleset->pointTableSettings.table;
 	
@@ -685,6 +691,7 @@ void ScoringCalculationPage::PointListWidget::dropEvent(QDropEvent* event)
 	for (int i = 0; i < page->customPointList->count(); ++i)
 		v->push_back(FPNumber(page->customPointList->item(i)->text().toDouble()));
 }
+
 void ScoringCalculationPage::customPointItemChanged(QListWidgetItem* item)
 {
 	if (!react_to_changes) return;

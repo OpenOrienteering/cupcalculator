@@ -22,7 +22,7 @@
 
 #include "assert.h"
 
-#include <QtGui>
+#include <QtWidgets>
 #include <QFile>
 #include <QTextStream>
 #include <QStringList>
@@ -164,6 +164,33 @@ bool CSVFile::nextLine()
 const QString& CSVFile::getValue(int index)
 {
 	return data[index];
+}
+
+void CSVFile::rewind()
+{
+	stream->seek(0);
+	stream->readLine();
+}
+
+void CSVFile::renameColumn(const QString& oldName, const QString& newName)
+{
+	ColumnMap::iterator oldIt = columnMap.find(oldName);
+	if (oldIt == columnMap.end())
+		return;
+	ColumnMap::iterator newIt = columnMap.find(newName);
+	if (newIt == columnMap.end())
+		newIt = columnMap.insert(std::make_pair(newName, std::vector<int>())).first;
+	for (size_t i = 0; i < oldIt->second.size(); ++ i)
+		newIt->second.push_back(oldIt->second.at(i));
+	columnMap.erase(oldIt);
+}
+
+void CSVFile::deleteColumn(const QString& name)
+{
+	ColumnMap::iterator it = columnMap.find(name);
+	if (it == columnMap.end())
+		return;
+	columnMap.erase(it);
 }
 
 QString CSVFile::getPath()

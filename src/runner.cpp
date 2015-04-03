@@ -615,9 +615,9 @@ RunnerTable::RunnerTable()
 	
 	resizeColumnsToContents();
 	QHeaderView* headerView = horizontalHeader();
-	headerView->setResizeMode(0, QHeaderView::Stretch);
-	headerView->setResizeMode(1, QHeaderView::Stretch);
-	headerView->setResizeMode(4, QHeaderView::Stretch);
+	headerView->setSectionResizeMode(0, QHeaderView::Stretch);
+	headerView->setSectionResizeMode(1, QHeaderView::Stretch);
+	headerView->setSectionResizeMode(4, QHeaderView::Stretch);
 	headerView->setHighlightSections(false);
 	
 	// Gender Delegate

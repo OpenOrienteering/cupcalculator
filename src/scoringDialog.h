@@ -111,9 +111,22 @@ private:
 	ScoringDialog* dialog;
 };
 
+class PointListWidget : public QListWidget
+{
+Q_OBJECT
+public:
+	PointListWidget(ScoringCalculationPage* page, QWidget* parent = NULL) : QListWidget(parent), page(page) {}
+public slots:
+	void updateList();
+private:
+    virtual void dropEvent(QDropEvent* event);
+	ScoringCalculationPage* page;
+};
+
 class ScoringCalculationPage : public QWidget
 {
 Q_OBJECT
+friend class PointListWidget;
 public:
 	
 	ScoringCalculationPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = NULL);
@@ -153,15 +166,6 @@ public slots:
 	void handicapRemoveClicked();
 	
 private:
-	
-	class PointListWidget : public QListWidget
-	{
-	public:
-		PointListWidget(ScoringCalculationPage* page, QWidget* parent = NULL) : QListWidget(parent), page(page) {}
-	private:
-        virtual void dropEvent(QDropEvent* event);
-		ScoringCalculationPage* page;
-	};
 	
 	void updateHandicapWidgets();
 	void timePointUpdateRow(int row);

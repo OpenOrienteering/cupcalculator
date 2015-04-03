@@ -20,7 +20,7 @@
 
 #include "mainWindow.h"
 
-#include <QtGui>
+#include <QtWidgets>
 #include <assert.h>
 #include <set>
 
@@ -428,12 +428,14 @@ bool CalculateScoringTab::importResultsFromCSV(CSVFile* file, bool show_import_d
 {
 	// Show import dialog
 	CSVImportDialog importDialog(file, this);
+	QString maleString = "M";
 	if (show_import_dialog)
 	{
 		importDialog.setWindowModality(Qt::WindowModal);
 		importDialog.exec();
 		if (importDialog.result() == QDialog::Rejected)
 			return false;
+		maleString = importDialog.maleString;
 	}
 	
 	ResultList* results = new ResultList(tr("Race results"), 0);
@@ -547,7 +549,7 @@ bool CalculateScoringTab::importResultsFromCSV(CSVFile* file, bool show_import_d
 			else
 				year = 0;
 			QString isMale_Str = file->getValue(importDialog.colGender->at(i));
-			bool isMale = (isMale_Str == "M") || (isMale_Str == "U");	// TODO: is this always 'M' or 'U' / are there conflicts?
+			bool isMale = (isMale_Str == maleString);
 			
 			Runner runner_data;
 			runner_data.setFirstName(firstName);
@@ -1211,7 +1213,7 @@ AboutTab::AboutTab(MainWindow* mainWindow, QWidget* parent): QWidget(parent), ma
 	hugeFont.setPointSize(20);
 	programLabel->setFont(hugeFont);
 	
-	QLabel* aboutLabel = new QLabel(tr("Copyright (C) 2011  Thomas Sch&ouml;ps<br>"
+	QLabel* aboutLabel = new QLabel(tr("Copyright (C) 2011, 2012, 2015  Thomas Sch&ouml;ps<br>"
 									   "This program comes with ABSOLUTELY NO WARRANTY;<br>"
 									   "This is free software, and you are welcome to redistribute it<br>"
 									   "under certain conditions; see the file COPYING for details."));

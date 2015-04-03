@@ -20,7 +20,7 @@
 
 #include "resultCsvImport.h"
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "global.h"
 
@@ -29,29 +29,80 @@ CSVImportDialog::CSVImportDialog(CSVFile* file, QWidget* parent) : QDialog(paren
 	setWindowTitle(tr("CSV Import"));
 	setWindowFlags(windowFlags() & ~Qt::WindowCloseButtonHint);
 	
-	// TODO: support more languages
-	const int NUM_LANGUAGES = 3;	// German, English, Italian
-	QString firstNameList[] = {"Vorname", "First name", "Nome"};
-	QString lastNameList[] = {"Nachname", "Surname", "Cognome"};
-	QString yearList[] = {"Jg", "YB", "AN"};
-	QString genderList[] = {"G", "S", "S"};
-	// TODO: Is always "M" used for male? See mainWindow.cpp ...
-	QString timeList[] = {"Zeit", "Time", "Tempo"};
-	QString stateList[] = {"Wertung", "Classifier", "Stato classifica"};
-	QString clubAbbreviationList[] = {"Abk", "Cl.name", "Sigla"};
-	QString clubLocationList[] = {"Ort", "City", "Luogo"};
-	QString categoryList[] = {"Lang", "Long", "Lungo"};
-	QString notClassifiedList[] = {"AK", "nc", "NC"};
+	const int NUM_LANGUAGES = 14;	// German, English, Italian, Swedish, Spanish, Hungarian, Czech, Croatian, French, Polish, Danish, "Bulgarian" (unfinished in OE2003), Finnish, "Estonian" / "Russian" (unfinished in OE2003)
+	QString firstNameList[NUM_LANGUAGES] = {"Vorname", "First name", "Nome", "Förnamn", "Nombre", "Utónév", "Jméno (køest.)", "Ime", "Prénom", "Imiê", "Fornavn", "Vorname", "Etunimi", "Vorname"};
+	QString lastNameList[NUM_LANGUAGES] = {"Nachname", "Surname", "Cognome", "Efternamn", "Apellidos", "Családnév", "Pøíjmení", "Prezime", "Nom", "Nazwisko", "Efternavn", "Nachname", "Sukunimi", "Nachname"};
+	QString yearList[NUM_LANGUAGES] = {"Jg", "YB", "AN", "År", "AN", "Szül", "RN", "GR", "Né", "Ur.", "År", "Jg", "Synt", "Jg"};
+	QString genderList[NUM_LANGUAGES] = {"G", "S", "S", "K", "S", "FN", "S", "Spol", "S", "P³eæ", "K", "G_Sex", "S", "G_Sex"};
+	QString timeList[NUM_LANGUAGES] = {"Zeit", "Time", "Tempo", "Tid", "Tiempo", "Idõ", "Èas", "Vrijeme", "Temps", "Czas", "Tid", "Âðåìå", "Aika", "Zeit"};
+	QString stateList[NUM_LANGUAGES] = {"Wertung", "Classifier", "Stato classifica", "Status", "Estado clas.", "Érvényes", "Klasifikace", "Klasifikator", "Evaluation", "Klasyfikowany", "Status", "Wertung", "Tila", "Wertung"};
+	QString clubAbbreviationList[NUM_LANGUAGES] = {"Abk", "Cl.name", "Sigla", "Namn", "Nombre de club", "Név", "Název klubu", "Klub ime", "Nom", "Klub", "Navn", "Abk", "Nimi", "Abk"};
+	QString clubLocationList[NUM_LANGUAGES] = {"Ort", "City", "Luogo", "Ort", "Ciudad", "Város", "Mìsto", "Mjesto", "Ville", "Miasto", "Klub", "Ort", "Kunta", "Ort"};
+	QString categoryList[NUM_LANGUAGES] = {"Lang", "Long", "Lungo", "Lång", "Largo", "Hosszú", "Dlouhý", "Dugo", "Long", "D³uga nazwa", "Lang", "Lang", "Pitkä", "Lang"};
+	QString notClassifiedList[NUM_LANGUAGES] = {"AK", "nc", "NC", "ut", "nc", "Vk", "ms", "NKV", "nc", "pk", "UFK", "AK_notclass", "et", "AK_notclass"};
+
+	// String used to classify male genders inside the table.
+	QString maleGenderStringList[NUM_LANGUAGES] = {"M", "M", "U", "M", "H", "F", "H", "M", "H", "M", "M", "M_Male", "M", "M_Male"};
 	
 	// Find out language
 	int lang = 0;
 	for (; lang < NUM_LANGUAGES; ++lang)
 	{
-		int idTest = file->getColumnIndex(firstNameList[lang]);
-		if (idTest >= 0)
+		int idTest1 = file->getColumnIndex(notClassifiedList[lang]);
+		int idTest2 = file->getColumnIndex(timeList[lang]);
+		if (idTest1 >= 0 && idTest2 >= 0)
 			break;
 	}
 	bool foundLanguage = lang < NUM_LANGUAGES;
+	if (!foundLanguage)
+		lang = 0; // prevent invalid accesses later (and default to "M" as string to classify males)
+
+	maleString = maleGenderStringList[lang];
+
+	// Reformat OS2010 files to OE2003 format (at least the columns we are interested in)
+	if (file->getColumnIndex("OS0012") >= 0 && foundLanguage)
+	{
+		const int kColumnsCount = 20;
+		bool haveColumn[kColumnsCount];
+		for (int i = 0; i < kColumnsCount; ++ i)
+			haveColumn[i] = false;
+		while (file->nextLine())
+		{
+			for (int i = 0; i < kColumnsCount; ++ i)
+			{
+				QString number = QString("%1").arg(i + 1);
+				haveColumn[i] |= (file->getColumnIndex(firstNameList[lang] + number) >= 0) && !file->getValue(file->getColumnIndex(firstNameList[lang] + number)).isEmpty();
+				haveColumn[i] |= (file->getColumnIndex(lastNameList[lang] + number) >= 0) && !file->getValue(file->getColumnIndex(lastNameList[lang] + number)).isEmpty();
+				haveColumn[i] |= (file->getColumnIndex(yearList[lang] + number) >= 0) && !file->getValue(file->getColumnIndex(yearList[lang] + number)).isEmpty();
+				haveColumn[i] |= (file->getColumnIndex(genderList[lang] + number) >= 0) && !file->getValue(file->getColumnIndex(genderList[lang] + number)).isEmpty();
+				haveColumn[i] |= (file->getColumnIndex(timeList[lang] + number) >= 0) && !file->getValue(file->getColumnIndex(timeList[lang] + number)).isEmpty();
+				haveColumn[i] |= (file->getColumnIndex(stateList[lang] + number) >= 0) && !file->getValue(file->getColumnIndex(stateList[lang] + number)).isEmpty();
+			}
+		}
+		file->rewind();
+		for (int i = 0; i < kColumnsCount; ++ i)
+		{
+			QString number = QString("%1").arg(i + 1);
+			if (haveColumn[i])
+			{
+				file->renameColumn(firstNameList[lang] + number, firstNameList[lang]);
+				file->renameColumn(lastNameList[lang] + number, lastNameList[lang]);
+				file->renameColumn(yearList[lang] + number, yearList[lang]);
+				file->renameColumn(genderList[lang] + number, genderList[lang]);
+				file->renameColumn(timeList[lang] + number, timeList[lang]);
+				file->renameColumn(stateList[lang] + number, stateList[lang]);
+			}
+			else
+			{
+				file->deleteColumn(firstNameList[lang] + number);
+				file->deleteColumn(lastNameList[lang] + number);
+				file->deleteColumn(yearList[lang] + number);
+				file->deleteColumn(genderList[lang] + number);
+				file->deleteColumn(timeList[lang] + number);
+				file->deleteColumn(stateList[lang] + number);
+			}
+		}
+	}
 	
 	// Build UI
 	QLabel* descLabel = new QLabel(tr("Choose columns to load the data from. Red rows are required."));

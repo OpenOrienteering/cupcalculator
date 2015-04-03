@@ -695,7 +695,12 @@ QString ResultList::getItemString(ResultList::ColumnType type, QVariant* item) c
 	case ColumnClub:
 	{
 		Club* club = reinterpret_cast<Club*>(item->value<void*>());
-		return club ? club->getName() : tr("- no club -");
+		if (club)
+			return club->getName();
+		else if (item->type() == QVariant::String)
+			return item->toString();
+		else
+			return tr("- no club -");
 	}
 	case ColumnPoints: case ColumnPointInfo:
 		return item->isValid() ? pointsToString(item->toInt(), decimal_places, decimal_factor) : "-";
@@ -836,7 +841,7 @@ void ResultsTable::setModel(QAbstractItemModel* model)
     QTableView::setModel(model);
 	
 	for (int i = 0; i < horizontalHeader()->count(); ++i)
-		horizontalHeader()->setResizeMode(i, QHeaderView::ResizeToContents);
+		horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 }
 
 // ### ResultsTree ###

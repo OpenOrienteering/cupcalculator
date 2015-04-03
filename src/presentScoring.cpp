@@ -22,7 +22,7 @@
 
 #include <assert.h>
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "event.h"
 #include "scoring.h"
@@ -595,8 +595,9 @@ void PresentationWidget::setPage(int page_number, int num_pages)
 }
 
 // ### PresentScoringController ###
-PresentScoringController::PresentScoringController(Scoring* scoring, Layout* layout, QString language, ResultList* result_list, int event_year, bool show_team_scoring, bool show_intermediate_team_scoring,
-												   int show_first_x_runners, bool no_runner_points, bool include_non_scoring_runners, const std::vector< AbstractCategory* >& category_vector, QWidget* window)
+PresentScoringController::PresentScoringController(Scoring* scoring, Layout* layout, QString language, ResultList* result_list, int event_year, bool show_team_scoring, bool uncover_team_scoring_gradually,
+												   bool show_intermediate_team_scoring, int show_first_x_runners, bool no_runner_points, bool include_non_scoring_runners,
+												   const std::vector< AbstractCategory* >& category_vector, QWidget* window)
  : scoring(scoring), layout(layout), result_list(result_list), show_team_scoring(show_team_scoring),
    show_intermediate_team_scoring(show_intermediate_team_scoring), show_first_x_runners(show_first_x_runners), category_vector(category_vector)
 {
@@ -735,6 +736,36 @@ PresentScoringController::PresentScoringController(Scoring* scoring, Layout* lay
 		new_page.list = new ResultList(*scoringLists[1], true);	// TODO: extremely bad solution to find the team results this way!
 		new_page.list->setTitle(translateWith(translator, "Final team results"));
 		pages.push_back(new_page);
+
+		if (uncover_team_scoring_gradually)
+		{
+			int num_teams = new_page.list->rowCount();
+			for (int i = num_teams - 1; i >= 1; -- i)
+			{
+				if (new_page.list->getRankColumn() >= 0 &&
+					new_page.list->getData(i, new_page.list->getRankColumn()).toInt() == new_page.list->getData(i - 1, new_page.list->getRankColumn()).toInt())
+				{
+					// Uncover same ranks at the same time
+					continue;
+				}
+
+				// Remove the first i teams and create a page for this
+				PresentationPage new_step_page;
+				new_step_page.type = PageType_TeamResults;
+				new_step_page.list = new ResultList(*new_page.list, true);
+				for (int k = 0; k < i; ++ k)
+				{
+					for (int column = 0; column < new_step_page.list->columnCount(); ++ column)
+					{
+						new_step_page.list->setData(k, column, QVariant());
+					}
+					// Ensure that we do not get "- no club -"
+					if (new_step_page.list->getClubColumn() >= 0)
+						new_step_page.list->setData(k, new_step_page.list->getClubColumn(), "");
+				}
+				pages.insert(pages.begin() + (pages.size() - 1), new_step_page);
+			}
+		}
 	}
 	
 	if (no_runner_points)
@@ -825,6 +856,17 @@ bool PresentScoringController::keyPressEvent(QKeyEvent* event)
 
 // ### PresentScoringDialog ###
 
+class QListWidgetDragDropFix : public QListWidget
+{
+public:
+	void dropEvent(QDropEvent* event)
+	{
+		if (event->proposedAction() != Qt::MoveAction)
+			return;
+		QListView::dropEvent(event);
+	}
+};
+
 PresentScoringDialog::PresentScoringDialog(Event* event, int event_year, ResultList* result_list, QWidget* parent): QDialog(parent), event(event), event_year(event_year), result_list(result_list)
 {
 	setWindowTitle(tr("Present scoring"));
@@ -833,6 +875,7 @@ PresentScoringDialog::PresentScoringDialog(Event* event, int event_year, ResultL
 	scoringCombo = new QComboBox();
 	
 	teamScoringCheck = new QCheckBox(tr("Show team scoring"));
+	teamScoringStepByStepCheck = new QCheckBox(tr("Uncover team scoring one-by-one"));
 	teamScoringCategoryCheck = new QCheckBox(tr("Show intermediate team scoring after each category"));
 	showOnlyFirstXCheck = new QCheckBox(tr("Only show up to first"));
 	showOnlyFirstXEdit = new QLineEdit(tr("3"));
@@ -844,8 +887,8 @@ PresentScoringDialog::PresentScoringDialog(Event* event, int event_year, ResultL
 	QLabel* categoriesLabel = new QLabel(tr("Drag the categories with the mouse from one list to the other, or to reorder them.\nThey will be presented in top-down order."));
 	QLabel* presentCategoriesLabel = new QLabel(tr("Present these categories:"));
 	QLabel* otherCategoriesLabel = new QLabel(tr("Do not show these:"));
-	categoryList = new QListWidget();
-	otherCategoryList = new QListWidget();
+	categoryList = new QListWidgetDragDropFix();
+	otherCategoryList = new QListWidgetDragDropFix();
 	
 	QLabel* layoutLabel = new QLabel(tr("Layout:"));
 	layoutCombo = new QComboBox();
@@ -856,9 +899,13 @@ PresentScoringDialog::PresentScoringDialog(Event* event, int event_year, ResultL
 	categoryList->setDragEnabled(true);
 	categoryList->setDefaultDropAction(Qt::MoveAction);
 	categoryList->setDragDropMode(QAbstractItemView::DragDrop);
+	categoryList->viewport()->setAcceptDrops(true);
+	categoryList->setDropIndicatorShown(true);
 	otherCategoryList->setDragEnabled(true);
 	otherCategoryList->setDefaultDropAction(Qt::MoveAction);
 	otherCategoryList->setDragDropMode(QAbstractItemView::DragDrop);
+	otherCategoryList->viewport()->setAcceptDrops(true);
+	otherCategoryList->setDropIndicatorShown(true);
 	
 	QPushButton* backButton = new QPushButton(tr("Back"));
 	QPushButton* presentButton = new QPushButton(QIcon("images/display.png"), tr("Start"));
@@ -899,6 +946,7 @@ PresentScoringDialog::PresentScoringDialog(Event* event, int event_year, ResultL
 	QVBoxLayout* layout = new QVBoxLayout();
 	layout->addLayout(scoringLayout);
 	layout->addWidget(teamScoringCheck);
+	layout->addWidget(teamScoringStepByStepCheck);
 	layout->addWidget(teamScoringCategoryCheck);
 	layout->addLayout(showOnlyFirstXLayout);
 	layout->addWidget(doNotShowRunnerPointsCheck);
@@ -955,6 +1003,7 @@ PresentScoringDialog::~PresentScoringDialog()
 
 void PresentScoringDialog::teamScoringChecked(bool checked)
 {
+	teamScoringStepByStepCheck->setEnabled(checked);
 	teamScoringCategoryCheck->setEnabled(checked);
 }
 void PresentScoringDialog::showOnlyFirstXChecked(bool checked)
@@ -968,6 +1017,7 @@ void PresentScoringDialog::currentScoringChanged(int index)
 	
 	bool enable = scoring->getTeamScoring();
 	teamScoringCheck->setEnabled(enable);
+	teamScoringStepByStepCheck->setEnabled(teamScoringCheck->isChecked() && enable);
 	teamScoringCategoryCheck->setEnabled(teamScoringCheck->isChecked() && enable);
 	
 	recalculateCategories();
@@ -1044,8 +1094,13 @@ void PresentScoringDialog::presentClicked()
 	
 	Scoring* scoring = reinterpret_cast<Scoring*>(scoringCombo->itemData(scoringCombo->currentIndex(), Qt::UserRole).value<void*>());
 	PresentScoringController* controller = new PresentScoringController(scoring, layout, language, result_list, event_year,
-																		teamScoringCheck->isChecked(), teamScoringCategoryCheck->isChecked(), show_first_x_runners,
-																		doNotShowRunnerPointsCheck->isChecked(), includeNonScoringRunnersCheck->isChecked(), category_vector, this);
+																		teamScoringCheck->isEnabled() && teamScoringCheck->isChecked(),
+																		teamScoringStepByStepCheck->isEnabled() && teamScoringStepByStepCheck->isChecked(),
+																		teamScoringCategoryCheck->isEnabled() && teamScoringCategoryCheck->isChecked(),
+																		show_first_x_runners,
+																		doNotShowRunnerPointsCheck->isEnabled() && doNotShowRunnerPointsCheck->isChecked(),
+																		includeNonScoringRunnersCheck->isEnabled() && includeNonScoringRunnersCheck->isChecked(),
+																		category_vector, this);
 	controller->start();
 }
 

@@ -20,7 +20,7 @@
 
 #include "clubDialog.h"
 
-#include <QtGui>
+#include <QtWidgets>
 #include <assert.h>
 
 #include "location.h"

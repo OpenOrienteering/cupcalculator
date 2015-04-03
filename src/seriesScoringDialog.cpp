@@ -22,7 +22,7 @@
 
 #include "assert.h"
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "seriesScoring.h"
 #include "global.h"

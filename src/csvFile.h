@@ -85,6 +85,15 @@ public:
 	
 	/// Use this after nextLine() returned true to read a value of a column; use getColumnIndex() to determine the index
 	const QString& getValue(int index);
+
+	/// Starts reading again from the first row.
+	void rewind();
+
+	/// Renames a column internally.
+	void renameColumn(const QString& oldName, const QString& newName);
+
+	/// Deletes a column internally.
+	void deleteColumn(const QString& name);
 	
 	// Writing
 	

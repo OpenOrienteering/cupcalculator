@@ -388,7 +388,7 @@ ClubTable::ClubTable()
 	
 	resizeColumnsToContents();
 	QHeaderView* headerView = horizontalHeader();
-	headerView->setResizeMode(0, QHeaderView::Stretch);
+	headerView->setSectionResizeMode(0, QHeaderView::Stretch);
 	headerView->setHighlightSections(false);
 	
 	//connect(&clubDB, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(sort()));

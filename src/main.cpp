@@ -20,7 +20,7 @@
 
 #include <time.h>
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QLocale>
 #include <QTranslator>
 #include <QDir>
@@ -140,7 +140,7 @@ void loadProgramSettings()
 			if (stream.name() == "InstallationKey")
 			{
 				QString key = stream.attributes().value("value").toString();
-				strcpy(installationKey, key.toAscii());
+				strcpy(installationKey, key.toLatin1());
 			}
 			else if (stream.name() == "NextIDValues")
 			{

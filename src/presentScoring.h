@@ -99,8 +99,9 @@ class PresentScoringController
 {
 public:
 	
-	PresentScoringController(Scoring* scoring, Layout* layout, QString language, ResultList* result_list, int event_year, bool show_team_scoring, bool show_intermediate_team_scoring,
-							 int show_first_x_runners, bool no_runner_points, bool include_non_scoring_runners, const std::vector< AbstractCategory* >& category_vector, QWidget* window);
+	PresentScoringController(Scoring* scoring, Layout* layout, QString language, ResultList* result_list, int event_year, bool show_team_scoring, bool uncover_team_scoring_gradually,
+							 bool show_intermediate_team_scoring, int show_first_x_runners, bool no_runner_points, bool include_non_scoring_runners,
+							 const std::vector< AbstractCategory* >& category_vector, QWidget* window);
 	~PresentScoringController();
 	
 	void setPage(int page);
@@ -161,6 +162,7 @@ private:
 	
 	QComboBox* scoringCombo;
 	QCheckBox* teamScoringCheck;
+	QCheckBox* teamScoringStepByStepCheck;
 	QCheckBox* teamScoringCategoryCheck;
 	QCheckBox* showOnlyFirstXCheck;
 	QLineEdit* showOnlyFirstXEdit;
