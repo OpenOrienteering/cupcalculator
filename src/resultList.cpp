@@ -1035,5 +1035,3 @@ bool ResultsTree::GroupSortProxyModel::QVariantCompare::operator() (QVariant l, 
 	}
 	return false;
 }
-
-#include "resultList.moc"

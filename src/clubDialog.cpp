@@ -271,5 +271,3 @@ void ClubDialog::clearSelectionClicked()
 {
 	locationView->setCurrentIndex(QModelIndex());
 }
-
-#include "clubDialog.moc"

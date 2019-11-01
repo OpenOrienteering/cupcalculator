@@ -1387,5 +1387,3 @@ void SimilarRunnerProblem::setToSolutionType(Problem::SolutionType type)
 	else if (type == SolutionType_Keep)
 		selection = 2;
 }
-
-#include "mainWindow.moc"

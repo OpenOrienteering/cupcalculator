@@ -714,5 +714,3 @@ void ChangeRaceNumberDialog::numberChanged(QString new_text)
 	else
 		changeButton->setEnabled(!scoring->hasResult(number));
 }
-
-#include "seriesScoringDialog.moc"

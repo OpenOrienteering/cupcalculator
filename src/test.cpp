@@ -403,4 +403,3 @@ void TestScoringTool::checkResults(ResultList* result_list, const QString& oracl
 }
 
 QTEST_MAIN(TestScoringTool)
-#include "test.moc"

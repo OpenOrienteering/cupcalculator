@@ -403,5 +403,3 @@ void ClubTable::sort()
 {
 	sortedModel->sort(sortedModel->sortColumn());
 }
-
-#include "club.moc"

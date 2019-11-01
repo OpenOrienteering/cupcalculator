@@ -870,5 +870,3 @@ void OrganizerMissingProblem::applySolution(int i)
 		result->organizers.insert(runner);
 	}
 }
-
-#include "seriesScoring.moc"

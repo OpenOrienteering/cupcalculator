@@ -345,5 +345,3 @@ void CSVExportDialog::exportClicked()
 	
 	accept();
 }
-
-#include "csvFile.moc"

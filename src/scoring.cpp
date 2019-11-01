@@ -1390,5 +1390,3 @@ void ClubDifferentProblem::applySolution(int i)
 	if (i == 1)
 		club->setLocation(country, province);
 }
-
-#include "scoring.moc"

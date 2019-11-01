@@ -195,5 +195,3 @@ void ActionSelectionDelegate::emitCommitData()
 {
 	emit commitData(qobject_cast<QWidget*>(sender()));
 }
-
-#include "problemWidget.moc"

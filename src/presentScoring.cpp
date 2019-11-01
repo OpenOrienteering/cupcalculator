@@ -1103,5 +1103,3 @@ void PresentScoringDialog::presentClicked()
 																		category_vector, this);
 	controller->start();
 }
-
-#include "presentScoring.moc"

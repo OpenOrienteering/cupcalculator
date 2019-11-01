@@ -345,5 +345,3 @@ Layout* LayoutDB::getOrLoadLayout(const QString& name, QWidget* dialogParent)
 	
 	return loadedLayout;
 }
-
-#include "layout.moc"

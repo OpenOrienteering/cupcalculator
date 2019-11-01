@@ -64,5 +64,3 @@ void ComboBoxDelegate::emitCommitData()
 {
 	emit commitData(qobject_cast<QWidget*>(sender()));
 }
-
-#include "comboBoxDelegate.moc"

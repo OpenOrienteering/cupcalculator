@@ -246,5 +246,3 @@ void CSVImportDialog::addRow(CSVFile::ColumnIndexes** id, QString desc, bool req
 	
 	++current_row;
 }
-
-#include "resultCsvImport.moc"

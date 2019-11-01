@@ -1395,5 +1395,3 @@ void TeamScoringPage::showSingleResultsChecked(bool checked)
 EmptyPage::EmptyPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent) : QWidget(parent), scoring(_scoring), dialog(_dialog)
 {
 }
-
-#include "scoringDialog.moc"

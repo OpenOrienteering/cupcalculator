@@ -407,5 +407,3 @@ Location* LocationDB::getByID(int id)
 	else
 		return it->second;
 }
-
-#include "location.moc"

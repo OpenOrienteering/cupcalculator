@@ -652,5 +652,3 @@ void RunnerTable::sort()
 {
 	sortedModel->sort(sortedModel->sortColumn());
 }
-
-#include "runner.moc"
