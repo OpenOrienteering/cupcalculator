@@ -59,6 +59,9 @@ target_link_libraries(CupCalculator
     CupCalculator_Common
     Qt5::Widgets
 )
+install(TARGETS CupCalculator
+  RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+)
 
 add_executable(CupCalculatorTest test.cpp)
 target_link_libraries(CupCalculatorTest

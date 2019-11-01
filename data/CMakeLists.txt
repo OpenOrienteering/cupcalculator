@@ -25,3 +25,12 @@ add_custom_target(clone-data ALL
   COMMAND "${CMAKE_COMMAND}" -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/my layouts" "${PROJECT_BINARY_DIR}/src/my layouts"
 )
 
+install(
+  DIRECTORY
+    "etc"
+    "example input"
+    "images"
+    "my layouts"
+  DESTINATION "${CMAKE_INSTALL_DATADIR}"
+)
+

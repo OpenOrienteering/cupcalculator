@@ -28,4 +28,7 @@ add_custom_target(translations ALL
   DEPENDS ${translations_qm}
   SOURCES ${translations_ts}
 )
+install(FILES ${translations_qm}
+  DESTINATION "${CMAKE_INSTALL_DATADIR}/translations"
+)
 

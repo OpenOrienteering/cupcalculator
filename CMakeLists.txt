@@ -21,6 +21,16 @@ cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 project(CupCalculator VERSION 1.1.1 LANGUAGES CXX)
 
 
+# Installation
+
+include(GNUInstallDirs)
+
+install(FILES "COPYING"
+  RENAME COPYING.txt
+  DESTINATION "${CMAKE_INSTALL_DOCDIR}"
+)
+
+
 # Actual build
 	
 set(CMAKE_CXX_STANDARD 14)
