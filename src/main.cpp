@@ -174,7 +174,7 @@ void saveProgramSettings()
 	stream.writeEndDocument();
 }
 
-#ifdef WIN32
+#ifdef _MSC_VER
 
 #include "Windows.h"
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)

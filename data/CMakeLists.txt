@@ -16,28 +16,12 @@
 #    You should have received a copy of the GNU General Public License
 #    along with OpenOrienteering.  If not, see <http://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
-project(CupCalculator VERSION 1.1.1 LANGUAGES CXX)
-
-
-# Actual build
-	
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-
-if(CMAKE_COMPILER_IS_GNUCXX)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Wextra")
-endif()
-
-add_subdirectory(data)
-add_subdirectory(src)
-add_subdirectory(translations)
-
-
-# Testing
-
-include(CTest)
-enable_testing()
-add_test(NAME CupCalculatorTest COMMAND CupCalculatorTest)
+# Copy for manual testing
+add_custom_target(clone-data ALL
+  COMMAND "${CMAKE_COMMAND}" -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/etc" "${PROJECT_BINARY_DIR}/src/etc"
+  COMMAND "${CMAKE_COMMAND}" -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/example input" "${PROJECT_BINARY_DIR}/src/example input"
+  COMMAND "${CMAKE_COMMAND}" -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/images" "${PROJECT_BINARY_DIR}/src/images"
+  COMMAND "${CMAKE_COMMAND}" -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/my layouts" "${PROJECT_BINARY_DIR}/src/my layouts"
+)
 

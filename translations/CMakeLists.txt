@@ -16,28 +16,16 @@
 #    You should have received a copy of the GNU General Public License
 #    along with OpenOrienteering.  If not, see <http://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
-project(CupCalculator VERSION 1.1.1 LANGUAGES CXX)
+find_package(Qt5LinguistTools REQUIRED)
 
+set(translations_ts
+  de.ts
+)
 
-# Actual build
-	
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-
-if(CMAKE_COMPILER_IS_GNUCXX)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Wextra")
-endif()
-
-add_subdirectory(data)
-add_subdirectory(src)
-add_subdirectory(translations)
-
-
-# Testing
-
-include(CTest)
-enable_testing()
-add_test(NAME CupCalculatorTest COMMAND CupCalculatorTest)
+qt5_add_translation(translations_qm ${translations_ts})
+add_custom_target(translations ALL
+  DEPENDS ${translations_qm}
+  SOURCES ${translations_ts}
+)
 

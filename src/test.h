@@ -21,8 +21,6 @@
 #ifndef TEST_H
 #define TEST_H
 
-// Somehow including QtGui like suggested in the documentation did not work to choose the GUI variant of the QTEST_MAIN macro, so define this manually here ...
-#define QT_GUI_LIB
 #include <QtTest/QtTest>
 
 class ResultList;
