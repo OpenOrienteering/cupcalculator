@@ -71,3 +71,22 @@ include(CTest)
 enable_testing()
 add_test(NAME CupCalculatorTest COMMAND CupCalculatorTest)
 
+
+# Auxiliary targets
+
+set(ci
+  ci/azure-pipelines.yml
+  ci/build.yml
+  ci/filter-stderr.sed
+  ci/publish.yml
+  ci/publish-coverage.yml
+  ci/release-notes.yml
+  ci/setup-common.yml
+  ci/setup-msys2.yml
+  ci/setup-ubuntu.yml
+  ci/shell.sh
+  ci/openorienteering-cupcalculator-ci.cmake
+)
+
+add_custom_target(CI SOURCES ${ci})
+

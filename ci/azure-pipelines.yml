@@ -1,0 +1,92 @@
+# This file is part of OpenOrienteering.
+
+# Copyright 2019 Kai Pastor
+#
+# Redistribution and use is allowed according to the terms of the BSD license:
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 
+# 1. Redistributions of source code must retain the copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products 
+#    derived from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+# NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+variables:
+  PROJECT_NAME: CupCalculator
+
+jobs:
+- job: Release_Notes
+  displayName: Release Notes
+  pool:
+    vmImage: 'ubuntu-18.04'
+  steps:
+    - checkout: self
+      fetchDepth: 1
+    - template: release-notes.yml
+
+
+- job: Linux_Coverage
+  displayName: Linux (Debug, coverage)
+  variables:
+    IMAGE_NAME: 'ubuntu-18.04'
+    SUPERBUILD_INSTALL_DIR:  $(HOME)/superbuild
+    CC: gcc
+    CFLAGS: -fprofile-arcs -ftest-coverage
+    CXX: g++
+    CXXFLAGS: -fprofile-arcs -ftest-coverage
+    LDFLAGS: -fuse-ld=gold
+  pool:
+    vmImage: '$(IMAGE_NAME)'
+  steps:
+    - checkout: self
+      fetchDepth: 1
+    - template: setup-ubuntu.yml
+    - template: build.yml
+      parameters:
+        cmakeArgs: >
+          -DCMAKE_BUILD_TYPE=Debug
+          -DCupCalculator_CI_ENABLE_COVERAGE=1
+        buildArgs:
+    - template: publish-coverage.yml
+
+
+- job: Windows_mingw32_Release
+  displayName: Windows x32 (Release, MinGW)
+  variables:
+    IMAGE_NAME: 'windows-2019'
+    SUPERBUILD_INSTALL_DIR: 'C:/msys2'
+    MINGW: mingw32
+    OUTPUT_SUFFIX: '-$(MINGW)'
+  pool:
+    vmImage: '$(IMAGE_NAME)'
+  steps:
+    - checkout: self
+      fetchDepth: 1
+    - template: setup-msys2.yml
+    - template: build.yml
+      parameters:
+        cmakeArgs: >
+          -G "MSYS Makefiles"
+          -DCMAKE_BUILD_TYPE=Release
+          -Ddefault_INSTALL_DIR=
+          -Ddefault_INSTALL_PREFIX=$(SUPERBUILD_INSTALL_DIR)/$(MINGW)/superbuild
+          -Ddefault_TOOLCHAIN_DIR=$(SUPERBUILD_INSTALL_DIR)/$(MINGW)/toolchain
+          -Ddefault_PREFIX_PATH=$(SUPERBUILD_INSTALL_DIR)/$(MINGW)/superbuild
+    - template: publish.yml
+
