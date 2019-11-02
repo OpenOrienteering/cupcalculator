@@ -62,7 +62,8 @@ superbuild_package(
       "${CMAKE_COMMAND}" --build . --target package$<IF:$<STREQUAL:@CMAKE_GENERATOR@,Ninja>,,/fast>
   $<$<NOT:$<BOOL:@CMAKE_CROSSCOMPILING@>>:
     TEST_COMMAND
-      "${CMAKE_CTEST_COMMAND}" -T Test --no-compress-output
+      "${CMAKE_COMMAND}" -E env QT_QPA_PLATFORM=offscreen
+        "${CMAKE_CTEST_COMMAND}" -T Test --no-compress-output
     $<$<BOOL:@CupCalculator_CI_ENABLE_COVERAGE@>:
     COMMAND
       "${CMAKE_CTEST_COMMAND}" -T Coverage

@@ -111,6 +111,9 @@ void TestScoringTool::fixedPointCalculation()
 
 void TestScoringTool::timeRatioCalculation()
 {
+	if (QGuiApplication::platformName() == "offscreen")
+		QSKIP("cannot show dialogs on 'offscreen' platform");
+	
 	// Import test data
 	QString input = "Nachname;Vorname;Jg;G;AK;Wertung;Abk;Ort;Lang;Zeit\n"
 					// 3 Clubs
@@ -193,6 +196,9 @@ void TestScoringTool::timeRatioCalculation()
 
 void TestScoringTool::timeRatioCalculationFormula3()
 {
+	if (QGuiApplication::platformName() == "offscreen")
+		QSKIP("cannot show dialogs on 'offscreen' platform");
+	
 	// Import test data
 	QString input = "Nachname;Vorname;Jg;G;AK;Wertung;Abk;Ort;Lang;Zeit\n"
 	// 3 Clubs
@@ -273,6 +279,9 @@ void TestScoringTool::timeRatioCalculationFormula3()
 
 void TestScoringTool::timePointCalculation()
 {
+	if (QGuiApplication::platformName() == "offscreen")
+		QSKIP("cannot show dialogs on 'offscreen' platform");
+	
 	// Import test data
 	QString input = "Nachname;Vorname;Jg;G;AK;Wertung;Abk;Ort;Lang;Zeit\n"
 					// 3 Clubs
