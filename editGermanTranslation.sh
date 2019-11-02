@@ -1,1 +1,0 @@
-linguist translations/de.ts
