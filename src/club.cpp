@@ -274,7 +274,7 @@ Club* ClubDB::getItem(const QModelIndex& index) const
 	return nullptr;
 }
 
-int ClubDB::rowCount(const QModelIndex& parent) const
+int ClubDB::rowCount(const QModelIndex& /*parent*/) const
 {
 	return clubs.size();
 }

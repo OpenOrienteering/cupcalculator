@@ -606,7 +606,7 @@ QVariant* ResultList::getItem(const QModelIndex& index) const
 	return nullptr;
 }
 
-int ResultList::rowCount(const QModelIndex& parent) const
+int ResultList::rowCount(const QModelIndex& /*parent*/) const
 {
 	if (columns.empty())
 		return 0;
@@ -907,7 +907,7 @@ void ResultsTree::GroupSortProxyModel::setSourceModel(QAbstractItemModel* source
 	}
 }
 
-QModelIndex ResultsTree::GroupSortProxyModel::mapFromSource(const QModelIndex& sourceIndex) const
+QModelIndex ResultsTree::GroupSortProxyModel::mapFromSource(const QModelIndex& /*sourceIndex*/) const
 {
 	return QModelIndex();	// NOTE: unfinished, continue here ...
 	
@@ -933,7 +933,7 @@ QModelIndex ResultsTree::GroupSortProxyModel::index(int row, int column, const Q
 	
 	return createIndex(row, column, (void*)(&groupItems[row]));
 }
-QModelIndex ResultsTree::GroupSortProxyModel::parent(const QModelIndex& child) const
+QModelIndex ResultsTree::GroupSortProxyModel::parent(const QModelIndex& /*child*/) const
 {
 	return QModelIndex();
 }

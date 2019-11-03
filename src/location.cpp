@@ -76,7 +76,7 @@ size_t Location::getChildNumber()
 	return 0;
 }
 
-bool Location::insertChildren(int position, int count, int columns)
+bool Location::insertChildren(int position, int count, int /*columns*/)
 {
 	if (position < 0 || position > static_cast<int>(children.size()))
 		return false;
@@ -152,7 +152,7 @@ int LocationDB::rowCount(const QModelIndex& parent) const
 {
 	return getItem(parent)->getChildCount();
 }
-int LocationDB::columnCount(const QModelIndex& parent) const
+int LocationDB::columnCount(const QModelIndex& /*parent*/) const
 {
 	return 1;
 }
@@ -200,7 +200,7 @@ QVariant LocationDB::data(const QModelIndex& index, int role) const
 	Location* item = getItem(index);
 	return item->getName();
 }
-QVariant LocationDB::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant LocationDB::headerData(int /*section*/, Qt::Orientation /*orientation*/, int /*role*/) const
 {
 	//if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
 	//	return QVariant(tr("Country, state or province name"));

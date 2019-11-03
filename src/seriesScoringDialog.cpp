@@ -421,7 +421,7 @@ void SeriesRacesPage::organizerChecked(QListWidgetItem* item)
 		result->organizers.erase(runner);
 	scoring->setResultDirty();
 }
-void SeriesRacesPage::currentOrganizerChanged(QListWidgetItem* current, QListWidgetItem* previous)
+void SeriesRacesPage::currentOrganizerChanged(QListWidgetItem* /*current*/, QListWidgetItem* /*previous*/)
 {
 	//removeOrganizerButton->setEnabled(current != nullptr);
 }
@@ -441,7 +441,7 @@ void SeriesRacesPage::nameChanged()
 	updateRaceResultDisplay();
 	scoring->setResultDirty();
 }
-void SeriesRacesPage::currentRaceChanged(int index)
+void SeriesRacesPage::currentRaceChanged(int /*index*/)
 {
 	updateResults();
 }

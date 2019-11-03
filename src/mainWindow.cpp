@@ -251,7 +251,7 @@ void CalculateScoringTab::removeScoringClicked()
 	scoringDB.deleteScoring(item->text());
 	delete item;
 }
-void CalculateScoringTab::currentScoringChanged(QListWidgetItem* current, QListWidgetItem* previous)
+void CalculateScoringTab::currentScoringChanged(QListWidgetItem* current, QListWidgetItem* /*previous*/)
 {
 	bool enable = current != nullptr;
 	editScoringButton->setEnabled(enable);
@@ -1179,7 +1179,7 @@ void SeriesScoringTab::editClicked()
 	seriesDoubleClicked(item);
 }
 
-void SeriesScoringTab::currentSeriesChanged(QListWidgetItem* current, QListWidgetItem* previous)
+void SeriesScoringTab::currentSeriesChanged(QListWidgetItem* current, QListWidgetItem* /*previous*/)
 {
 	bool enable = current != nullptr;
 	editButton->setEnabled(enable);

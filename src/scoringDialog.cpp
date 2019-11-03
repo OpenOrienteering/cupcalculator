@@ -237,7 +237,7 @@ GeneralPage::GeneralPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* par
 	connect(nameEdit, SIGNAL(editingFinished()), this, SLOT(nameChanged()));
 	connect(decimalPlacesEdit, SIGNAL(editingFinished()), this, SLOT(decimalPlacesChanged()));
 }
-void GeneralPage::checkToggled(bool checked)
+void GeneralPage::checkToggled(bool /*checked*/)
 {
 	if (scoring->getCustomCategories() != customCategoriesCheck->isChecked())
 		dialog->setCustomCategories(customCategoriesCheck->isChecked());
@@ -608,7 +608,7 @@ void ScoringCalculationPage::handicapRemoveClicked()
 	
 	updateHandicapWidgets();
 }
-void ScoringCalculationPage::currentHandicapChanged(QListWidgetItem* current, QListWidgetItem* previous)
+void ScoringCalculationPage::currentHandicapChanged(QListWidgetItem* current, QListWidgetItem* /*previous*/)
 {
 	updateHandicapWidgets();
 	
@@ -768,7 +768,7 @@ void ScoringCalculationPage::timePointCellChanged(int row, int column)
 	item->setText(number.toString());
 	react_to_changes = true;
 }
-void ScoringCalculationPage::timePointCurrentCellChanged(int current_row, int current_column, int previous_row, int previous_column)
+void ScoringCalculationPage::timePointCurrentCellChanged(int current_row, int /*current_column*/, int /*previous_row*/, int /*previous_column*/)
 {
 	timePointRemove->setEnabled(current_row != 0);
 }
@@ -783,7 +783,7 @@ void ScoringCalculationPage::setCustomCategories(bool enable)
 		rulesetList->setCurrentRow(0);
 	}
 }
-void ScoringCalculationPage::rulesetChanged(QListWidgetItem* current, QListWidgetItem* previous)
+void ScoringCalculationPage::rulesetChanged(QListWidgetItem* current, QListWidgetItem* /*previous*/)
 {
 	Ruleset* ruleset = static_cast<Ruleset*>(current->data(Qt::UserRole).value<void*>());
 	react_to_changes = false;
@@ -911,7 +911,7 @@ void ScoringCalculationPage::rulesetRenamed(QListWidgetItem* item)
 	dialog->rulesetsChanged();
 }
 
-void ScoringCalculationPage::ruleTypeChanged(bool checked)
+void ScoringCalculationPage::ruleTypeChanged(bool /*checked*/)
 {
 	if (!react_to_changes)	return;
 	
@@ -921,7 +921,7 @@ void ScoringCalculationPage::ruleTypeChanged(bool checked)
 	getCurrentRuleset()->rule_type = static_cast<RuleType>(id);
 }
 
-void ScoringCalculationPage::formulaNumberChanged(int i)
+void ScoringCalculationPage::formulaNumberChanged(int /*i*/)
 {
 	if (!react_to_changes)	return;
 	getCurrentRuleset()->timeRatioSettings.formulaNumber = ratioButtonGroup->checkedId();
@@ -1250,7 +1250,7 @@ void AdjustCategoriesPage::deleteCategoryClicked()
 	scoring->deleteCustomCategory(cat);
 	delete categoriesList->currentItem();
 }
-void AdjustCategoriesPage::categoryChanged(QListWidgetItem* current, QListWidgetItem* previous)
+void AdjustCategoriesPage::categoryChanged(QListWidgetItem* /*current*/, QListWidgetItem* /*previous*/)
 {
 	react_to_changes = false;
 	
@@ -1300,7 +1300,7 @@ void AdjustCategoriesPage::sourcesChanged()
 		}
 	}
 }
-void AdjustCategoriesPage::rulesetChanged(int index)
+void AdjustCategoriesPage::rulesetChanged(int /*index*/)
 {
 	if (!react_to_changes) return;
 	CustomCategory* cat = getCurrentCategory();

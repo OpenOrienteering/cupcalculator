@@ -325,7 +325,7 @@ LayoutDB::LayoutDB()
 	
 	// TODO: dir watcher
 }
-Layout* LayoutDB::getOrLoadLayout(const QString& name, QWidget* dialogParent)
+Layout* LayoutDB::getOrLoadLayout(const QString& name, QWidget* /*dialogParent*/)
 {
 	Layouts::iterator it = layouts.find(name);
 	if (it == layouts.end())

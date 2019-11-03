@@ -175,7 +175,7 @@ void PresentationWidget::wheelEvent(QWheelEvent* event)
 	}
 }
 
-void PresentationWidget::resizeEvent(QResizeEvent* event)
+void PresentationWidget::resizeEvent(QResizeEvent* /*event*/)
 {
 	delete current_slide;
 	delete current_list_img;
@@ -1022,7 +1022,7 @@ void PresentScoringDialog::currentScoringChanged(int index)
 	
 	recalculateCategories();
 }
-void PresentScoringDialog::includeNonScoringRunnersClicked(bool checked)
+void PresentScoringDialog::includeNonScoringRunnersClicked(bool /*checked*/)
 {
 	recalculateCategories();
 }

@@ -156,7 +156,7 @@ ActionSelectionDelegate::ActionSelectionDelegate(QObject* parent) : QItemDelegat
 {
 }
 
-QWidget* ActionSelectionDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+QWidget* ActionSelectionDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &/*option*/, const QModelIndex &index) const
 {
 	QComboBox* combo = new QComboBox(parent);
 	
@@ -186,7 +186,7 @@ void ActionSelectionDelegate::setModelData(QWidget* editor, QAbstractItemModel* 
 	reinterpret_cast<Problem*>(index.data(Qt::UserRole).value<void*>())->setSelection(combo->itemData(combo->currentIndex(), Qt::UserRole).toInt());
 }
 
-void ActionSelectionDelegate::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
+void ActionSelectionDelegate::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& /*index*/) const
 {
 	editor->setGeometry(option.rect);
 }

@@ -456,7 +456,7 @@ void RunnerDB::mergeRunners(Runner* src, Runner* dest)
 	runnerDB.deleteRunner(src);
 }
 
-int RunnerDB::rowCount(const QModelIndex& parent) const
+int RunnerDB::rowCount(const QModelIndex& /*parent*/) const
 {
 	return runners.size();
 }
