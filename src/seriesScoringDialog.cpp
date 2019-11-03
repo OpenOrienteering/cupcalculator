@@ -20,15 +20,47 @@
 
 #include "seriesScoringDialog.h"
 
-#include "assert.h"
+#include <cassert>
+#include <map>
+#include <set>
+#include <utility>
 
-#include <QtWidgets>
+#include <Qt>
+#include <QAbstractButton>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QCloseEvent>
+#include <QComboBox>
+#include <QFileDialog>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QIcon>
+#include <QIntValidator>
+#include <QLabel>
+#include <QLineEdit>
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QMap>
+#include <QMessageBox>
+#include <QPalette>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QStackedWidget>
+#include <QVBoxLayout>
+#include <QVariant>
 
-#include "seriesScoring.h"
 #include "config.h"
+#include "csvFile.h"
 #include "resultList.h"
 #include "runner.h"
-#include "csvFile.h"
+#include "seriesScoring.h"
+#include "util.h"
+
+QT_BEGIN_NAMESPACE
+class QHBoxLayout;
+class QVBoxLayout;
+QT_END_NAMESPACE
 
 // ### SeriesScoringDialog ###
 

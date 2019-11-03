@@ -20,12 +20,27 @@
 
 #include "csvFile.h"
 
-#include "assert.h"
+#include <utility>
+#include <cstddef>
 
-#include <QtWidgets>
+#include <Qt>
+#include <QCheckBox>
 #include <QFile>
-#include <QTextStream>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QIODevice>
+#include <QIcon>
+#include <QLabel>
+#include <QLineEdit>
+#include <QList>
+#include <QMessageBox>
+#include <QPushButton>
 #include <QStringList>
+#include <QTextStream>
+
+QT_BEGIN_NAMESPACE
+class QHBoxLayout;
+QT_END_NAMESPACE
 
 CSVFile::CSVFile(const QString& path, const QChar _separator, const QChar _stringDelimiter, bool escape_minus)
 {

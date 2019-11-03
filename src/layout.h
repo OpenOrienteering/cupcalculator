@@ -21,15 +21,24 @@
 #ifndef CUPCALCULATOR_LAYOUT_H
 #define CUPCALCULATOR_LAYOUT_H
 
-#include <vector>
 #include <map>
 
-#include <QMap>
-#include <QString>
-#include <QRect>
+#include <Qt>
+#include <QtGlobal>
 #include <QColor>
 #include <QFont>
-#include <QXmlStreamAttributes>
+#include <QMap>
+#include <QObject>
+#include <QPointF>
+#include <QRectF>
+#include <QString>
+
+QT_BEGIN_NAMESPACE
+class QPainter;
+class QPixmap;
+class QWidget;
+class QXmlStreamAttributes;
+QT_END_NAMESPACE
 
 class Layout : public QObject
 {

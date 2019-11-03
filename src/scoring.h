@@ -21,17 +21,24 @@
 #ifndef CUPCALCULATOR_SCORING_H
 #define CUPCALCULATOR_SCORING_H
 
-#include <vector>
+#include <map>
 #include <set>
+#include <utility>
+#include <vector>
 
+#include <QtGlobal>
 #include <QMap>
-#include <QString>
 #include <QObject>
+#include <QString>
 #include <QStringList>
 
-#include "util.h"
 #include "event.h"
 #include "problemWidget.h"
+#include "util.h"
+
+QT_BEGIN_NAMESPACE
+class QWidget;
+QT_END_NAMESPACE
 
 class Club;
 class Location;

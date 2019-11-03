@@ -20,21 +20,31 @@
 
 #include "scoring.h"
 
-#include <assert.h>
-#include <math.h>
+#include <cassert>
+#include <cmath>
+#include <cstddef>
+#include <iterator>
+#include <memory>
 
+#include <Qt>
+#include <QtMath>
 #include <QDir>
 #include <QFile>
-#include <qmath.h>
-#include <QXmlStreamWriter>
-#include <QXmlStreamReader>
+#include <QFlags>
+#include <QIODevice>
+#include <QList>
 #include <QMessageBox>
+#include <QStringRef>
+#include <QVariant>
+#include <QXmlStreamAttributes>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
-#include "resultList.h"
 #include "club.h"
-#include "location.h"
-#include "runner.h"
 #include "config.h"
+#include "location.h"
+#include "resultList.h"
+#include "runner.h"
 
 const QString SCORING_SUFFIX = ".xml";
 

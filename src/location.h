@@ -21,11 +21,16 @@
 #ifndef CUPCALCULATOR_LOACTION_H
 #define CUPCALCULATOR_LOACTION_H
 
+#include <cstddef>
 #include <map>
-
-#include <QAbstractItemModel>
-#include <QString>
 #include <vector>
+
+#include <Qt>
+#include <QAbstractItemModel>
+#include <QModelIndex>
+#include <QObject>
+#include <QString>
+#include <QVariant>
 
 class QSortFilterProxyModel;
 

@@ -23,9 +23,21 @@
 
 #include <vector>
 
-#include <QTableWidget>
+#include <QtGlobal>
 #include <QDialog>
 #include <QItemDelegate>
+#include <QObject>
+#include <QSize>
+#include <QString>
+#include <QStyleOptionViewItem>
+#include <QTableWidget>
+
+QT_BEGIN_NAMESPACE
+class QAbstractItemModel;
+class QModelIndex;
+class QStyleOptionViewItem;
+class QWidget;
+QT_END_NAMESPACE
 
 class ActionSelectionDelegate;
 

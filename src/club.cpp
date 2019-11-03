@@ -20,20 +20,26 @@
 
 #include "club.h"
 
-#include "assert.h"
+#include <cassert>
+#include <cstddef>
+#include <utility>
 
-#include <QHeaderView>
-#include <QSortFilterProxyModel>
+#include <QAbstractItemView>
 #include <QFile>
-#include <QXmlStreamWriter>
+#include <QHeaderView>
+#include <QIODevice>
+#include <QSortFilterProxyModel>
+#include <QStringRef>
+#include <QXmlStreamAttributes>
 #include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
-#include "location.h"
-#include "util.h"
 #include "config.h"
+#include "location.h"
 #include "runner.h"
 #include "scoring.h"
 #include "seriesScoring.h"
+#include "util.h"
 
 const int COLUMN_COUNT = 3;
 

@@ -21,7 +21,8 @@
 #ifndef CUPCALCULATOR_TEST_H
 #define CUPCALCULATOR_TEST_H
 
-#include <QtTest/QtTest>
+#include <QObject>
+#include <QString>
 
 class ResultList;
 

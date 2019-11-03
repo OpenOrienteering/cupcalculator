@@ -21,7 +21,18 @@
 #ifndef CUPCALCULATOR_COMBOBOXDELEGATE_H
 #define CUPCALCULATOR_COMBOBOXDELEGATE_H
 
+#include <QtGlobal>
 #include <QItemDelegate>
+#include <QObject>
+#include <QString>
+#include <QStyleOptionViewItem>
+
+QT_BEGIN_NAMESPACE
+class QAbstractItemModel;
+class QModelIndex;
+class QStyleOptionViewItem;
+class QWidget;
+QT_END_NAMESPACE
 
 class ComboBoxDelegate : public QItemDelegate
 {

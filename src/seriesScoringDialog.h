@@ -21,25 +21,32 @@
 #ifndef CUPCALCULATOR_SERIESSCORINGDIALOG_H
 #define CUPCALCULATOR_SERIESSCORINGDIALOG_H
 
+#include <QtGlobal>
 #include <QDialog>
+#include <QObject>
+#include <QSize>
+#include <QString>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QLabel;
-class QListWidget;
-class QLineEdit;
-class QListWidgetItem;
-class QStackedWidget;
 class QButtonGroup;
 class QCheckBox;
+class QCloseEvent;
 class QComboBox;
+class QLabel;
+class QLineEdit;
+class QListWidget;
+class QListWidgetItem;
+class QPushButton;
+class QStackedWidget;
 QT_END_NAMESPACE
 
-class SeriesScoring;
-struct SeriesRaceResult;
 class ResultList;
 class ResultsTable;
 class SeriesRacesPage;
 class SeriesResultsPage;
+class SeriesScoring;
+struct SeriesRaceResult;
 
 class SeriesScoringDialog : public QDialog
 {

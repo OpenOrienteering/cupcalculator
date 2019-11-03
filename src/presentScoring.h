@@ -22,23 +22,36 @@
 #define CUPCALCULATOR_PRESENTSCORING_H
 
 #include <map>
+#include <vector>
 
+#include <QtGlobal>
 #include <QDialog>
-
-class Layout;
-class AbstractCategory;
-class ResultList;
-class Event;
-class PresentScoringController;
-class Scoring;
+#include <QObject>
+#include <QString>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QListWidget;
-class QComboBox;
 class QCheckBox;
-class QTranslator;
+class QCloseEvent;
+class QComboBox;
+class QKeyEvent;
 class QLineEdit;
+class QListWidget;
+class QMouseEvent;
+class QPaintEvent;
+class QPixmap;
+class QResizeEvent;
+class QSize;
+class QTranslator;
+class QWheelEvent;
 QT_END_NAMESPACE
+
+class AbstractCategory;
+class Event;
+class Layout;
+class PresentScoringController;
+class ResultList;
+class Scoring;
 
 class PresentationWidget : public QWidget
 {

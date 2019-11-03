@@ -20,12 +20,17 @@
 
 #include "location.h"
 
-#include <assert.h>
+#include <cassert>
+#include <utility>
 
-#include <QSortFilterProxyModel>
 #include <QFile>
-#include <QXmlStreamWriter>
+#include <QFlags>
+#include <QIODevice>
+#include <QSortFilterProxyModel>
+#include <QStringRef>
+#include <QXmlStreamAttributes>
 #include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
 #include "config.h"
 

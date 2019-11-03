@@ -21,19 +21,26 @@
 #ifndef CUPCALCULATOR_SERIES_SCORING_H
 #define CUPCALCULATOR_SERIES_SCORING_H
 
-#include <vector>
 #include <map>
 #include <set>
+#include <vector>
 
+#include <QtGlobal>
 #include <QMap>
+#include <QObject>
+#include <QString>
 
-#include "util.h"
 #include "problemWidget.h"
+#include "util.h"
+
+QT_BEGIN_NAMESPACE
+class QWidget;
+QT_END_NAMESPACE
 
 class AbstractCategory;
-class Runner;
-class ResultList;
 class Club;
+class ResultList;
+class Runner;
 
 enum OrganizerBonus
 {

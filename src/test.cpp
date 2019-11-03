@@ -20,16 +20,24 @@
 
 #include "test.h"
 
-#include <QtTest/QtTest>
-#include <QApplication>
-#include <QtGui>
-#include <QFile>
+#include <algorithm>
+#include <utility>
+#include <vector>
 
-#include "scoring.h"
-#include "mainWindow.h"
-#include "resultList.h"
+#include <QtTest>
+#include <QByteArray>
+#include <QGuiApplication>
+#include <QList>
+#include <QStringList>
+#include <QVariant>
+
 #include "club.h"
 #include "csvFile.h"
+#include "event.h"
+#include "mainWindow.h"
+#include "resultList.h"
+#include "scoring.h"
+#include "util.h"
 
 void TestScoringTool::fixedPointCalculation()
 {

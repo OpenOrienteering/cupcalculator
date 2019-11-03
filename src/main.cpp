@@ -18,23 +18,32 @@
 */
 
 
-#include <time.h>
+#include <cstring>
+#include <ctime>
 
+#include <QtGlobal>
 #include <QApplication>
-#include <QLocale>
-#include <QTranslator>
+#include <QByteArray>
+#include <QCoreApplication>
 #include <QDir>
+#include <QFile>
+#include <QIODevice>
+#include <QLocale>
 #include <QMessageBox>
-#include <QXmlStreamWriter>
+#include <QString>
+#include <QStringRef>
+#include <QTranslator>
+#include <QXmlStreamAttributes>
 #include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
-#include "mainWindow.h"
-#include "location.h"
 #include "club.h"
+#include "config.h"
+#include "location.h"
+#include "mainWindow.h"
 #include "runner.h"
 #include "scoring.h"
 #include "seriesScoring.h"
-#include "config.h"
 
 void loadProgramSettings();
 void saveProgramSettings();

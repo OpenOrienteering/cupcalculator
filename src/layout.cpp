@@ -20,11 +20,20 @@
 
 #include "layout.h"
 
+#include <utility>
+
 #include <QDir>
 #include <QFile>
-#include <QXmlStreamReader>
+#include <QFlags>
+#include <QFontMetricsF>
+#include <QIODevice>
 #include <QMessageBox>
 #include <QPainter>
+#include <QPixmap>
+#include <QStringList>
+#include <QStringRef>
+#include <QXmlStreamAttributes>
+#include <QXmlStreamReader>
 
 Layout::Layout(const QString& filename) : filename(filename)
 {

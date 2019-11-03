@@ -20,14 +20,58 @@
 
 #include "scoringDialog.h"
 
-#include <QtWidgets>
-#include <assert.h>
+#include <algorithm>
+#include <cassert>
+#include <memory>
+#include <utility>
+#include <vector>
 
-#include "scoring.h"
-#include "config.h"
-#include "util.h"
-#include "location.h"
+#include <Qt>
+#include <QAbstractButton>
+#include <QAbstractItemView>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QCloseEvent>
+#include <QComboBox>
+#include <QFlags>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QIcon>
+#include <QIntValidator>
+#include <QLabel>
+#include <QLineEdit>
+#include <QList>
+#include <QListView>
+#include <QListWidgetItem>
+#include <QMessageBox>
+#include <QModelIndex>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QSortFilterProxyModel>
+#include <QStackedLayout>
+#include <QStackedWidget>
+#include <QStringList>
+#include <QTableWidget>
+#include <QTableWidgetItem>
+#include <QTimer>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <QVBoxLayout>
+#include <QVariant>
+
 #include "club.h"
+#include "config.h"
+#include "location.h"
+#include "scoring.h"
+#include "util.h"
+
+QT_BEGIN_NAMESPACE
+class QHBoxLayout;
+class QVBoxLayout;
+QT_END_NAMESPACE
 
 const int INDENT_SPACING = 12;
 

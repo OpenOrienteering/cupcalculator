@@ -20,22 +20,34 @@
 
 #include "resultList.h"
 
-#include "assert.h"
-#include <math.h>
+#include <cassert>
+#include <cmath>
+#include <cstddef>
+#include <map>
+#include <utility>
 
-#include <QHeaderView>
+#include <QAbstractItemModel>
+#include <QAbstractItemView>
+#include <QChar>
 #include <QDate>
 #include <QDateTime>
-#include <QXmlStreamWriter>
-#include <QXmlStreamReader>
+#include <QHeaderView>
 #include <QMessageBox>
+#include <QMetaType>
+#include <QStringList>
+#include <QStringRef>
+#include <QTime>
+#include <QXmlStreamAttributes>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
+// IWYU pragma: no_include <qxmlstream.h>
 
-#include "util.h"
+#include "club.h"
+#include "csvFile.h"
 #include "event.h"
 #include "runner.h"
-#include "csvFile.h"
-#include "club.h"
 #include "seriesScoring.h"
+#include "util.h"
 
 ResultList::ResultList(QString title, int decimal_places)
 {

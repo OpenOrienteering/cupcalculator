@@ -21,11 +21,15 @@
 #ifndef CUPCALCULATOR_CSVFILE_H
 #define CUPCALCULATOR_CSVFILE_H
 
+#include <map>
 #include <vector>
 
-#include <QString>
-#include <map>
+#include <QtGlobal>
+#include <QChar>
 #include <QDialog>
+#include <QObject>
+#include <QString>
+#include <QStringList>
 
 QT_BEGIN_NAMESPACE
 class QFile;

@@ -21,19 +21,26 @@
 #ifndef CUPCALCULATOR_MAINWINDOW_H
 #define CUPCALCULATOR_MAINWINDOW_H
 
+#include <vector>
+
+#include <QtGlobal>
 #include <QDialog>
+#include <QObject>
+#include <QSize>
+#include <QString>
+#include <QWidget>
+
 #include "problemWidget.h"
 
 QT_BEGIN_NAMESPACE
-class QTabWidget;
-class QListWidget;
 class QComboBox;
-class QTableWidget;
-class QTableView;
-class QListView;
-class QSortFilterProxyModel;
-class QListWidgetItem;
 class QLineEdit;
+class QListView;
+class QListWidget;
+class QListWidgetItem;
+class QPushButton;
+class QSortFilterProxyModel;
+class QTabWidget;
 QT_END_NAMESPACE
 
 class Event;

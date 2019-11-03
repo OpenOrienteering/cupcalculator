@@ -21,14 +21,24 @@
 #ifndef CUPCALCULATOR_RUNNER_H
 #define CUPCALCULATOR_RUNNER_H
 
-#include <vector>
+#include <functional>
+#include <map>
 #include <set>
+#include <utility>
+#include <vector>
 
-#include <QString>
+#include <Qt>
+#include <QtGlobal>
+
 #include <QAbstractTableModel>
+#include <QModelIndex>
+#include <QObject>
+#include <QString>
 #include <QTableView>
+#include <QVariant>
 
 QT_BEGIN_NAMESPACE
+class QModelIndex;
 class QSortFilterProxyModel;
 class QStringListModel;
 class QXmlStreamWriter;

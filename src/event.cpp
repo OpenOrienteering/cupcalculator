@@ -20,7 +20,10 @@
 
 #include "event.h"
 
-#include <assert.h>
+#include <cassert>
+#include <cstddef>
+
+#include <Qt>
 
 #include "resultList.h"
 #include "scoring.h"

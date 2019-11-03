@@ -20,7 +20,28 @@
 
 #include "problemWidget.h"
 
-#include <QtWidgets>
+#include <Qt>
+#include <QAbstractItemModel>
+#include <QAbstractItemView>
+#include <QComboBox>
+#include <QFlags>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QMenu>
+#include <QModelIndex>
+#include <QPushButton>
+#include <QSizePolicy>
+#include <QStringList>
+#include <QTableWidgetItem>
+#include <QToolButton>
+#include <QVBoxLayout>
+#include <QVariant>
+#include <QWidget>
+
+QT_BEGIN_NAMESPACE
+class QHBoxLayout;
+class QVBoxLayout;
+QT_END_NAMESPACE
 
 Problem::Problem()
 {

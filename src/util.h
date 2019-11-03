@@ -22,6 +22,8 @@
 #define CUPCALCULATOR_UTIL_H
 
 #include <QDoubleValidator>
+#include <QString>
+#include <QValidator>
 
 /// Checks if the Levenshtein distance of the two strings is below a threshold, case insensitive
 bool levenshteinDistanceSmaller(const QString& a, const QString& b, int threshold);

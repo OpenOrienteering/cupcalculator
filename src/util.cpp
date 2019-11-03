@@ -20,6 +20,11 @@
 
 #include "util.h"
 
+#include <QtGlobal>
+#include <QChar>
+#include <QCharRef>
+#include <QList>
+#include <QLocale>
 #include <QStringList>
 
 bool levenshteinDistanceSmaller(const QString& a, const QString& b, int threshold)

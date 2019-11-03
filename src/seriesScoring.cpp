@@ -20,17 +20,28 @@
 
 #include "seriesScoring.h"
 
-#include <assert.h>
+#include <cassert>
+#include <cstring>
+#include <functional>
+#include <type_traits>
+#include <utility>
 
+#include <Qt>
 #include <QDir>
-#include <QXmlStreamWriter>
+#include <QFile>
+#include <QFlags>
+#include <QIODevice>
+#include <QStringList>
+#include <QStringRef>
+#include <QVariant>
+#include <QXmlStreamAttributes>
 #include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
-#include "resultList.h"
-#include "club.h"
-#include "runner.h"
-#include "event.h"
 #include "config.h"
+#include "event.h"
+#include "resultList.h"
+#include "runner.h"
 
 // ### SeriesScoring ###
 

@@ -20,7 +20,29 @@
 
 #include "resultCsvImport.h"
 
-#include <QtWidgets>
+#include <cstddef>
+#include <map>
+#include <utility>
+
+#include <Qt>
+#include <QApplication>
+#include <QCheckBox>
+#include <QComboBox>
+#include <QFlags>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QMessageBox>
+#include <QPalette>
+#include <QPushButton>
+#include <QSignalMapper>
+#include <QVBoxLayout>
+#include <QVariant>
+
+QT_BEGIN_NAMESPACE
+class QHBoxLayout;
+class QVBoxLayout;
+QT_END_NAMESPACE
 
 #include "config.h"
 

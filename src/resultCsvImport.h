@@ -21,16 +21,22 @@
 #ifndef CUPCALCULATOR_RESULTCSVIMPORT_H
 #define CUPCALCULATOR_RESULTCSVIMPORT_H
 
+#include <vector>
+
 #include <QDialog>
-#include <QMap>
+#include <QObject>
+#include <QString>
+#include <QtGlobal>
 
 #include "csvFile.h"
 
 QT_BEGIN_NAMESPACE
-class QGridLayout;
 class QCheckBox;
 class QComboBox;
+class QGridLayout;
+class QPushButton;
 class QSignalMapper;
+class QWidget;
 QT_END_NAMESPACE
 
 class CSVImportDialog : public QDialog

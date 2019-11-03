@@ -20,22 +20,32 @@
 
 #include "runner.h"
 
-#include "assert.h"
+#include <cassert>
+#include <cstddef>
+#include <memory>
 
-#include <QHeaderView>
-#include <QSortFilterProxyModel>
-#include <QStringListModel>
+#include <QAbstractItemView>
+#include <QChar>
+#include <QCharRef>
 #include <QFile>
-#include <QXmlStreamWriter>
-#include <QXmlStreamReader>
+#include <QFlags>
+#include <QHeaderView>
+#include <QIODevice>
 #include <QMessageBox>
+#include <QSortFilterProxyModel>
+#include <QStringList>
+#include <QStringListModel>
+#include <QStringRef>
+#include <QXmlStreamAttributes>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
 #include "club.h"
 #include "comboBoxDelegate.h"
-#include "util.h"
 #include "config.h"
-#include "seriesScoring.h"
 #include "csvFile.h"
+#include "seriesScoring.h"
+#include "util.h"
 
 const int COLUMN_COUNT = 5;
 

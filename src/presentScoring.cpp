@@ -20,16 +20,71 @@
 
 #include "presentScoring.h"
 
-#include <assert.h>
+#include <cassert>
 
-#include <QtWidgets>
+#include <memory>
+#include <utility>
 
-#include "event.h"
-#include "scoring.h"
-#include "resultList.h"
+#include <Qt>
+#include <QAbstractItemView>
+#include <QApplication>
+#include <QCheckBox>
+#include <QCloseEvent>
+#include <QComboBox>
+#include <QDesktopWidget>
+#include <QDir>
+#include <QDropEvent>
+#include <QFlags>
+#include <QFont>
+#include <QFontMetricsF>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QIcon>
+#include <QIntValidator>
+#include <QKeyEvent>
+#include <QLabel>
+#include <QLineEdit>
+#include <QList>
+#include <QListView>
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QLocale>
+#include <QMap>
+#include <QMessageBox>
+#include <QMouseEvent>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QPixmap>
+#include <QPoint>
+#include <QPointF>
+#include <QPushButton>
+#include <QRect>
+#include <QRectF>
+#include <QRgb>
+#include <QSize>
+#include <QStringList>
+#include <QTimer>
+#include <QTranslator>
+#include <QVBoxLayout>
+#include <QVariant>
+#include <QWheelEvent>
+
 #include "config.h"
-#include "runner.h"
+#include "event.h"
 #include "layout.h"
+#include "resultList.h"
+#include "runner.h"
+#include "scoring.h"
+#include "util.h"
+
+QT_BEGIN_NAMESPACE
+class QDropEvent;
+class QFontMetricsF;
+class QHBoxLayout;
+class QVBoxLayout;
+QT_END_NAMESPACE
+
+class Club;
 
 #define TRANSLATION_1 QT_TRANSLATE_NOOP("presentation", "Intermediate team results");
 #define TRANSLATION_2 QT_TRANSLATE_NOOP("presentation", "Final team results");

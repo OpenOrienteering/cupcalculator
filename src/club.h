@@ -21,10 +21,21 @@
 #ifndef CUPCALCULATOR_CLUB_H
 #define CUPCALCULATOR_CLUB_H
 
-#include <QString>
-#include <QAbstractTableModel>
-#include <QTableView>
 #include <vector>
+#include <map>
+#include <QVariant>
+
+#include <Qt>
+#include <QtGlobal>
+#include <QAbstractTableModel>
+#include <QModelIndex>
+#include <QObject>
+#include <QString>
+#include <QTableView>
+
+QT_BEGIN_NAMESPACE
+class QModelIndex;
+QT_END_NAMESPACE
 
 class Location;
 class QSortFilterProxyModel;

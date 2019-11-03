@@ -20,7 +20,12 @@
 
 #include "comboBoxDelegate.h"
 
+#include <Qt>
+#include <QAbstractItemModel>
 #include <QComboBox>
+#include <QModelIndex>
+#include <QVariant>
+#include <QWidget>
 
 ComboBoxDelegate::ComboBoxDelegate(QAbstractItemModel* _model, int _model_column, QObject* parent)
 	: QItemDelegate(parent), model(_model), model_column(_model_column)

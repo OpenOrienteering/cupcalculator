@@ -22,11 +22,17 @@
 #define CUPCALCULATOR_CLUBDIALOG_H
 
 #include <QDialog>
+#include <QObject>
+#include <QString>
+#include <QtGlobal>
 
 QT_BEGIN_NAMESPACE
-class QLineEdit;
-class QTreeView;
+class QCloseEvent;
 class QLabel;
+class QLineEdit;
+class QPushButton;
+class QTreeView;
+class QWidget;
 QT_END_NAMESPACE
 
 class Club;

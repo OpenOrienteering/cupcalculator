@@ -1,0 +1,5 @@
+[
+    { ref: "iwyu-qt.imp" },
+    
+    { include: [ "<ext/alloc_traits.h>", "private", "<memory>", "public" ] },
+]

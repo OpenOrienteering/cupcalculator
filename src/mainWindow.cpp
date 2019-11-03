@@ -20,24 +20,66 @@
 
 #include "mainWindow.h"
 
-#include <QtWidgets>
-#include <assert.h>
+#include <iterator>
+#include <map>
 #include <set>
+#include <utility>
 
+#include <Qt>
+#include <QAbstractButton>
+#include <QAbstractItemModel>
+#include <QAbstractItemView>
+#include <QApplication>
+#include <QComboBox>
+#include <QDate>
+#include <QDateTime>
+#include <QDesktopServices>
+#include <QFileDialog>
+#include <QFileInfo>
+#include <QFlags>
+#include <QFont>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QIcon>
+#include <QInputDialog>
+#include <QIntValidator>
+#include <QItemSelection>
+#include <QItemSelectionModel>
+#include <QLabel>
+#include <QLineEdit>
+#include <QListView>
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QMap>
+#include <QMessageBox>
+#include <QModelIndex>
+#include <QModelIndexList>
+#include <QPushButton>
+#include <QSortFilterProxyModel>
+#include <QTabWidget>
+#include <QVBoxLayout>
+#include <QVariant>
+
+#include "club.h"
+#include "clubDialog.h"
 #include "config.h"
 #include "csvFile.h"
-#include "resultCsvImport.h"
 #include "event.h"
+#include "presentScoring.h"
+#include "resultCsvImport.h"
+#include "resultList.h"
+#include "runner.h"
 #include "scoring.h"
 #include "scoringDialog.h"
 #include "seriesScoring.h"
 #include "seriesScoringDialog.h"
-#include "club.h"
-#include "clubDialog.h"
-#include "runner.h"
-#include "resultList.h"
 #include "util.h"
-#include "presentScoring.h"
+
+QT_BEGIN_NAMESPACE
+class QHBoxLayout;
+class QVBoxLayout;
+QT_END_NAMESPACE
 
 char installationKey[33];	// TODO: find a better location for this
 

@@ -20,13 +20,35 @@
 
 #include "clubDialog.h"
 
-#include <QtWidgets>
-#include <assert.h>
+#include <cassert>
 
-#include "location.h"
+#include <Qt>
+#include <QAbstractItemModel>
+#include <QApplication>
+#include <QCloseEvent>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QIcon>
+#include <QItemSelection>
+#include <QItemSelectionModel>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMessageBox>
+#include <QModelIndex>
+#include <QPushButton>
+#include <QSortFilterProxyModel>
+#include <QTreeView>
+#include <QVBoxLayout>
+#include <QVariant>
+
 #include "club.h"
 #include "config.h"
-#include "util.h"
+#include "location.h"
+
+QT_BEGIN_NAMESPACE
+class QHBoxLayout;
+class QVBoxLayout;
+QT_END_NAMESPACE
 
 ClubDialog::ClubDialog(Club* _club, QWidget* parent) : QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint), club(_club)
 {

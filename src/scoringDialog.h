@@ -21,30 +21,37 @@
 #ifndef CUPCALCULATOR_SCORINGDIALOG_H
 #define CUPCALCULATOR_SCORINGDIALOG_H
 
+#include <QtGlobal>
 #include <QDialog>
 #include <QListWidget>
+#include <QObject>
+#include <QSize>
+#include <QString>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QListWidgetItem;
-class QComboBox;
-class QTableWidget;
-class QStackedWidget;
-class QLineEdit;
-class QCheckBox;
-class QRadioButton;
 class QButtonGroup;
-class QStackedLayout;
+class QCheckBox;
+class QCloseEvent;
+class QComboBox;
+class QDropEvent;
+class QGroupBox;
+class QLineEdit;
+class QPushButton;
+class QRadioButton;
 class QSortFilterProxyModel;
+class QStackedLayout;
+class QStackedWidget;
+class QTableWidget;
 class QTreeWidget;
 class QTreeWidgetItem;
-class QGroupBox;
 QT_END_NAMESPACE
 
+class AdjustCategoriesPage;
+class CustomCategory;
 class Scoring;
 class ScoringCalculationPage;
-class AdjustCategoriesPage;
 struct Ruleset;
-class CustomCategory;
 
 class ScoringDialog : public QDialog
 {

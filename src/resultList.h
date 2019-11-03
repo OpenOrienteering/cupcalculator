@@ -21,16 +21,26 @@
 #ifndef CUPCALCULATOR_RESULTLIST_H
 #define CUPCALCULATOR_RESULTLIST_H
 
+#include <memory>
 #include <vector>
 
+#include <Qt>
+#include <QtGlobal>
+#include <QAbstractProxyModel>
 #include <QAbstractTableModel>
+#include <QModelIndex>
+#include <QObject>
+#include <QString>
 #include <QTableView>
 #include <QTreeView>
-#include <QSortFilterProxyModel>
+#include <QVariant>
 
 QT_BEGIN_NAMESPACE
-class QXmlStreamWriter;
+class QAbstractItemModel;
+class QModelIndex;
+class QWidget;
 class QXmlStreamReader;
+class QXmlStreamWriter;
 QT_END_NAMESPACE
 
 class SeriesScoring;
