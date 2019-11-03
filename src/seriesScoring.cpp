@@ -845,7 +845,7 @@ QString SeriesScoringDB::getUnusedName(const QString& desiredName)
 OrganizerMissingProblem::OrganizerMissingProblem(SeriesRaceResult* result, const QString& first_name, const QString& last_name, int year, bool isMale)
 : result(result), first_name(first_name), last_name(last_name), year(year), isMale(isMale)
 {
-	description = tr("Cannot find organizer %1 %2 in runner database").arg(first_name).arg(last_name);
+	description = tr("Cannot find organizer %1 %2 in runner database").arg(first_name, last_name);
 	// TODO: check for similar names in runner DB and offer to change reference to them
 }
 int OrganizerMissingProblem::getNumSolutions()

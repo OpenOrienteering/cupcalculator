@@ -158,7 +158,7 @@ ResultList::ResultList(QXmlStreamReader* stream, bool use_ids, SeriesScoring* sc
 						Runner* runner = runnerDB.findRunner(first_name, last_name, year, isMale);
 						if (!runner)
 						{
-							QMessageBox::warning(nullptr, tr("Error"), tr("Error while loading series scoring: cannot find runner %1 %2 in runner database!").arg(first_name).arg(last_name));
+							QMessageBox::warning(nullptr, tr("Error"), tr("Error while loading series scoring: cannot find runner %1 %2 in runner database!").arg(first_name, last_name));
 							return;
 						}
 						columns[cur_column][cur_row] = qVariantFromValue<void*>(runner);

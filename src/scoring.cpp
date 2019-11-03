@@ -1369,12 +1369,12 @@ QString ScoringDB::getUnusedName(const QString& desiredName)
 
 ClubDifferentProblem::ClubDifferentProblem(Club* club, const QString& country_text, Location* country, const QString& province_text, Location* province) : club(club), country(country), province(province)
 {
-	database_location = QString("%1, %2").arg(club->getCountry() ? club->getCountry()->getName() : tr("not specified"))
-										 .arg(club->getProvince() ? club->getProvince()->getName() : tr("not specified"));
-	scoring_location = QString("%1, %2").arg(country ? country->getName() : (country_text.isEmpty() ? tr("not specified") : tr("not found")))
-										 .arg(province ? province->getName() : (province_text.isEmpty() ? tr("not specified") : tr("not found")));
+	database_location = QString("%1, %2").arg(club->getCountry() ? club->getCountry()->getName() : tr("not specified"),
+	                                          club->getProvince() ? club->getProvince()->getName() : tr("not specified"));
+	scoring_location = QString("%1, %2").arg(country ? country->getName() : (country_text.isEmpty() ? tr("not specified") : tr("not found")),
+	                                         province ? province->getName() : (province_text.isEmpty() ? tr("not specified") : tr("not found")));
 	description = tr("Club %1 is located at %2 according to the database, but at %3 according to the scoring")
-					.arg(club->getName()).arg(database_location).arg(scoring_location);
+					.arg(club->getName(), database_location, scoring_location);
 }
 int ClubDifferentProblem::getNumSolutions()
 {

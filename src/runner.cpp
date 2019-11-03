@@ -235,7 +235,8 @@ bool RunnerDB::loadFromFile()
 					if (club)
 						current_runner->addClub(club);
 					else
-						QMessageBox::warning(nullptr, tr("Warning"), tr("Could not find club %1 of runner %2 %3 in the club database!").arg(ref.toString()).arg(current_runner->getFirstName()).arg(current_runner->getLastName()));
+						QMessageBox::warning(nullptr, tr("Warning"), tr("Could not find club %1 of runner %2 %3 in the club database!")
+						                     .arg(ref.toString(), current_runner->getFirstName(), current_runner->getLastName()));
 				}
 			}
 			else if (stream.name() == "Club")
@@ -244,7 +245,8 @@ bool RunnerDB::loadFromFile()
 				if (club)
 					current_runner->addClub(club);
 				else
-					QMessageBox::warning(nullptr, tr("Warning"), tr("Could not find club %1 of runner %2 %3 in the club database!").arg(stream.attributes().value("name").toString()).arg(current_runner->getFirstName()).arg(current_runner->getLastName()));
+					QMessageBox::warning(nullptr, tr("Warning"), tr("Could not find club %1 of runner %2 %3 in the club database!")
+					                     .arg(stream.attributes().value("name").toString(), current_runner->getFirstName(), current_runner->getLastName()));
 			
 			}
 			else if (stream.name() == "Merge")

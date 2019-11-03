@@ -974,7 +974,8 @@ void RunnerDatabaseTab::removeClicked()
 					if (results->findInColumn(i, qVariantFromValue<void*>(runner)) >= 0)
 					{
 						// TODO: Could offer to do the suggested things
-						QMessageBox::warning(this, APP_NAME, tr("The runner %1 %2 you want to delete is in the result list of the current event. Either close the event or delete the runner from the event first!").arg(runner->getFirstName()).arg(runner->getLastName()));
+						QMessageBox::warning(this, APP_NAME, tr("The runner %1 %2 you want to delete is in the result list of the current event. Either close the event or delete the runner from the event first!")
+						                     .arg(runner->getFirstName(), runner->getLastName()));
 						return;
 					}
 				}
@@ -982,7 +983,8 @@ void RunnerDatabaseTab::removeClicked()
 			if (seriesScoringDB.openScoringReferencesRunner(runner))
 			{
 				// TODO: Could offer to do the suggested things
-				QMessageBox::warning(this, APP_NAME, tr("The runner %1 %2 you want to delete is still referenced by at least one open series scoring. Please remove all references first!").arg(runner->getFirstName()).arg(runner->getLastName()));
+				QMessageBox::warning(this, APP_NAME, tr("The runner %1 %2 you want to delete is still referenced by at least one open series scoring. Please remove all references first!")
+				                     .arg(runner->getFirstName(), runner->getLastName()));
 				return;
 			}
 		}
@@ -1270,7 +1272,7 @@ SimilarClubProblem::SimilarClubProblem(Club* club, std::vector< Club* >& similar
 		similarClubsStr += " " + tr("or") + " ";
 	similarClubsStr += similarClubs[size - 1]->getName();
 	
-	description = tr("Is the new club %1 the same as %2?").arg(club->getName()).arg(similarClubsStr);
+	description = tr("Is the new club %1 the same as %2?").arg(club->getName(), similarClubsStr);
 }
 int SimilarClubProblem::getNumSolutions()
 {
@@ -1287,8 +1289,8 @@ QString SimilarClubProblem::getSolutionDescription(int i)
 	}
 	else
 	{
-		if (i % 2 == 1) return tr("Same as %1, change to %2").arg(similarClubs[i/2]->getName()).arg(club->getName());
-		else return tr("Same as %1, keep %2").arg(similarClubs[(i-1)/2]->getName()).arg(similarClubs[(i-1)/2]->getName());
+		if (i % 2 == 1) return tr("Same as %1, change to %2").arg(similarClubs[i/2]->getName(), club->getName());
+		else return tr("Same as %1, keep %2").arg(similarClubs[(i-1)/2]->getName(), similarClubs[(i-1)/2]->getName());
 	}
 }
 void SimilarClubProblem::applySolution(int i)
@@ -1334,7 +1336,7 @@ SimilarRunnerProblem::SimilarRunnerProblem(Runner* runner, std::vector< Runner* 
 		similarRunnersStr += " " + tr("or") + " ";
 	similarRunnersStr += similarRunners[size - 1]->getFullDesc();
 	
-	description = tr("Is the new runner %1 the same as %2?").arg(runner->getFullDesc()).arg(similarRunnersStr);
+	description = tr("Is the new runner %1 the same as %2?").arg(runner->getFullDesc(), similarRunnersStr);
 }
 int SimilarRunnerProblem::getNumSolutions()
 {
@@ -1351,8 +1353,8 @@ QString SimilarRunnerProblem::getSolutionDescription(int i)
 	}
 	else
 	{
-		if (i % 2 == 1) return tr("Same as %1, change to %2").arg(similarRunners[i/2]->getFullDesc()).arg(runner->getFullDesc());
-		else return tr("Same as %1, keep %2").arg(similarRunners[(i-1)/2]->getFullDesc()).arg(similarRunners[(i-1)/2]->getFullDesc());
+		if (i % 2 == 1) return tr("Same as %1, change to %2").arg(similarRunners[i/2]->getFullDesc(), runner->getFullDesc());
+		else return tr("Same as %1, keep %2").arg(similarRunners[(i-1)/2]->getFullDesc(), similarRunners[(i-1)/2]->getFullDesc());
 	}
 }
 void SimilarRunnerProblem::applySolution(int i)
