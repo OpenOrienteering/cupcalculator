@@ -34,7 +34,7 @@
 #include "runner.h"
 #include "scoring.h"
 #include "seriesScoring.h"
-#include "global.h"
+#include "config.h"
 
 void loadProgramSettings();
 void saveProgramSettings();

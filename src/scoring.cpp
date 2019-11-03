@@ -34,7 +34,7 @@
 #include "club.h"
 #include "location.h"
 #include "runner.h"
-#include "global.h"
+#include "config.h"
 
 const QString SCORING_SUFFIX = ".xml";
 

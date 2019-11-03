@@ -27,7 +27,7 @@
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 
-#include "global.h"
+#include "config.h"
 
 QSortFilterProxyModel* LocationDB::sortModel;
 

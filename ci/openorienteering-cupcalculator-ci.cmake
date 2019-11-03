@@ -30,7 +30,9 @@
 set(CupCalculator_CI_SOURCE_DIR "NOTFOUND" CACHE STRING
   "CupCalculator (CI): Source code directory"
 )
-
+set(CupCalculator_CI_VERSION_DISPLAY "ci" STRING BOOL
+  "CupCalculator (CI): Version display string"
+)
 set(CupCalculator_CI_ENABLE_COVERAGE "OFF" CACHE BOOL
   "CupCalculator (CI): Enable test coverage analysis"
 )
@@ -57,7 +59,9 @@ superbuild_package(
       "-UCMAKE_STAGING_PREFIX"
       "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
       "-ULICENSING_OPTIONAL_ITEMS"  # unset here, updated via CMAKE_CACHE_ARGS
+      "-UPROJECT_VERSION_DISPLAY"   # unset here, updated via CMAKE_CACHE_ARGS
     CMAKE_CACHE_ARGS
+      "-DPROJECT_VERSION_DISPLAY:STRING=@CupCalculator_CI_VERSION_DISPLAY@"
       "-DLICENSING_OPTIONAL_ITEMS:STRING=@CupCalculator_CI_LICENSING_OPTIONAL_ITEMS@"
     $<$<BOOL:@WIN32@>:
       "-DCMAKE_INSTALL_BINDIR:STRING=."

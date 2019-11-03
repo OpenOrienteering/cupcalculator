@@ -24,7 +24,7 @@
 #include <assert.h>
 
 #include "scoring.h"
-#include "global.h"
+#include "config.h"
 #include "util.h"
 #include "location.h"
 #include "club.h"

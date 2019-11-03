@@ -30,7 +30,7 @@
 
 #include "location.h"
 #include "util.h"
-#include "global.h"
+#include "config.h"
 #include "runner.h"
 #include "scoring.h"
 #include "seriesScoring.h"

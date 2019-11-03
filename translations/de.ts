@@ -17,8 +17,8 @@
     </message>
     <message>
         <location filename="../src/mainWindow.cpp" line="1216"/>
-        <source>Copyright (C) 2011, 2012, 2015  Thomas Sch&amp;ouml;ps&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY;&lt;br&gt;This is free software, and you are welcome to redistribute it&lt;br&gt;under certain conditions; see the file COPYING for details.</source>
-        <translation>Copyright (C) 2011, 2012, 2015  Thomas Sch&amp;ouml;ps&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY;&lt;br&gt;This is free software, and you are welcome to redistribute it&lt;br&gt;under certain conditions; see the file COPYING for details.</translation>
+        <source>%1&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY;&lt;br&gt;This is free software, and you are welcome to redistribute it&lt;br&gt;under certain conditions; see the file COPYING for details.</source>
+        <translation>%1&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY;&lt;br&gt;This is free software, and you are welcome to redistribute it&lt;br&gt;under certain conditions; see the file COPYING for details.</translation>
     </message>
     <message>
         <location filename="../src/mainWindow.cpp" line="1225"/>

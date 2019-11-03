@@ -1,5 +1,6 @@
 /*
     Copyright 2011 Thomas Schöps
+    Copyright 2019 Kai Pastor
     
     This file is part of OpenOrienteering's scoring tool.
 
@@ -18,12 +19,14 @@
 */
 
 
-#ifndef GLOBAL_H
-#define GLOBAL_H
+#ifndef CUPCALCULATOR_CONFIG_H
+#define CUPCALCULATOR_CONFIG_H
 
-#define APP_NAME qApp->translate("Global", QT_TRANSLATE_NOOP("Global", "CupCalculator"))
-#define APP_VERSION "v1.1.1"
+#define APP_NAME                qApp->translate("Global", "@APP_NAME@")
+#define PROJECT_NAME            qApp->translate("Global", "@PROJECT_NAME@")
+#define PROJECT_COPYRIGHT       "@PROJECT_COPYRIGHT@"
+#define PROJECT_VERSION_DISPLAY "@PROJECT_VERSION_DISPLAY@"
 
 extern char installationKey[33];	// 32 letters and terminating 0
 
-#endif
+#endif  // CUPCALCULATOR_CONFIG_H

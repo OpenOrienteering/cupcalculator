@@ -33,7 +33,7 @@
 #include "club.h"
 #include "comboBoxDelegate.h"
 #include "util.h"
-#include "global.h"
+#include "config.h"
 #include "seriesScoring.h"
 #include "csvFile.h"
 

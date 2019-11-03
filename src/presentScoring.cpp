@@ -27,7 +27,7 @@
 #include "event.h"
 #include "scoring.h"
 #include "resultList.h"
-#include "global.h"
+#include "config.h"
 #include "runner.h"
 #include "layout.h"
 

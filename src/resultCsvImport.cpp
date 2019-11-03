@@ -22,7 +22,7 @@
 
 #include <QtWidgets>
 
-#include "global.h"
+#include "config.h"
 
 CSVImportDialog::CSVImportDialog(CSVFile* file, QWidget* parent) : QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint), file(file)
 {

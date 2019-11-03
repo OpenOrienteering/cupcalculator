@@ -30,7 +30,7 @@
 #include "club.h"
 #include "runner.h"
 #include "event.h"
-#include "global.h"
+#include "config.h"
 
 // ### SeriesScoring ###
 

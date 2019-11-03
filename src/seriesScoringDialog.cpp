@@ -25,7 +25,7 @@
 #include <QtWidgets>
 
 #include "seriesScoring.h"
-#include "global.h"
+#include "config.h"
 #include "resultList.h"
 #include "runner.h"
 #include "csvFile.h"

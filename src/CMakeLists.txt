@@ -25,6 +25,12 @@ include("licensing_helper")
 
 set(CMAKE_AUTOMOC ON)
 
+
+set(APP_NAME "CupCalculator")
+configure_file("config.h.in" "config.h" @ONLY)
+include_directories("${CMAKE_CURRENT_BINARY_DIR}")
+
+
 add_library(CupCalculator_Common STATIC
 	mainWindow.cpp
 	
@@ -56,6 +62,7 @@ target_link_libraries(CupCalculator_Common
   PUBLIC Qt5::Widgets
 )
 
+
 add_executable(CupCalculator WIN32 main.cpp)
 target_link_libraries(CupCalculator
   PUBLIC
@@ -69,6 +76,7 @@ if(MAKE_BUNDLE)
 	bundle_helper_postprocess(CupCalculator Qt5Widgets Qt5Gui)
 	licensing_helper_postprocess(CupCalculator COPYING.txt)
 endif()
+
 
 add_executable(CupCalculatorTest test.cpp)
 target_link_libraries(CupCalculatorTest

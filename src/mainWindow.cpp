@@ -24,7 +24,7 @@
 #include <assert.h>
 #include <set>
 
-#include "global.h"
+#include "config.h"
 #include "csvFile.h"
 #include "resultCsvImport.h"
 #include "event.h"
@@ -60,7 +60,8 @@ MainWindow::MainWindow(QWidget* parent)
 	mainLayout->addWidget(tabWidget);
 	setLayout(mainLayout);
 	
-	setWindowTitle(QString("%1 %2").arg(APP_NAME).arg(APP_VERSION));
+	void(QT_TRANSLATE_NOOP("Global", "CupCalculator"));
+	setWindowTitle(QString("%1 %2").arg(PROJECT_NAME, PROJECT_VERSION_DISPLAY));
 	setWindowIcon(QIcon("images/control.png"));
 	
 	setSizeGripEnabled(true);
@@ -1207,16 +1208,18 @@ void SeriesScoringTab::seriesDoubleClicked(QListWidgetItem* item)
 
 AboutTab::AboutTab(MainWindow* mainWindow, QWidget* parent): QWidget(parent), mainWindow(mainWindow)
 {
-	QLabel* programLabel = new QLabel(QString("<b>%1 %2</b>").arg(APP_NAME).arg(APP_VERSION));
+	void(QT_TRANSLATE_NOOP("Global", "CupCalculator"));
+	QLabel* programLabel = new QLabel(QString("<b>%1 %2</b>").arg(PROJECT_NAME, PROJECT_VERSION_DISPLAY));
 	programLabel->setAlignment(Qt::AlignHCenter);
 	QFont hugeFont = programLabel->font();
 	hugeFont.setPointSize(20);
 	programLabel->setFont(hugeFont);
 	
-	QLabel* aboutLabel = new QLabel(tr("Copyright (C) 2011, 2012, 2015  Thomas Sch&ouml;ps<br>"
-									   "This program comes with ABSOLUTELY NO WARRANTY;<br>"
-									   "This is free software, and you are welcome to redistribute it<br>"
-									   "under certain conditions; see the file COPYING for details."));
+	QLabel* aboutLabel = new QLabel(tr("%1<br>"
+	                                   "This program comes with ABSOLUTELY NO WARRANTY;<br>"
+	                                   "This is free software, and you are welcome to redistribute it<br>"
+	                                   "under certain conditions; see the file COPYING for details.")
+	                                .arg(PROJECT_COPYRIGHT));
 	aboutLabel->setAlignment(Qt::AlignHCenter);
 	QFont bigFont = aboutLabel->font();
 	bigFont.setPointSize(12);
@@ -1228,7 +1231,7 @@ AboutTab::AboutTab(MainWindow* mainWindow, QWidget* parent): QWidget(parent), ma
 	mediumFont.setPointSize(12);
 	imageLabel->setFont(mediumFont);
 	
-	QLabel* aboutImage = new QLabel("<a href=\"http://www.openorienteering.org\"><img src=\"images/open_orienteering.png\"/></a>");
+	QLabel* aboutImage = new QLabel("<a href=\"https://www.openorienteering.org\"><img src=\"images/open_orienteering.png\"/></a>");
 	
 	QVBoxLayout* layout = new QVBoxLayout();
 	layout->addStretch(1);

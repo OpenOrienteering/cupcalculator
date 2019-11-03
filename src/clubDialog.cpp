@@ -25,7 +25,7 @@
 
 #include "location.h"
 #include "club.h"
-#include "global.h"
+#include "config.h"
 #include "util.h"
 
 ClubDialog::ClubDialog(Club* _club, QWidget* parent) : QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint), club(_club)
