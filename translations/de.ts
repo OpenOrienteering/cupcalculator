@@ -4,24 +4,12 @@
 <context>
     <name>AboutTab</name>
     <message>
-        <source>&lt;b&gt;Orienteering Scoring tool %1&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Wertungstool für Orientierungslauf %1&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Copyright (C) 2011  Thomas Sch&amp;ouml;ps&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY;&lt;br&gt;This is free software, and you are welcome to redistribute it&lt;br&gt;under certain conditions; see the file COPYING for details.</source>
-        <translation type="vanished">Copyright (C) 2011  Thomas Sch&amp;ouml;ps&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY;&lt;br&gt;This is free software, and you are welcome to redistribute it&lt;br&gt;under certain conditions; see the file COPYING for details.</translation>
-    </message>
-    <message>
-        <source>Developed by Thomas Sch&amp;ouml;ps&lt;br&gt;TODO: Licensing information</source>
-        <translation type="obsolete">Entwickelt von Thomas Sch&amp;ouml;ps&lt;b&gt;TODO: Lizenzinfo</translation>
-    </message>
-    <message>
-        <location filename="../src/mainWindow.cpp" line="1216"/>
+        <location filename="../src/mainWindow.cpp" line="1218"/>
         <source>%1&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY;&lt;br&gt;This is free software, and you are welcome to redistribute it&lt;br&gt;under certain conditions; see the file COPYING for details.</source>
         <translation>%1&lt;br&gt;This program comes with ABSOLUTELY NO WARRANTY;&lt;br&gt;This is free software, and you are welcome to redistribute it&lt;br&gt;under certain conditions; see the file COPYING for details.</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1225"/>
+        <location filename="../src/mainWindow.cpp" line="1228"/>
         <source>This program is part of the OpenOrienteering project</source>
         <translation>Dieses Programm ist Teil des OpenOrienteering-Projekts</translation>
     </message>
@@ -74,27 +62,27 @@ Ein Ergebnis enthält einzelne Läufer, das andere Vereine.</translation>
 <context>
     <name>AdjustCategoriesPage</name>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="1148"/>
+        <location filename="../src/scoringDialog.cpp" line="1155"/>
         <source>Custom categories</source>
         <translation>Kategorien anpassen</translation>
     </message>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="1160"/>
+        <location filename="../src/scoringDialog.cpp" line="1167"/>
         <source>Category settings</source>
         <translation>Kategorie-Einstellungen</translation>
     </message>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="1162"/>
+        <location filename="../src/scoringDialog.cpp" line="1169"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="1168"/>
+        <location filename="../src/scoringDialog.cpp" line="1175"/>
         <source>From categories:</source>
         <translation>Aus Kategorien:</translation>
     </message>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="1174"/>
+        <location filename="../src/scoringDialog.cpp" line="1181"/>
         <source>Uses ruleset:</source>
         <translation>Benutzt Regelsatz:</translation>
     </message>
@@ -251,237 +239,166 @@ Ein Ergebnis enthält einzelne Läufer, das andere Vereine.</translation>
         <source>This column will be used if the normal column(s) are empty</source>
         <translation>Diese Spalte wird verwendet, wenn die normalen Spalten leer sind</translation>
     </message>
-    <message>
-        <source>[no data]</source>
-        <translation type="obsolete">[keine Daten]</translation>
-    </message>
 </context>
 <context>
     <name>CalculateScoringTab</name>
     <message>
-        <location filename="../src/mainWindow.cpp" line="89"/>
+        <location filename="../src/mainWindow.cpp" line="90"/>
         <source>1. Setup scoring(s)</source>
         <translation>1. Wertung(en) einrichten</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="91"/>
+        <location filename="../src/mainWindow.cpp" line="92"/>
         <source>New ...</source>
         <translation>Neu ...</translation>
     </message>
     <message>
-        <source>Load ...</source>
-        <translation type="obsolete">Laden ...</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="obsolete">Entfernen</translation>
-    </message>
-    <message>
-        <source>2. Calculation</source>
-        <translation type="obsolete">2. Berechnung</translation>
-    </message>
-    <message>
-        <location filename="../src/mainWindow.cpp" line="107"/>
-        <location filename="../src/mainWindow.cpp" line="298"/>
+        <location filename="../src/mainWindow.cpp" line="108"/>
+        <location filename="../src/mainWindow.cpp" line="299"/>
         <source>Import results ...</source>
         <translation>Ergebnisse importieren ...</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="114"/>
+        <location filename="../src/mainWindow.cpp" line="115"/>
         <source>Calculate scorings</source>
         <translation>Wertungen berechnen</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="133"/>
+        <location filename="../src/mainWindow.cpp" line="134"/>
         <source>3. Export scorings</source>
         <translation>3. Wertungen exportieren</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="134"/>
+        <location filename="../src/mainWindow.cpp" line="135"/>
         <source>Scoring:</source>
         <translation>Wertung:</translation>
     </message>
     <message>
-        <source>Category:</source>
-        <translation type="obsolete">Kategorie:</translation>
-    </message>
-    <message>
-        <location filename="../src/mainWindow.cpp" line="138"/>
-        <location filename="../src/mainWindow.cpp" line="392"/>
+        <location filename="../src/mainWindow.cpp" line="139"/>
+        <location filename="../src/mainWindow.cpp" line="393"/>
         <source>Export scoring ...</source>
         <translation>Wertung exportieren ...</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="188"/>
+        <location filename="../src/mainWindow.cpp" line="189"/>
         <source>New scoring</source>
         <translation>Neue Wertung</translation>
     </message>
     <message>
-        <source>Import Results ...</source>
-        <translation type="obsolete">Ergebnisse importieren ...</translation>
-    </message>
-    <message>
-        <location filename="../src/mainWindow.cpp" line="298"/>
+        <location filename="../src/mainWindow.cpp" line="299"/>
         <source>Sportsoftware CSV files (*.csv);;All files (*.*)</source>
         <translation>Sportsoftware CSV-Dateien (*.csv);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="662"/>
-        <location filename="../src/mainWindow.cpp" line="664"/>
+        <location filename="../src/mainWindow.cpp" line="663"/>
+        <location filename="../src/mainWindow.cpp" line="665"/>
         <source>Error while reading file:
 </source>
-        <translation>Fehler beim Lesen der Datei:</translation>
+        <translation>Fehler beim Lesen der Datei:
+</translation>
     </message>
     <message>
-        <source> column not found.</source>
-        <translation type="obsolete">-Spalte nicht gefunden.</translation>
-    </message>
-    <message>
-        <location filename="../src/mainWindow.cpp" line="307"/>
-        <location filename="../src/mainWindow.cpp" line="403"/>
+        <location filename="../src/mainWindow.cpp" line="308"/>
+        <location filename="../src/mainWindow.cpp" line="404"/>
         <source>Could not open file:
 </source>
         <translation>Konnte Datei nicht öffnen:
 </translation>
     </message>
     <message>
-        <source>Sorry, this is not implemented yet!</source>
-        <translation type="obsolete">Dies ist noch nicht implementiert!</translation>
-    </message>
-    <message>
-        <location filename="../src/mainWindow.cpp" line="92"/>
+        <location filename="../src/mainWindow.cpp" line="93"/>
         <source>Edit ...</source>
         <translation>Bearbeiten ...</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="93"/>
+        <location filename="../src/mainWindow.cpp" line="94"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="106"/>
+        <location filename="../src/mainWindow.cpp" line="107"/>
         <source>2. Point calculation</source>
         <translation>2. Punkteberechnung</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="108"/>
+        <location filename="../src/mainWindow.cpp" line="109"/>
         <source>Close event</source>
         <translation>Wettkampf schließen</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="111"/>
+        <location filename="../src/mainWindow.cpp" line="112"/>
         <source>Year of event:</source>
         <translation>Jahr des Laufs:</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="116"/>
+        <location filename="../src/mainWindow.cpp" line="117"/>
         <source>Present scoring ...</source>
         <translation>Wertung präsentieren ...</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="137"/>
+        <location filename="../src/mainWindow.cpp" line="138"/>
         <source>Add to series scoring ...</source>
         <translation>Zu Serienwertung hinzufügen ...</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="238"/>
+        <location filename="../src/mainWindow.cpp" line="239"/>
         <source>Confirm: delete the scoring %1?</source>
         <translation>Bestätigen: die Wertung %1 löschen?</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="333"/>
-        <location filename="../src/mainWindow.cpp" line="353"/>
+        <location filename="../src/mainWindow.cpp" line="334"/>
+        <location filename="../src/mainWindow.cpp" line="354"/>
         <source>Please set up a scoring first!</source>
         <translation>Bitte lege zuerst eine Wertung an!</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="367"/>
+        <location filename="../src/mainWindow.cpp" line="368"/>
         <source>Please create a series scoring in the respective tab first!</source>
         <translation>Bitte erstelle zuerst eine Serienwertung in dem dazugehörigen Tab!</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="392"/>
+        <location filename="../src/mainWindow.cpp" line="393"/>
         <source>CSV files (*.csv);;All files (*.*)</source>
         <translation>CSV-Dateien (*.csv);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="409"/>
+        <location filename="../src/mainWindow.cpp" line="410"/>
         <source>Export successful.</source>
         <translation>Export erfolgreich.</translation>
     </message>
     <message>
-        <source>
-
-Language or format of file not supported.</source>
-        <translation type="obsolete">Sprache oder Format der Datei wird nicht unterstützt.</translation>
-    </message>
-    <message>
-        <source>First name</source>
-        <translation type="obsolete">Vorname</translation>
-    </message>
-    <message>
-        <source>Last name</source>
-        <translation type="obsolete">Nachname</translation>
-    </message>
-    <message>
-        <source>Year</source>
-        <translation type="obsolete">Jahr</translation>
-    </message>
-    <message>
-        <source>Gender</source>
-        <translation type="obsolete">Geschlecht</translation>
-    </message>
-    <message>
-        <source>Time</source>
-        <translation type="obsolete">Zeit</translation>
-    </message>
-    <message>
-        <source>State</source>
-        <translation type="obsolete">Ergebnis</translation>
-    </message>
-    <message>
-        <source>Club abbreviation</source>
-        <translation type="obsolete">Vereinsabkürzung</translation>
-    </message>
-    <message>
-        <source>Club Location</source>
-        <translation type="obsolete">Vereinsort</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="obsolete">Kategorie</translation>
-    </message>
-    <message>
-        <location filename="../src/mainWindow.cpp" line="441"/>
+        <location filename="../src/mainWindow.cpp" line="442"/>
         <source>Race results</source>
         <translation>Laufergebnisse</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="685"/>
+        <location filename="../src/mainWindow.cpp" line="686"/>
         <source>Time formatting not supported:
 </source>
         <translation>Zeitformat nicht unterstützt:
 </translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="685"/>
+        <location filename="../src/mainWindow.cpp" line="686"/>
         <source>
 
 Please enter the time in HH:MM:SS, MMM:SS, HH:MM:SS,T or MMM:SS,T format:</source>
-        <translation>Bitte gib die Zeit im Format Stunden:Minuten:Sekunden, Minuten:Sekunden, Stunden:Minuten:Sekunden,Zehntel oder Minuten:Sekunden,Zehntel an:</translation>
+        <translation>
+
+Bitte gib die Zeit im Format Stunden:Minuten:Sekunden, Minuten:Sekunden, Stunden:Minuten:Sekunden,Zehntel oder Minuten:Sekunden,Zehntel an:</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="690"/>
+        <location filename="../src/mainWindow.cpp" line="691"/>
         <source>Error: wrong formatting.</source>
         <translation>Fehler: falsche Formatierung.</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="654"/>
+        <location filename="../src/mainWindow.cpp" line="655"/>
         <source>Problems while importing results</source>
         <translation>Probleme beim Ergebnisimport</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="662"/>
+        <location filename="../src/mainWindow.cpp" line="663"/>
         <source>
 
 Encountered an incorrectly formatted line.</source>
@@ -490,7 +407,7 @@ Encountered an incorrectly formatted line.</source>
 Inkorrekt formatierte Zeile gefunden.</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="664"/>
+        <location filename="../src/mainWindow.cpp" line="665"/>
         <source>
 
 Unknown error.</source>
@@ -548,42 +465,42 @@ Unbekannter Fehler.</translation>
 <context>
     <name>ClubDatabaseTab</name>
     <message>
-        <location filename="../src/mainWindow.cpp" line="707"/>
+        <location filename="../src/mainWindow.cpp" line="708"/>
         <source>Edit ...</source>
         <translation>Bearbeiten ...</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="712"/>
+        <location filename="../src/mainWindow.cpp" line="713"/>
         <source>Merge ...</source>
         <translation>Vereinigen ...</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="791"/>
+        <location filename="../src/mainWindow.cpp" line="792"/>
         <source>A club you want to delete has still members. You must remove the members first!</source>
         <translation>Ein Verein, den du löschen willst, hat noch Mitglieder. Du musst zuerst die Mitglieder entfernen!</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="799"/>
+        <location filename="../src/mainWindow.cpp" line="800"/>
         <source>The club %1 you want to delete is in the result list of the current event. Either close the event or delete the occurences of the club from the event first!</source>
         <translation>Der Verein %1, den du löschen willst, ist in der Ergebnisliste des aktuellen Wettkampfes. Schließe entweder zuerst den Wettkampf oder lösche die Vorkommen des Vereins!</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="805"/>
+        <location filename="../src/mainWindow.cpp" line="806"/>
         <source>Confirm: delete the selected clubs?</source>
         <translation>Bestätigen: die ausgewählten Vereine löschen?</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="836"/>
+        <location filename="../src/mainWindow.cpp" line="837"/>
         <source>Merge clubs</source>
         <translation>Vereine vereinigen</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="837"/>
+        <location filename="../src/mainWindow.cpp" line="838"/>
         <source>Merge to which club?</source>
         <translation>Zu welchem Verein vereinigen?</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="838"/>
+        <location filename="../src/mainWindow.cpp" line="839"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
@@ -649,10 +566,6 @@ Unbekannter Fehler.</translation>
         <location filename="../src/clubDialog.cpp" line="264"/>
         <source>Confirm: delete the location %1?</source>
         <translation>Bestätigen: den Ort %1 löschen?</translation>
-    </message>
-    <message>
-        <source>Location of club: &lt;b&gt;</source>
-        <translation type="obsolete">Ort des Vereins:&lt;b&gt;</translation>
     </message>
     <message>
         <location filename="../src/clubDialog.cpp" line="143"/>
@@ -740,48 +653,18 @@ Unbekannter Fehler.</translation>
         <translation>Teamwertung berechnen</translation>
     </message>
     <message>
-        <source>Use handicapping</source>
-        <translation type="obsolete">Handicapwertung benutzen</translation>
-    </message>
-    <message>
-        <source>Compensate times of runners based on their age and sex</source>
-        <translation type="obsolete">Durch Anpassung der Zeiten den durch Alter und Geschlecht der Läufer verursachten Nachteil kompensieren</translation>
-    </message>
-    <message>
-        <source>Handicapping only</source>
-        <translation type="obsolete">Nur Handicapwertung</translation>
-    </message>
-    <message>
-        <source>Just calculate handicapped times, do not assign points to runners</source>
-        <translation type="obsolete">Nur die angepassten Zeiten berechnen, den Läufern keine Punkte zuweisen</translation>
-    </message>
-    <message>
-        <source>Define team scoring</source>
-        <translation type="obsolete">Teamwertung durchführen</translation>
-    </message>
-    <message>
         <location filename="../src/scoringDialog.cpp" line="213"/>
         <source>Calculate scorings for teams</source>
         <translation>Wertungen für Teams berechnen</translation>
-    </message>
-    <message>
-        <source>Define series scoring</source>
-        <translation type="obsolete">Serienwertung durchführen</translation>
-    </message>
-    <message>
-        <source>Define rules to accumulate points from multiple races</source>
-        <translation type="obsolete">Regeln definieren, um Punkte aus mehreren Läufen aufzusummieren</translation>
     </message>
 </context>
 <context>
     <name>Global</name>
     <message>
-        <source>O-Scoring tool</source>
-        <translation type="obsolete">Wertungstool für Orientierungslauf</translation>
-    </message>
-    <message>
+        <location filename="../src/mainWindow.cpp" line="63"/>
+        <location filename="../src/mainWindow.cpp" line="1211"/>
         <source>CupCalculator</source>
-        <translation type="vanished">CupCalculator</translation>
+        <translation>CupCalculator</translation>
     </message>
 </context>
 <context>
@@ -810,12 +693,12 @@ Unbekannter Fehler.</translation>
 <context>
     <name>LimitRunnersPage</name>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="976"/>
+        <location filename="../src/scoringDialog.cpp" line="983"/>
         <source>Limit to these regions:</source>
         <translation>Auf diese Regionen beschränken:</translation>
     </message>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="1023"/>
+        <location filename="../src/scoringDialog.cpp" line="1030"/>
         <source>Limit to these clubs:</source>
         <translation>Auf diese Vereine beschränken:</translation>
     </message>
@@ -847,14 +730,6 @@ Unbekannter Fehler.</translation>
         <source>About</source>
         <translation>Programminfo</translation>
     </message>
-    <message>
-        <source>Orienteering scoring tool %1</source>
-        <translation type="obsolete">Wertungstool für Orientierungslauf %1</translation>
-    </message>
-    <message>
-        <source>Orienteering scoring calculator</source>
-        <translation type="obsolete">Wertungstool für Orientierungslauf</translation>
-    </message>
 </context>
 <context>
     <name>OrganizerMissingProblem</name>
@@ -877,99 +752,99 @@ Unbekannter Fehler.</translation>
 <context>
     <name>PresentScoringDialog</name>
     <message>
-        <location filename="../src/presentScoring.cpp" line="854"/>
+        <location filename="../src/presentScoring.cpp" line="872"/>
         <source>Present scoring</source>
         <translation>Wertung präsentieren</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="856"/>
+        <location filename="../src/presentScoring.cpp" line="874"/>
         <source>Scoring:</source>
         <translation>Wertung:</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="859"/>
+        <location filename="../src/presentScoring.cpp" line="877"/>
         <source>Show team scoring</source>
         <translation>Teamwertung zeigen</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="860"/>
+        <location filename="../src/presentScoring.cpp" line="878"/>
         <source>Uncover team scoring one-by-one</source>
         <translation>Teamwertung schrittweise aufdecken</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="861"/>
+        <location filename="../src/presentScoring.cpp" line="879"/>
         <source>Show intermediate team scoring after each category</source>
         <translation>Zwischenstand der Teamwertung nach jeder Kategorie zeigen</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="862"/>
+        <location filename="../src/presentScoring.cpp" line="880"/>
         <source>Only show up to first</source>
         <translation>Nur die ersten</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="863"/>
+        <location filename="../src/presentScoring.cpp" line="881"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="865"/>
+        <location filename="../src/presentScoring.cpp" line="883"/>
         <source>results</source>
         <translation>Ergebnisse zeigen</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="866"/>
+        <location filename="../src/presentScoring.cpp" line="884"/>
         <source>Do not show points for runners</source>
         <translation>Keine Punkte für einzelne LäuferInnen zeigen</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="867"/>
+        <location filename="../src/presentScoring.cpp" line="885"/>
         <source>Include runners which are not in this scoring</source>
         <translation>Auch Läufer zeigen, die nicht in dieser Wertung sind</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="869"/>
+        <location filename="../src/presentScoring.cpp" line="887"/>
         <source>Drag the categories with the mouse from one list to the other, or to reorder them.
 They will be presented in top-down order.</source>
         <translation>Ziehe die Kategorien mit der Maus von einer Liste in die Andere, oder um sie neu zu ordnen.
 Sie werden von oben nach unten präsentiert.</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="870"/>
+        <location filename="../src/presentScoring.cpp" line="888"/>
         <source>Present these categories:</source>
         <translation>Zeige diese Kategorien:</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="871"/>
+        <location filename="../src/presentScoring.cpp" line="889"/>
         <source>Do not show these:</source>
         <translation>Zeige diese nicht:</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="875"/>
+        <location filename="../src/presentScoring.cpp" line="893"/>
         <source>Layout:</source>
         <translation>Layout:</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="878"/>
+        <location filename="../src/presentScoring.cpp" line="896"/>
         <source>Language:</source>
         <translation>Sprache:</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="888"/>
+        <location filename="../src/presentScoring.cpp" line="910"/>
         <source>Back</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="889"/>
+        <location filename="../src/presentScoring.cpp" line="911"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="1048"/>
+        <location filename="../src/presentScoring.cpp" line="1070"/>
         <source>There are no categories to be shown. Make sure to drag some categories into the left list!</source>
         <translation>Es sind keine Kategorien zur Anzeige ausgewählt. Ziehe erst einige Kategorien in die linke Liste!</translation>
     </message>
     <message>
-        <location filename="../src/presentScoring.cpp" line="1058"/>
+        <location filename="../src/presentScoring.cpp" line="1080"/>
         <source>Error loading the layout, cannot start presentation!</source>
         <translation>Fehler beim Laden des Layouts, kann die Präsentation nicht starten!</translation>
     </message>
@@ -1034,12 +909,12 @@ Sie werden von oben nach unten präsentiert.</translation>
     <message>
         <location filename="../src/resultList.cpp" line="161"/>
         <source>Error while loading series scoring: cannot find runner %1 %2 in runner database!</source>
-        <translation>Fehler beim laden einer Serienwertung: kann Läufer %1 %2 nicht in der Läuferdatenbank finden!</translation>
+        <translation>Fehler beim Laden einer Serienwertung: kann Läufer %1 %2 nicht in der Läuferdatenbank finden!</translation>
     </message>
     <message>
         <location filename="../src/resultList.cpp" line="194"/>
         <source>Error while loading series scoring: cannot find club %1 in runner database!</source>
-        <translation>Fehler beim laden einer Serienwertung: kann Verein %1 nicht in der Läuferdatenbank finden!</translation>
+        <translation>Fehler beim Laden einer Serienwertung: kann Verein %1 nicht in der Läuferdatenbank finden!</translation>
     </message>
     <message>
         <location filename="../src/resultList.cpp" line="323"/>
@@ -1127,30 +1002,9 @@ Sie werden von oben nach unten präsentiert.</translation>
         <translation>Verein</translation>
     </message>
     <message>
-        <source>Status</source>
-        <translation type="obsolete">Status</translation>
-    </message>
-    <message>
         <location filename="../src/resultList.cpp" line="672"/>
         <source>MP</source>
         <translation>FEHLST</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="obsolete">-</translation>
-    </message>
-</context>
-<context>
-    <name>Ruleset</name>
-    <message>
-        <location filename="../src/scoring.h" line="88"/>
-        <source>M</source>
-        <translation>M</translation>
-    </message>
-    <message>
-        <location filename="../src/scoring.h" line="88"/>
-        <source>W</source>
-        <translation>D</translation>
     </message>
 </context>
 <context>
@@ -1217,50 +1071,46 @@ Sie werden von oben nach unten präsentiert.</translation>
         <source>Clubs</source>
         <translation>Vereine</translation>
     </message>
-    <message>
-        <source>Club</source>
-        <translation type="obsolete">Verein</translation>
-    </message>
 </context>
 <context>
     <name>RunnerDatabaseTab</name>
     <message>
-        <location filename="../src/mainWindow.cpp" line="895"/>
+        <location filename="../src/mainWindow.cpp" line="896"/>
         <source>Merge ...</source>
         <translation>Vereinigen ...</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="905"/>
+        <location filename="../src/mainWindow.cpp" line="906"/>
         <source>Clubs of the selected runner:</source>
         <translation>Vereine des ausgewählten Läufers:</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="976"/>
+        <location filename="../src/mainWindow.cpp" line="977"/>
         <source>The runner %1 %2 you want to delete is in the result list of the current event. Either close the event or delete the runner from the event first!</source>
         <translation>Der Läufer / die Läuferin %1 %2, den du löschen willst, ist in der Ergebnisliste des aktuellen Wettkampfes. Schließe entweder zuerst den Wettkampf oder lösche die Person daraus!</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="984"/>
+        <location filename="../src/mainWindow.cpp" line="985"/>
         <source>The runner %1 %2 you want to delete is still referenced by at least one open series scoring. Please remove all references first!</source>
         <translation>Der/Die LäuferIn %1 %2, den/die du löschen willst, wird noch von mindestens einer offenen Serienwertung referenziert. Bitte entferne zuerst alle Referenzen!</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="990"/>
+        <location filename="../src/mainWindow.cpp" line="991"/>
         <source>Confirm: delete the selected runners?</source>
         <translation>Bestätigen: die ausgewählten Läufer / Läuferinnen löschen?</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1021"/>
+        <location filename="../src/mainWindow.cpp" line="1022"/>
         <source>Merge runners</source>
         <translation>Läufer vereinigen</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1022"/>
+        <location filename="../src/mainWindow.cpp" line="1023"/>
         <source>Merge to which runner?</source>
         <translation>Zu welchem Läufer / welcher Läuferin vereinigen?</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1023"/>
+        <location filename="../src/mainWindow.cpp" line="1024"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
@@ -1294,18 +1144,6 @@ Sie werden von oben nach unten präsentiert.</translation>
         <location filename="../src/scoring.cpp" line="254"/>
         <source>Could not load scoring: %1 because the file could not be opened!</source>
         <translation>Konnte die Wertung %1 nicht laden, weil die Datei nicht geöffnet werden konnte!</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="obsolete">Warnung</translation>
-    </message>
-    <message>
-        <source>Conflict while loading scoring:
-Club %1 has different location information in club database than in scoring file!
-The information from the database is kept.</source>
-        <translation type="obsolete">Konflikt beim Laden einer Wertung:
-Der Verein %1 hat unterschiedliche Orte in der Vereinsdatenbank und der Wertungsdatei.
-Die Information aus der Datenbank wird beibehalten.</translation>
     </message>
     <message>
         <location filename="../src/scoring.cpp" line="453"/>
@@ -1422,14 +1260,6 @@ Die Information aus der Datenbank wird beibehalten.</translation>
         <translation>Zählende Läufer pro Verein:</translation>
     </message>
     <message>
-        <source>Assume full number of counting runners per team</source>
-        <translation type="obsolete">Volle Anzahl an zählenden Läufern pro Team für Berechnung verwenden</translation>
-    </message>
-    <message>
-        <source>For example: if there is a team with only one runner, and there can be two counting runners per team, with this setting this team would count as two counting runners for the scoring calculation</source>
-        <translation type="obsolete">Zum Beispiel: wenn es ein Team mit nur einem Läufer gibt, und zwei zählende Läufer pro Team eingestellt sind, würde dieses Team mit dieser Einstellung für die Punktberechnung als zwei zählende Läufer zählen</translation>
-    </message>
-    <message>
         <location filename="../src/scoringDialog.cpp" line="382"/>
         <source>Disqualified runners count for other runners&apos; points</source>
         <translation>Disqualifizierte Läufer zählen für die Punkte anderer Läufer</translation>
@@ -1520,12 +1350,12 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
         <translation>Faktor:</translation>
     </message>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="885"/>
+        <location filename="../src/scoringDialog.cpp" line="892"/>
         <source>The ruleset %1 you want to delete is still used by at least one custom category. Please remove all references to this ruleset first!</source>
         <translation>Der Regelsatz %1, den du löschen willst, wird noch von mindestens einer angepassten Kategorie verwendet. Bitte entferne zuerst alle Verweise auf ihn!</translation>
     </message>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="890"/>
+        <location filename="../src/scoringDialog.cpp" line="897"/>
         <source>Confirm: delete the ruleset %1?</source>
         <translation>Bestätigen: den Regelsatz %1 löschen?</translation>
     </message>
@@ -1545,33 +1375,9 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
         <translation>(Siegerzeit / Zeit) *</translation>
     </message>
     <message>
-        <source>Winner:</source>
-        <translation type="obsolete">Sieger:</translation>
-    </message>
-    <message>
-        <source>runner count *</source>
-        <translation type="obsolete">Läuferanzahl *</translation>
-    </message>
-    <message>
         <location filename="../src/scoringDialog.cpp" line="319"/>
         <source>+</source>
         <translation>+</translation>
-    </message>
-    <message>
-        <source>fixed points: </source>
-        <translation type="obsolete">feste Punktzahl:</translation>
-    </message>
-    <message>
-        <source>Second place:</source>
-        <translation type="obsolete">Zweiter Platz:</translation>
-    </message>
-    <message>
-        <source>Interval between the following ranks:</source>
-        <translation type="obsolete">Intervall zwischen den folgenden Plätzen:</translation>
-    </message>
-    <message>
-        <source>points</source>
-        <translation type="obsolete">Punkte</translation>
     </message>
 </context>
 <context>
@@ -1612,10 +1418,6 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
         <translation>Kategorien anpassen</translation>
     </message>
     <message>
-        <source>Handicapping</source>
-        <translation type="obsolete">Handicapwertung</translation>
-    </message>
-    <message>
         <location filename="../src/scoringDialog.cpp" line="147"/>
         <source>Scoring calculation</source>
         <translation>Wertungsberechnung</translation>
@@ -1624,10 +1426,6 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
         <location filename="../src/scoringDialog.cpp" line="151"/>
         <source>Team scoring</source>
         <translation>Teamwertung</translation>
-    </message>
-    <message>
-        <source>Series scoring</source>
-        <translation type="obsolete">Serienwertung</translation>
     </message>
 </context>
 <context>
@@ -1717,14 +1515,6 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
 <context>
     <name>SeriesScoring</name>
     <message>
-        <source>Error</source>
-        <translation type="obsolete">Fehler</translation>
-    </message>
-    <message>
-        <source>Error while loading series scoring: cannot find runner %1 %2 in runner database!</source>
-        <translation type="obsolete">Fehler beim Laden einer Serienwertung: kann den Läufer / die Läuferin %1 %2 nicht in der Läuferdatenbank finden!</translation>
-    </message>
-    <message>
         <location filename="../src/seriesScoring.cpp" line="217"/>
         <source>Problems while loading series scoring</source>
         <translation>Probleme beim Laden der Serienwertung</translation>
@@ -1776,17 +1566,17 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
 <context>
     <name>SeriesScoringTab</name>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1121"/>
+        <location filename="../src/mainWindow.cpp" line="1122"/>
         <source>Edit ...</source>
         <translation>Bearbeiten ...</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1153"/>
+        <location filename="../src/mainWindow.cpp" line="1154"/>
         <source>New series scoring</source>
         <translation>Neue Serienwertung</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1167"/>
+        <location filename="../src/mainWindow.cpp" line="1168"/>
         <source>Confirm: delete the series scoring %1?</source>
         <translation>Bestätigen: die Serienwertung %1 löschen?</translation>
     </message>
@@ -1802,10 +1592,6 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
         <location filename="../src/seriesScoringDialog.cpp" line="164"/>
         <source>Count only best</source>
         <translation>Nur die besten</translation>
-    </message>
-    <message>
-        <source>races</source>
-        <translation type="obsolete">Läufe zählen</translation>
     </message>
     <message>
         <location filename="../src/seriesScoringDialog.cpp" line="167"/>
@@ -1843,37 +1629,37 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
 <context>
     <name>SimilarClubProblem</name>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1267"/>
+        <location filename="../src/mainWindow.cpp" line="1270"/>
         <source>or</source>
         <translation>oder</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1270"/>
+        <location filename="../src/mainWindow.cpp" line="1273"/>
         <source>Is the new club %1 the same as %2?</source>
         <translation>Ist der neue Verein %1 identisch mit %2?</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1278"/>
+        <location filename="../src/mainWindow.cpp" line="1281"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1282"/>
+        <location filename="../src/mainWindow.cpp" line="1285"/>
         <source>Yes, change to %1</source>
         <translation>Ja, zu %1 ändern</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1283"/>
+        <location filename="../src/mainWindow.cpp" line="1286"/>
         <source>Yes, keep %1</source>
         <translation>Ja, %1 behalten</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1287"/>
+        <location filename="../src/mainWindow.cpp" line="1290"/>
         <source>Same as %1, change to %2</source>
         <translation>Identisch mit %1, ändere zu %2</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1288"/>
+        <location filename="../src/mainWindow.cpp" line="1291"/>
         <source>Same as %1, keep %2</source>
         <translation>Identisch mit %1, behalte %2</translation>
     </message>
@@ -1881,37 +1667,37 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
 <context>
     <name>SimilarRunnerProblem</name>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1331"/>
+        <location filename="../src/mainWindow.cpp" line="1334"/>
         <source>or</source>
         <translation>oder</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1334"/>
+        <location filename="../src/mainWindow.cpp" line="1337"/>
         <source>Is the new runner %1 the same as %2?</source>
         <translation>Ist der/die neue LäuferIn %1 identisch mit %2?</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1342"/>
+        <location filename="../src/mainWindow.cpp" line="1345"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1346"/>
+        <location filename="../src/mainWindow.cpp" line="1349"/>
         <source>Yes, change to %1</source>
         <translation>Ja, ändere zu %1</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1347"/>
+        <location filename="../src/mainWindow.cpp" line="1350"/>
         <source>Yes, keep %1</source>
         <translation>Ja, behalte %1</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1351"/>
+        <location filename="../src/mainWindow.cpp" line="1354"/>
         <source>Same as %1, change to %2</source>
         <translation>Identisch mit %1, ändere zu %2</translation>
     </message>
     <message>
-        <location filename="../src/mainWindow.cpp" line="1352"/>
+        <location filename="../src/mainWindow.cpp" line="1355"/>
         <source>Same as %1, keep %2</source>
         <translation>Identisch mit %1, behalte %2</translation>
     </message>
@@ -1919,23 +1705,19 @@ bekommt er oder sie noch die in dieser Zeile angegebenen Punkte.</translation>
 <context>
     <name>TeamScoringPage</name>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="1339"/>
+        <location filename="../src/scoringDialog.cpp" line="1346"/>
         <source>Categories to exclude from team scoring:</source>
         <translation>Kategorien aus der Team-Wertung ausschließen:</translation>
     </message>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="1346"/>
+        <location filename="../src/scoringDialog.cpp" line="1353"/>
         <source>Show single results in result listing by category</source>
         <translation>Einzelergebnisse in der Ergebnisauflistung nach Kategorie zeigen</translation>
     </message>
     <message>
-        <location filename="../src/scoringDialog.cpp" line="1347"/>
+        <location filename="../src/scoringDialog.cpp" line="1354"/>
         <source>When more than one result contributes to the point sum of a team in a specific category, this option shows all runner results one-by-one in the &quot;results by category&quot; list, otherwise only the sum of the results will be shown there.</source>
         <translation>Wenn mehr als ein Ergebnis zu der Punktsumme eines Teams in einer gegebenen Kategorie beiträgt, zeigt diese Option die Ergebnisse jedes Läufers einzeln in der &quot;Ergebnisliste nach Kategorien&quot;, ansonsten wird dort nur die Summe der Ergebnisse dargestellt.</translation>
-    </message>
-    <message>
-        <source>Show single results in listing by category</source>
-        <translation type="obsolete">Einzelergebnisse in der Ergebnisauflistung nach Kategorie zeigen</translation>
     </message>
 </context>
 <context>
