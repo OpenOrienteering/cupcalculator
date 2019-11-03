@@ -18,8 +18,8 @@
 */
 
 
-#ifndef RESULTLIST_H
-#define RESULTLIST_H
+#ifndef CUPCALCULATOR_RESULTLIST_H
+#define CUPCALCULATOR_RESULTLIST_H
 
 #include <vector>
 

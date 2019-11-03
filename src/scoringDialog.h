@@ -18,8 +18,8 @@
 */
 
 
-#ifndef SCORINGDIALOG_H
-#define SCORINGDIALOG_H
+#ifndef CUPCALCULATOR_SCORINGDIALOG_H
+#define CUPCALCULATOR_SCORINGDIALOG_H
 
 #include <QDialog>
 #include <QListWidget>

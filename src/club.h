@@ -18,8 +18,8 @@
 */
 
 
-#ifndef CLUB_H
-#define CLUB_H
+#ifndef CUPCALCULATOR_CLUB_H
+#define CUPCALCULATOR_CLUB_H
 
 #include <QString>
 #include <QAbstractTableModel>

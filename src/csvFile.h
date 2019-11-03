@@ -18,8 +18,8 @@
 */
 
 
-#ifndef CSVFILE_H
-#define CSVFILE_H
+#ifndef CUPCALCULATOR_CSVFILE_H
+#define CUPCALCULATOR_CSVFILE_H
 
 #include <vector>
 

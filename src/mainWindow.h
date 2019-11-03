@@ -18,8 +18,8 @@
 */
 
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef CUPCALCULATOR_MAINWINDOW_H
+#define CUPCALCULATOR_MAINWINDOW_H
 
 #include <QDialog>
 #include "problemWidget.h"

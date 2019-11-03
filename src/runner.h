@@ -18,8 +18,8 @@
 */
 
 
-#ifndef RUNNER_H
-#define RUNNER_H
+#ifndef CUPCALCULATOR_RUNNER_H
+#define CUPCALCULATOR_RUNNER_H
 
 #include <vector>
 #include <set>

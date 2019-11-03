@@ -18,8 +18,8 @@
 */
 
 
-#ifndef UTIL_H
-#define UTIL_H
+#ifndef CUPCALCULATOR_UTIL_H
+#define CUPCALCULATOR_UTIL_H
 
 #include <QDoubleValidator>
 

@@ -18,8 +18,8 @@
 */
 
 
-#ifndef LOACTION_H
-#define LOACTION_H
+#ifndef CUPCALCULATOR_LOACTION_H
+#define CUPCALCULATOR_LOACTION_H
 
 #include <map>
 

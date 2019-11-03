@@ -18,8 +18,8 @@
 */
 
 
-#ifndef LAYOUT_H
-#define LAYOUT_H
+#ifndef CUPCALCULATOR_LAYOUT_H
+#define CUPCALCULATOR_LAYOUT_H
 
 #include <vector>
 #include <map>

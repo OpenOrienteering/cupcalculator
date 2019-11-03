@@ -18,8 +18,8 @@
 */
 
 
-#ifndef RESULTCSVIMPORT_H
-#define RESULTCSVIMPORT_H
+#ifndef CUPCALCULATOR_RESULTCSVIMPORT_H
+#define CUPCALCULATOR_RESULTCSVIMPORT_H
 
 #include <QDialog>
 #include <QMap>

@@ -18,8 +18,8 @@
 */
 
 
-#ifndef EVENT_H
-#define EVENT_H
+#ifndef CUPCALCULATOR_EVENT_H
+#define CUPCALCULATOR_EVENT_H
 
 #include <vector>
 

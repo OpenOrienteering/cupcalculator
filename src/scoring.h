@@ -18,8 +18,8 @@
 */
 
 
-#ifndef SCORING_H
-#define SCORING_H
+#ifndef CUPCALCULATOR_SCORING_H
+#define CUPCALCULATOR_SCORING_H
 
 #include <vector>
 #include <set>

@@ -18,8 +18,8 @@
 */
 
 
-#ifndef PROBLEMWIDGET_H
-#define PROBLEMWIDGET_H
+#ifndef CUPCALCULATOR_PROBLEMWIDGET_H
+#define CUPCALCULATOR_PROBLEMWIDGET_H
 
 #include <vector>
 

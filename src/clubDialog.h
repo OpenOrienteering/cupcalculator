@@ -18,8 +18,8 @@
 */
 
 
-#ifndef CLUBDIALOG_H
-#define CLUBDIALOG_H
+#ifndef CUPCALCULATOR_CLUBDIALOG_H
+#define CUPCALCULATOR_CLUBDIALOG_H
 
 #include <QDialog>
 

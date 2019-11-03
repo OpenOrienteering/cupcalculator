@@ -18,8 +18,8 @@
  */
 
 
-#ifndef TEST_H
-#define TEST_H
+#ifndef CUPCALCULATOR_TEST_H
+#define CUPCALCULATOR_TEST_H
 
 #include <QtTest/QtTest>
 
