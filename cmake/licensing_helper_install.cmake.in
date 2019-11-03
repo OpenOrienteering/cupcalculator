@@ -86,6 +86,9 @@ endfunction()
 function(LICENSING_HELPER_DEPLOY_COPYRIGHT app)
 	set(licensing_dir "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_DOCDIR}/licensing")
 	file(INSTALL ${ARGN} DESTINATION "${licensing_dir}")
+	handle_crosscompiling()
+	include("unix2dos")
+	unix2dos("${licensing_dir}/*")
 endfunction()
 
 
@@ -111,6 +114,9 @@ endfunction()
 function(LICENSING_HELPER_DEPLOY_COMMON app)
 	set(common_dir "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_DOCDIR}/licensing/common-licenses")
 	file(INSTALL ${ARGN} DESTINATION "${common_dir}")
+	handle_crosscompiling()
+	include("unix2dos")
+	unix2dos("${common_dir}/*")
 endfunction()
 
 
@@ -143,6 +149,10 @@ set(BUNDLE_COPYRIGHT "@BUNDLE_COPYRIGHT@")
 set(LICENSING_OPTIONAL_ITEMS "@LICENSING_OPTIONAL_ITEMS@")
 set(LICENSING_COPYRIGHT_DIR "@LICENSING_COPYRIGHT_DIR@")
 set(LICENSING_COMMON_DIR "@LICENSING_COMMON_DIR@")
+
+set(UNIX2DOS_COMMAND "@UNIX2DOS_COMMAND@")
+set(UNIX2DOS_SED_COMMAND "@UNIX2DOS_SED_COMMAND@")
+list(APPEND CMAKE_MODULE_PATH "@PROJECT_SOURCE_DIR@/cmake")
 
 set(CMAKE_INSTALL_BINDIR "@CMAKE_INSTALL_BINDIR@")
 set(CMAKE_INSTALL_LIBDIR "@CMAKE_INSTALL_LIBDIR@")

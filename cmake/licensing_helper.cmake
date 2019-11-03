@@ -36,6 +36,9 @@ set(LICENSING_OPTIONAL_ITEMS "" CACHE STRING
   "List of items which may be deployed even when licensing documentation is absent"
 )
 
+# Import unix2dos configuration
+include("unix2dos")
+
 
 # Deploy 3rd-party copyright, terms etc. 
 # The app name can be followed by the filenames of its explicit license texts as

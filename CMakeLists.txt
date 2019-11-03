@@ -66,6 +66,13 @@ if(MAKE_BUNDLE)
 	  DESTINATION "${CMAKE_INSTALL_DOCDIR}/licensing"
 	)
 endif()
+if(WIN32)
+	include("unix2dos")
+	unix2dos_installed(
+	  "${CMAKE_INSTALL_DOCDIR}/*"
+	  "${CMAKE_INSTALL_DOCDIR}/licensing/*"
+	)
+endif()
 
 
 # Actual build
