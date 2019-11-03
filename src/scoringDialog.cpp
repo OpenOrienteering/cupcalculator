@@ -690,6 +690,11 @@ void ScoringCalculationPage::handicapDataChanged()
 	handicapList->sortItems();
 }
 
+void ScoringCalculationPage::handicapDataChanged(int /*index*/)
+{
+	handicapDataChanged();
+}
+
 void ScoringCalculationPage::customPointAddClicked()
 {
 	Ruleset* ruleset = getCurrentRuleset();

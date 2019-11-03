@@ -168,7 +168,7 @@ public slots:
     void handicapCheckToggled(bool checked);
     void currentHandicapChanged(QListWidgetItem* current, QListWidgetItem* previous);
     void handicapDataChanged();
-	inline void handicapDataChanged(int index) {handicapDataChanged();}
+	void handicapDataChanged(int index);
 	void handicapAddClicked();
 	void handicapRemoveClicked();
 	

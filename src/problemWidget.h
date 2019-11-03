@@ -60,7 +60,7 @@ public:
 	virtual QString getSolutionDescription(int i) = 0;
 	virtual void applySolution(int i) = 0;
 	
-	virtual void setToSolutionType(SolutionType type) {}
+	virtual void setToSolutionType(SolutionType type);
 	
 	inline const QString& getDescription() const {return description;}
 	inline int getSelection() const {return selection;}

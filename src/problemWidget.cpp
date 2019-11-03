@@ -44,12 +44,21 @@ class QHBoxLayout;
 class QVBoxLayout;
 QT_END_NAMESPACE
 
+// ### Problem ###
+
 Problem::Problem()
 {
 	selection = 0;
 }
 
 Problem::~Problem() = default;
+
+void Problem::setToSolutionType(Problem::SolutionType /*type*/)
+{
+	// nothing
+}
+
+// ### ProblemWidget ###
 
 ProblemWidget::ProblemWidget(QWidget* parent) : QTableWidget(parent)
 {
