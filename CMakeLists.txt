@@ -16,9 +16,12 @@
 #    You should have received a copy of the GNU General Public License
 #    along with OpenOrienteering.  If not, see <http://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 project(CupCalculator VERSION 1.1.1 LANGUAGES CXX)
+
+option(MAKE_BUNDLE "Install all runtime libraries and plugins" OFF)
 
 
 # Packaging 

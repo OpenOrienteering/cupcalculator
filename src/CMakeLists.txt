@@ -20,6 +20,8 @@
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Test REQUIRED)
 
+include("bundle_helper")
+
 set(CMAKE_AUTOMOC ON)
 
 add_library(CupCalculator_Common STATIC
@@ -62,6 +64,9 @@ target_link_libraries(CupCalculator
 install(TARGETS CupCalculator
   RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
 )
+if(MAKE_BUNDLE)
+	bundle_helper_postprocess(CupCalculator Qt5Widgets Qt5Gui)
+endif()
 
 add_executable(CupCalculatorTest test.cpp)
 target_link_libraries(CupCalculatorTest

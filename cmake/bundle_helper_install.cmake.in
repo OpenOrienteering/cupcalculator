@@ -1,0 +1,126 @@
+#
+#    Copyright 2017-2019 Kai Pastor
+#    
+#    This file is part of OpenOrienteering.
+# 
+#    OpenOrienteering is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+# 
+#    OpenOrienteering is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+# 
+#    You should have received a copy of the GNU General Public License
+#    along with OpenOrienteering.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# Sets CMAKE_CROSSCOMPILING and variables which describe the target system.
+macro(HANDLE_CROSSCOMPILING)
+	set(CMAKE_CROSSCOMPILING @CMAKE_CROSSCOMPILING@)
+	# These variables must describe the target system
+	set(ANDROID @ANDROID@)
+	set(APPLE   @APPLE@)
+	set(MINGW   @MINGW@)
+	set(UNIX    @UNIX@)
+	set(WIN32   @WIN32@)
+endmacro()
+
+
+# This function wraps BundleUtilities' fixup_bundle()
+# to make it work for cross-builds.
+function(FIXUP_BUNDLE_PORTABLE runtime dirs)
+	handle_crosscompiling()
+	if(MINGW)
+		# gp_tool and gp_cmd are needed for module GetPrerequisites.
+		set(gp_tool "objdump")
+		set(gp_cmd  "@CMAKE_OBJDUMP@")
+		# grep is used (and desperately needed) to speed up objdump parsing.
+		set(gp_grep_cmd "@gp_grep_cmd@")
+		# This function resolves all unknown items which do not match the
+		# MinGW DLL name pattern NAME-NUMBER.dll as 'system' libraries,
+		# thus catching the Windows system libraries in the MinGW context.
+		function(gp_resolve_item_override context item exepath dirs resolved_item_var resolved_var)
+			if(NOT ${resolved_var}
+			   AND NOT "${item}" MATCHES "-[0-9]*.dll$")
+				set(${resolved_item_var} "/system/${item}" PARENT_SCOPE)
+				set(${resolved_var} 1 PARENT_SCOPE)
+			endif()
+		endfunction()
+	endif()
+	
+	if(WIN32)
+		execute_process(COMMAND "@WINDEPLOYQT_COMMAND@" "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/@BUNDLE_EXECUTABLE@.exe")
+		include(BundleUtilities)
+		file(GLOB_RECURSE plugins "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/plugins/*.dll")
+		list(APPEND runtime ${plugins})
+		string(REPLACE "/./" "/" app "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/@BUNDLE_EXECUTABLE@.exe")
+		fixup_bundle("${app}" "${runtime}" "${dirs}")
+		# Strip bundled DLLs
+		if (CMAKE_INSTALL_DO_STRIP AND NOT "@CMAKE_STRIP@" STREQUAL "")
+			file(GLOB dlls "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/*.dll")
+			foreach(item ${dlls} ${runtime})
+				execute_process(COMMAND "@CMAKE_STRIP@" --strip-unneeded "${item}")
+			endforeach()
+		endif()
+	elseif(APPLE)
+		include(BundleUtilities)
+		file(GLOB_RECURSE plugins "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/@BUNDLE_EXECUTABLE@.app/Contents/PlugIns/*.dylib")
+		list(APPEND runtime "${plugins}")
+		fixup_bundle("$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/@BUNDLE_EXECUTABLE@.app" "${runtime}" "${dirs}")
+		if (CMAKE_INSTALL_DO_STRIP AND NOT "@CMAKE_STRIP@" STREQUAL "")
+			file(GLOB dylibs "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/@BUNDLE_EXECUTABLE@.app/Contents/MacOS/*.dylib")
+			foreach(item ${dylibs} ${runtime})
+				execute_process(COMMAND "@CMAKE_STRIP@" -x "${item}")
+			endforeach()
+		endif()
+	elseif(ANDROID)
+		# Do nothing
+	elseif(UNIX)
+		# Add required symlinks.
+		execute_process(COMMAND ldconfig -n "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_LIBDIR}")
+	endif()
+endfunction()
+
+
+# Write a minimal qt.conf if needed.
+function(HANDLE_QT_CONF)
+	handle_crosscompiling()
+	set(qt_conf "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/qt.conf")
+	if(EXISTS "${qt_conf}")
+		message(STATUS "Skipping ${qt_conf}")
+		return()
+	elseif(WIN32)
+		message(STATUS "Writing ${qt_conf}")
+		file(RELATIVE_PATH plugin_path
+		  "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}"
+		  "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/plugins")
+		file(RELATIVE_PATH translations_path
+		  "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}"
+		  "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_DATAROOTDIR}/translations")
+		file(WRITE "${qt_conf}" "\
+[Paths]
+Plugins=${plugin_path}
+Translations=${translations_path}
+")
+	elseif(APPLE)
+		set(qt_conf "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}@BUNDLE_EXECUTABLE@.app/Contents/Resources/qt.conf")
+		message(STATUS "Writing ${qt_conf}")
+		file(WRITE "${qt_conf}" "\
+[Paths]
+Plugins=PlugIns
+")
+	endif()
+endfunction()
+
+
+set(runtime "")
+set(dirs "@BUNDLE_LIB_HINTS@")
+set(CMAKE_INSTALL_BINDIR "@CMAKE_INSTALL_BINDIR@")
+set(CMAKE_INSTALL_LIBDIR "@CMAKE_INSTALL_LIBDIR@")
+set(CMAKE_INSTALL_DATAROOTDIR "@CMAKE_INSTALL_DATAROOTDIR@")
+include(GNUInstallDirs)
+handle_qt_conf()
+fixup_bundle_portable("${runtime}" "${dirs}")

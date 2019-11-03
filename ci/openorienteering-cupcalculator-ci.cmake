@@ -35,6 +35,7 @@ set(CupCalculator_CI_ENABLE_COVERAGE "OFF" CACHE BOOL
   "CupCalculator (CI): Enable test coverage analysis"
 )
 
+
 add_custom_target(openorienteering-cupcalculator-ci-source)
 set_property(TARGET openorienteering-cupcalculator-ci-source
   PROPERTY SB_SOURCE_DIR "${CupCalculator_CI_SOURCE_DIR}"
@@ -56,6 +57,7 @@ superbuild_package(
       "-DCMAKE_INSTALL_BINDIR:STRING=."
       "-DCMAKE_INSTALL_DATAROOTDIR:STRING=."
       "-DCMAKE_INSTALL_DOCDIR:STRING=doc"
+      "-DMAKE_BUNDLE:BOOL=ON"
     >
     BUILD_ALWAYS 1
     INSTALL_COMMAND
