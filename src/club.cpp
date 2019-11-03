@@ -333,7 +333,7 @@ QVariant ClubDB::headerData(int section, Qt::Orientation orientation, int role) 
 Qt::ItemFlags ClubDB::flags(const QModelIndex& index) const
 {
 	if (!index.isValid())
-		return 0;
+		return {};
 
 	return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }

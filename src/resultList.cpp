@@ -644,7 +644,7 @@ QVariant ResultList::headerData(int section, Qt::Orientation orientation, int ro
 Qt::ItemFlags ResultList::flags(const QModelIndex& index) const
 {
 	if (!index.isValid())
-		return 0;
+		return {};
 	
 	// TODO!
 	return /*Qt::ItemIsEditable |*/ Qt::ItemIsEnabled | Qt::ItemIsSelectable;
@@ -957,7 +957,7 @@ Qt::ItemFlags ResultsTree::GroupSortProxyModel::flags(const QModelIndex& index) 
 	if (index.parent() == QModelIndex())
 	{
 		if (!index.isValid())
-			return 0;
+			return {};
 		
 		return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 	}

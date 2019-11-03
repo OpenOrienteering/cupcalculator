@@ -521,7 +521,7 @@ QVariant RunnerDB::headerData(int section, Qt::Orientation orientation, int role
 Qt::ItemFlags RunnerDB::flags(const QModelIndex& index) const
 {
 	if (!index.isValid())
-		return 0;
+		return {};
 
 	if (index.column() == 4)	// clubs
 		return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
