@@ -1045,5 +1045,5 @@ bool ResultsTree::GroupSortProxyModel::QVariantCompare::operator() (QVariant l, 
 			/*else
 				return l.toString().compare(r.toString(), d->sort_casesensitivity) < 0;*/
 	}
-	return false;
+	Q_UNREACHABLE();
 }
