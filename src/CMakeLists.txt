@@ -63,7 +63,15 @@ target_link_libraries(CupCalculator_Common
 )
 
 
-add_executable(CupCalculator WIN32 main.cpp)
+set(resources )
+if(MINGW)
+	enable_language(RC)
+	set(EXECUTABLE "CupCalculator")
+	configure_file("win32/resources.rc.in" "${EXECUTABLE}.rc" @ONLY)
+	configure_file("win32/control.ico" "${EXECUTABLE}.ico" COPYONLY)
+	list(APPEND resources "${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE}.rc")
+endif()
+add_executable(CupCalculator WIN32 main.cpp ${resources})
 target_link_libraries(CupCalculator
   PUBLIC
     CupCalculator_Common
