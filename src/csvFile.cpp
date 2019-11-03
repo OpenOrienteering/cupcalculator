@@ -339,8 +339,8 @@ void CSVExportDialog::exportClicked()
 		return;
 	}
 	
-	file->setSeparator(separatorEdit->text()[0]);
-	file->setStringDelimiter(stringDelimiterEdit->text()[0]);
+	file->setSeparator(separatorEdit->text().constData()[0]);
+	file->setStringDelimiter(stringDelimiterEdit->text().constData()[0]);
 	file->setEscapeMinus(escapeMinusCheck->isChecked());
 	
 	accept();
