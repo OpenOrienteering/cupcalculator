@@ -34,6 +34,9 @@ set(CupCalculator_CI_SOURCE_DIR "NOTFOUND" CACHE STRING
 set(CupCalculator_CI_ENABLE_COVERAGE "OFF" CACHE BOOL
   "CupCalculator (CI): Enable test coverage analysis"
 )
+set(CupCalculator_CI_LICENSING_OPTIONAL_ITEMS "" CACHE STRING
+  "CupCalculator (CI): List of items which may be deployed even when licensing documentation is absent"
+)
 
 
 add_custom_target(openorienteering-cupcalculator-ci-source)
@@ -47,12 +50,15 @@ superbuild_package(
   
   USING
     CupCalculator_CI_ENABLE_COVERAGE
+    CupCalculator_CI_LICENSING_OPTIONAL_ITEMS
   BUILD [[
     CMAKE_ARGS
       "-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}"
       "-UCMAKE_STAGING_PREFIX"
       "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
+      "-ULICENSING_OPTIONAL_ITEMS"  # unset here, updated via CMAKE_CACHE_ARGS
     CMAKE_CACHE_ARGS
+      "-DLICENSING_OPTIONAL_ITEMS:STRING=@CupCalculator_CI_LICENSING_OPTIONAL_ITEMS@"
     $<$<BOOL:@WIN32@>:
       "-DCMAKE_INSTALL_BINDIR:STRING=."
       "-DCMAKE_INSTALL_DATAROOTDIR:STRING=."

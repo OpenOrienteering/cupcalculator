@@ -21,6 +21,7 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Test REQUIRED)
 
 include("bundle_helper")
+include("licensing_helper")
 
 set(CMAKE_AUTOMOC ON)
 
@@ -66,6 +67,7 @@ install(TARGETS CupCalculator
 )
 if(MAKE_BUNDLE)
 	bundle_helper_postprocess(CupCalculator Qt5Widgets Qt5Gui)
+	licensing_helper_postprocess(CupCalculator COPYING.txt)
 endif()
 
 add_executable(CupCalculatorTest test.cpp)

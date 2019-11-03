@@ -1,0 +1,160 @@
+#
+#    Copyright 2019 Kai Pastor
+#    
+#    This file is part of OpenOrienteering.
+# 
+#    OpenOrienteering is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+# 
+#    OpenOrienteering is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+# 
+#    You should have received a copy of the GNU General Public License
+#    along with OpenOrienteering.  If not, see <http://www.gnu.org/licenses/>.
+
+cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
+
+
+# Sets CMAKE_CROSSCOMPILING and variables which describe the target system.
+macro(HANDLE_CROSSCOMPILING)
+	set(CMAKE_CROSSCOMPILING @CMAKE_CROSSCOMPILING@)
+	# These variables must describe the target system
+	set(ANDROID @ANDROID@)
+	set(APPLE   @APPLE@)
+	set(MINGW   @MINGW@)
+	set(UNIX    @UNIX@)
+	set(WIN32   @WIN32@)
+endmacro()
+
+
+function(LICENSING_HELPER_COLLECT_RUNTIME var)
+	handle_crosscompiling()
+	if(MINGW)
+		set(pattern "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/*.dll")
+	else()
+		set(pattern pattern-NOTFOUND)
+	endif()
+	file(GLOB runtime "${pattern}")
+	set(${var} "${runtime}" PARENT_SCOPE)
+endfunction()
+
+
+function(LICENSING_HELPER_COLLECT_COPYRIGHT var)
+	handle_crosscompiling()
+	foreach(file ${ARGN})
+		get_filename_component(orig_name "${file}" NAME)
+		if(MINGW)
+			string(REGEX REPLACE "-*[0-9]*\\.dll$" "" name "${orig_name}")
+		else()
+			set(name orig_name)
+		endif()
+		# Direct match
+		file(GLOB licensing_files "${LICENSING_COPYRIGHT_DIR}/${name}-*.txt")
+		if(NOT licensing_files)
+			# Match without lib prefix
+			string(REGEX REPLACE "^lib" "" short_name "${name}")
+			file(GLOB licensing_files "${LICENSING_COPYRIGHT_DIR}/${short_name}-*.txt")
+		endif()
+		if(NOT licensing_files)
+			# Explicit replacements (MinGW)
+			string(REGEX REPLACE "libgcc_.*" "gcc-libs" name "${name}")
+			string(REGEX REPLACE "libpng.*" "libpng1.6" name "${name}")
+			string(REGEX REPLACE "libstdc\\+\\+.*" "gnustl" name "${name}")
+			string(REGEX REPLACE "libwinpthread" "winpthreads" name "${name}")
+			string(REGEX REPLACE "libz$" "zlib" name "${name}")
+			string(REGEX REPLACE "Qt5Widgets|Qt5Gui|Qt5Core.*" "qtbase" name "${name}")
+			file(GLOB licensing_files "${LICENSING_COPYRIGHT_DIR}/${name}-*.txt")
+		endif()
+		list(LENGTH licensing_files matches)
+		if(matches EQUAL 1)
+			list(APPEND ${var} "${licensing_files}")
+		elseif(matches GREATER 1 OR NOT name IN_LIST LICENSING_OPTIONAL_ITEMS)
+			message(SEND_ERROR " .. ${orig_name}: ${matches} matching licensing files found\n${licensing_files}")
+		else()
+			message(STATUS " .. ${orig_name}: no matching license files found (ignored)")
+		endif()
+	endforeach()
+	list(REMOVE_DUPLICATES ${var})
+	set(${var} "${${var}}" PARENT_SCOPE)
+endfunction()
+
+
+function(LICENSING_HELPER_DEPLOY_COPYRIGHT app)
+	set(licensing_dir "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_DOCDIR}/licensing")
+	file(INSTALL ${ARGN} DESTINATION "${licensing_dir}")
+endfunction()
+
+
+function(LICENSING_HELPER_COLLECT_COMMON var)
+	file(GLOB common_licenses "${LICENSING_COMMON_DIR}/*.txt")
+	foreach(file ${common_licenses})
+		get_filename_component(filename "${file}" NAME)
+		string(REPLACE ".txt" "" license "${filename}")
+		string(REPLACE "." "[.]" license_pattern "${license}")
+		foreach(copyright_file ${ARGN})
+			file(STRINGS "${copyright_file}" copyright REGEX "License: ")
+			if(copyright MATCHES "([( ])${license_pattern}(.0|)([+]|-or-later|)([ );]|$)")
+				list(APPEND ${var} "${file}")
+				break()
+			endif()
+		endforeach()
+	endforeach()
+	list(REMOVE_DUPLICATES ${var})
+	set(${var} "${${var}}" PARENT_SCOPE)
+endfunction()
+
+
+function(LICENSING_HELPER_DEPLOY_COMMON app)
+	set(common_dir "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_DOCDIR}/licensing/common-licenses")
+	file(INSTALL ${ARGN} DESTINATION "${common_dir}")
+endfunction()
+
+
+function(LICENSING_HELPER_DEDUP_COMMON app)
+	file(GLOB common_files "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_DOCDIR}/licensing/common-licenses/*")
+	foreach(filename ${ARGN})
+		set(file "$ENV{DESTDIR}${CMAKE_INSTALL_FULL_DOCDIR}/${filename}")
+		if(NOT EXISTS "${file}")
+			message(FATAL_ERROR "No such file: ${filename} (${file})")
+		endif()
+		foreach(common_file ${common_files})
+			execute_process(
+			  COMMAND ${CMAKE_COMMAND} -E compare_files "${file}" "${common_file}"
+			  OUTPUT_QUIET
+			  ERROR_QUIET
+			  RESULT_VARIABLE compare_result
+			)
+			if(compare_result EQUAL 0)
+				file(REMOVE "${file}")
+				break()
+			endif()
+		endforeach()
+	endforeach()
+endfunction()
+
+
+set(BUNDLE_EXECUTABLE "@BUNDLE_EXECUTABLE@")
+set(BUNDLE_COPYRIGHT "@BUNDLE_COPYRIGHT@")
+
+set(LICENSING_OPTIONAL_ITEMS "@LICENSING_OPTIONAL_ITEMS@")
+set(LICENSING_COPYRIGHT_DIR "@LICENSING_COPYRIGHT_DIR@")
+set(LICENSING_COMMON_DIR "@LICENSING_COMMON_DIR@")
+
+set(CMAKE_INSTALL_BINDIR "@CMAKE_INSTALL_BINDIR@")
+set(CMAKE_INSTALL_LIBDIR "@CMAKE_INSTALL_LIBDIR@")
+set(CMAKE_INSTALL_DOCDIR "@CMAKE_INSTALL_DOCDIR@")
+include(GNUInstallDirs)
+
+set(runtime )
+set(files )
+set(common )
+licensing_helper_collect_runtime(runtime)
+licensing_helper_collect_copyright(files ${runtime})
+licensing_helper_deploy_copyright("${BUNDLE_EXECUTABLE}" ${files})
+licensing_helper_collect_common(common ${files})
+licensing_helper_deploy_common("${BUNDLE_EXECUTABLE}" ${common})
+licensing_helper_dedup_common("${BUNDLE_EXECUTABLE}" ${BUNDLE_COPYRIGHT})
