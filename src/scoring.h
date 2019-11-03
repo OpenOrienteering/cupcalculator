@@ -1,5 +1,6 @@
 /*
     Copyright 2011 Thomas Schöps
+    Copyright 2019 Kai Pastor
     
     This file is part of OpenOrienteering's scoring tool.
 
@@ -27,8 +28,8 @@
 #include <vector>
 
 #include <QtGlobal>
+#include <QCoreApplication>
 #include <QMap>
-#include <QObject>
 #include <QString>
 #include <QStringList>
 
@@ -54,9 +55,10 @@ enum RuleType
 	TimePoints = 3
 };
 
-struct Ruleset : public QObject
+struct Ruleset
 {
-Q_OBJECT
+	Q_DECLARE_TR_FUNCTIONS(Ruleset)
+	
 public:
 
 	struct TimeRatioSettings
@@ -116,9 +118,10 @@ public:
 };
 
 /// Scorings take race results as input and calculate handicapped times or points for every runner (and possibly team)
-class Scoring : public QObject
+class Scoring
 {
-Q_OBJECT
+	Q_DECLARE_TR_FUNCTIONS(Scoring)
+	
 public:
 	
 	enum CalculationFlags
@@ -268,7 +271,8 @@ private:
 
 class ClubDifferentProblem : public Problem
 {
-Q_OBJECT
+	Q_DECLARE_TR_FUNCTIONS(ClubDifferentProblem)
+	
 public:
 	
 	ClubDifferentProblem(Club* club, const QString& country_text, Location* country, const QString& province_text, Location* province);

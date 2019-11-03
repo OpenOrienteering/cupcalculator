@@ -1,5 +1,6 @@
 /*
     Copyright 2011 Thomas Schöps
+    Copyright 2019 Kai Pastor
     
     This file is part of OpenOrienteering's scoring tool.
 
@@ -26,9 +27,9 @@
 #include <Qt>
 #include <QtGlobal>
 #include <QColor>
+#include <QCoreApplication>
 #include <QFont>
 #include <QMap>
-#include <QObject>
 #include <QPointF>
 #include <QRectF>
 #include <QString>
@@ -40,9 +41,10 @@ class QWidget;
 class QXmlStreamAttributes;
 QT_END_NAMESPACE
 
-class Layout : public QObject
+class Layout
 {
-Q_OBJECT
+	Q_DECLARE_TR_FUNCTIONS(Layout)
+	
 public:
 	
 	struct Font

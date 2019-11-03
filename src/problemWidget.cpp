@@ -1,5 +1,6 @@
 /*
     Copyright 2011 Thomas Schöps
+    Copyright 2019 Kai Pastor
     
     This file is part of OpenOrienteering's scoring tool.
 
@@ -47,6 +48,8 @@ Problem::Problem()
 {
 	selection = 0;
 }
+
+Problem::~Problem() = default;
 
 ProblemWidget::ProblemWidget(QWidget* parent) : QTableWidget(parent)
 {

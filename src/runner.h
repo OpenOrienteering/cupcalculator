@@ -1,5 +1,6 @@
 /*
     Copyright 2011 Thomas Schöps
+    Copyright 2019 Kai Pastor
     
     This file is part of OpenOrienteering's scoring tool.
 
@@ -31,6 +32,7 @@
 #include <QtGlobal>
 
 #include <QAbstractTableModel>
+#include <QCoreApplication>
 #include <QModelIndex>
 #include <QObject>
 #include <QString>
@@ -49,9 +51,10 @@ class ComboBoxDelegate;
 
 /// Stores runner data
 /// TODO: Chip list
-class Runner : public QObject
+class Runner
 {
-Q_OBJECT
+	Q_DECLARE_TR_FUNCTIONS(Runner)
+	
 public:
 	
 	Runner();

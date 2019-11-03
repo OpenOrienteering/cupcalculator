@@ -1,5 +1,6 @@
 /*
     Copyright 2011 Thomas Schöps
+    Copyright 2019 Kai Pastor
     
     This file is part of OpenOrienteering's scoring tool.
 
@@ -41,9 +42,8 @@ QT_END_NAMESPACE
 
 class ActionSelectionDelegate;
 
-class Problem : public QObject
+class Problem
 {
-Q_OBJECT
 public:
 	
 	enum SolutionType
@@ -54,6 +54,7 @@ public:
 	};
 	
 	Problem();
+	virtual ~Problem();
 
 	virtual int getNumSolutions() = 0;
 	virtual QString getSolutionDescription(int i) = 0;

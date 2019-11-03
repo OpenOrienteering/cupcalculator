@@ -1,5 +1,6 @@
 /*
     Copyright 2011 Thomas Schöps
+    Copyright 2019 Kai Pastor
     
     This file is part of OpenOrienteering's scoring tool.
 
@@ -26,8 +27,8 @@
 #include <vector>
 
 #include <QtGlobal>
+#include <QCoreApplication>
 #include <QMap>
-#include <QObject>
 #include <QString>
 
 #include "problemWidget.h"
@@ -58,9 +59,10 @@ struct SeriesRaceResult
 };
 
 /// Aggregates result lists from multiple races and calculates a series scoring, possibly also taking into account some organizer bonus
-class SeriesScoring : public QObject
+class SeriesScoring
 {
-Q_OBJECT
+	Q_DECLARE_TR_FUNCTIONS(SeriesScoring)
+	
 public:
 	
 	typedef std::map< int, SeriesRaceResult* > ResultMap;
@@ -195,7 +197,8 @@ private:
 
 class OrganizerMissingProblem : public Problem
 {
-Q_OBJECT
+	Q_DECLARE_TR_FUNCTIONS(OrganizerMissingProblem)
+	
 public:
 	
 	OrganizerMissingProblem(SeriesRaceResult* result, const QString& first_name, const QString& last_name, int year, bool isMale);

@@ -1,5 +1,6 @@
 /*
     Copyright 2011 Thomas Schöps
+    Copyright 2019 Kai Pastor
     
     This file is part of OpenOrienteering's scoring tool.
 
@@ -24,6 +25,7 @@
 #include <vector>
 
 #include <QtGlobal>
+#include <QCoreApplication>
 #include <QDialog>
 #include <QObject>
 #include <QSize>
@@ -220,7 +222,8 @@ private:
 
 class SimilarClubProblem : public Problem
 {
-Q_OBJECT
+	Q_DECLARE_TR_FUNCTIONS(SimilarClubProblem)
+	
 public:
 	SimilarClubProblem(Club* club, std::vector<Club*>& similarClubs, ResultList* results);
 	virtual int getNumSolutions();
@@ -235,7 +238,8 @@ private:
 
 class SimilarRunnerProblem : public Problem
 {
-Q_OBJECT
+	Q_DECLARE_TR_FUNCTIONS(SimilarRunnerProblem)
+	
 public:
 	SimilarRunnerProblem(Runner* runner, std::vector<Runner*>& similarRunners, ResultList* results);
 	virtual int getNumSolutions();
