@@ -51,12 +51,12 @@ Location* Location::findChild(const QString& name)
 		if ((*it)->getName().compare(name, Qt::CaseInsensitive) == 0)
 			return *it;
 	}
-	return NULL;
+	return nullptr;
 }
 Location* Location::getChild(int i)
 {
 	if (i < 0 || i >= static_cast<int>(children.size()))
-		return NULL;
+		return nullptr;
 	return children[i];
 }
 size_t Location::getChildNumber()
@@ -106,10 +106,10 @@ bool Location::removeChildren(int position, int count)
 
 // ### LocationDB ###
 
-LocationDB::LocationDB() : QAbstractItemModel(NULL)
+LocationDB::LocationDB() : QAbstractItemModel(nullptr)
 {
 	nextID = 0;
-	root_item = new Location("", NULL);
+	root_item = new Location("", nullptr);
 	
 	sortModel = new QSortFilterProxyModel();
 	sortModel->setSourceModel(this);
@@ -143,7 +143,7 @@ Location* LocationDB::getItem(const QModelIndex& index) const
 Location* LocationDB::getParent(Location* location) const
 {
 	if (location->getParent() == root_item)
-		return NULL;
+		return nullptr;
 	else
 		return location->getParent();
 }
@@ -355,7 +355,7 @@ Location* LocationDB::findCountry(const QString& name)
 		if (country->getName().compare(name, Qt::CaseInsensitive) == 0)
 			return country;
 	}
-	return NULL;
+	return nullptr;
 }
 Location* LocationDB::addCountry(const QString& name)
 {
@@ -389,7 +389,7 @@ Location* LocationDB::addProvince(Location* country, const QString& name)
 		}
 	}
 	assert(false);
-	return NULL;
+	return nullptr;
 }
 
 int LocationDB::getFreeID()
@@ -403,7 +403,7 @@ Location* LocationDB::getByID(int id)
 {
 	std::map<int, Location*>::iterator it = id_map.find(id);
 	if (it == id_map.end())
-		return NULL;
+		return nullptr;
 	else
 		return it->second;
 }

@@ -45,7 +45,7 @@ class PresentationWidget : public QWidget
 Q_OBJECT
 public:
 	
-	PresentationWidget(PresentScoringController* controller, Layout* layout, QSize size, bool fullscreen, QWidget* screen_info_widget, QWidget* parent = 0);
+	PresentationWidget(PresentScoringController* controller, Layout* layout, QSize size, bool fullscreen, QWidget* screen_info_widget, QWidget* parent = nullptr);
 	~PresentationWidget();
 	
 	void showResultList(ResultList* list, int show_first_x_runners = -1);
@@ -145,7 +145,7 @@ class PresentScoringDialog : public QDialog
 Q_OBJECT
 public:
 	
-	PresentScoringDialog(Event* event, int event_year, ResultList* result_list, QWidget* parent = NULL);
+	PresentScoringDialog(Event* event, int event_year, ResultList* result_list, QWidget* parent = nullptr);
 	~PresentScoringDialog();
 	
 public slots:

@@ -288,7 +288,7 @@ SeriesRacesPage::SeriesRacesPage(SeriesScoring* _scoring, SeriesScoringDialog* _
 	deleteRaceButton = new QPushButton(tr("Delete race"));
 	QLabel* nameLabel = new QLabel(tr("Name or description:"));
 	nameEdit = new QLineEdit();
-	resultsTable = new ResultsTable(NULL);
+	resultsTable = new ResultsTable(nullptr);
 	
 	QLabel* organizersLabel = new QLabel(tr("Organizers:"));
 	organizersList = new QListWidget();
@@ -423,7 +423,7 @@ void SeriesRacesPage::organizerChecked(QListWidgetItem* item)
 }
 void SeriesRacesPage::currentOrganizerChanged(QListWidgetItem* current, QListWidgetItem* previous)
 {
-	//removeOrganizerButton->setEnabled(current != NULL);
+	//removeOrganizerButton->setEnabled(current != nullptr);
 }
 void SeriesRacesPage::updateRaceResultDisplay()
 {
@@ -451,7 +451,7 @@ void SeriesRacesPage::updateResults()
 	organizersList->setEnabled(raceSelected);
 	organizersList->clear();
 	resultsTable->setEnabled(raceSelected);
-	resultsTable->setModel(NULL);
+	resultsTable->setModel(nullptr);
 	nameEdit->setEnabled(raceSelected);
 	nameEdit->setText("");
 	editOrganizersButton->setEnabled(raceSelected);
@@ -491,7 +491,7 @@ SeriesResultsPage::SeriesResultsPage(SeriesScoring* _scoring, SeriesScoringDialo
 	mainLayout->addWidget(exportButton);
 	setLayout(mainLayout);
 	
-	exportButton->setEnabled(scoring->getResult() != NULL);
+	exportButton->setEnabled(scoring->getResult() != nullptr);
 	
 	connect(recalculateButton, SIGNAL(clicked()), this, SLOT(recalculateClicked()));
 	connect(exportButton, SIGNAL(clicked()), this, SLOT(exportClicked()));
@@ -508,11 +508,11 @@ void SeriesResultsPage::recalculateClicked()
 	
 	recalculateButton->setEnabled(false);
 	notUpToDateLabel->hide();
-	exportButton->setEnabled(scoring->getResult() != NULL);
+	exportButton->setEnabled(scoring->getResult() != nullptr);
 }
 void SeriesResultsPage::exportClicked()
 {
-	assert(scoring->getResult() != NULL);
+	assert(scoring->getResult() != nullptr);
 	
 	QString path = QFileDialog::getSaveFileName(this, tr("Export scoring ..."), QString(), tr("CSV files (*.csv);;All files (*.*)"));
 	if (path.isEmpty())
@@ -538,8 +538,8 @@ void SeriesResultsPage::exportClicked()
 
 AddToSeriesScoringDialog::AddToSeriesScoringDialog(ResultList* _result_list, QWidget* parent) : QDialog(parent), result_list(_result_list)
 {
-	new_result = NULL;
-	added_to_scoring = NULL;
+	new_result = nullptr;
+	added_to_scoring = nullptr;
 	
 	setWindowTitle(tr("Add race results to series scoring"));
 	

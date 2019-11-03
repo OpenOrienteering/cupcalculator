@@ -64,7 +64,7 @@ class ProblemWidget : public QTableWidget
 Q_OBJECT
 public:
 	
-	ProblemWidget(QWidget* parent = NULL);
+	ProblemWidget(QWidget* parent = nullptr);
     virtual ~ProblemWidget();
 	
 	void addProblem(Problem* problem);
@@ -92,7 +92,7 @@ class ProblemDialog : public QDialog
 {
 Q_OBJECT
 public:
-	ProblemDialog(const QString& title, ProblemWidget* widget, QWidget* parent = 0);
+	ProblemDialog(const QString& title, ProblemWidget* widget, QWidget* parent = nullptr);
 public slots:
 	void okClicked();
 private:
@@ -104,7 +104,7 @@ class ActionSelectionDelegate : public QItemDelegate
 Q_OBJECT
 public:
 	
-	ActionSelectionDelegate(QObject *parent = 0);
+	ActionSelectionDelegate(QObject *parent = nullptr);
 	
 	virtual QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 	virtual void setEditorData(QWidget *editor, const QModelIndex &index) const;

@@ -54,7 +54,7 @@ public:
 	~CSVFile();
 	
 	/// Shows a dialog with options for separator and delimiter characters and escaping of -
-	bool showExportDialog(QWidget* parent = NULL);
+	bool showExportDialog(QWidget* parent = nullptr);
 	
 	/// Opens the file and reads the first line (the column names) if the file is opened for reading
 	bool open(bool for_reading);

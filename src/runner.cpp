@@ -207,7 +207,7 @@ bool RunnerDB::loadFromFile()
 	QFile file("databases/runners.xml");
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text))
 	{
-		Runner* current_runner = NULL;
+		Runner* current_runner = nullptr;
 	
 		QXmlStreamReader stream(&file);
 		while (!stream.atEnd())
@@ -235,7 +235,7 @@ bool RunnerDB::loadFromFile()
 					if (club)
 						current_runner->addClub(club);
 					else
-						QMessageBox::warning(NULL, tr("Warning"), tr("Could not find club %1 of runner %2 %3 in the club database!").arg(ref.toString()).arg(current_runner->getFirstName()).arg(current_runner->getLastName()));
+						QMessageBox::warning(nullptr, tr("Warning"), tr("Could not find club %1 of runner %2 %3 in the club database!").arg(ref.toString()).arg(current_runner->getFirstName()).arg(current_runner->getLastName()));
 				}
 			}
 			else if (stream.name() == "Club")
@@ -244,7 +244,7 @@ bool RunnerDB::loadFromFile()
 				if (club)
 					current_runner->addClub(club);
 				else
-					QMessageBox::warning(NULL, tr("Warning"), tr("Could not find club %1 of runner %2 %3 in the club database!").arg(stream.attributes().value("name").toString()).arg(current_runner->getFirstName()).arg(current_runner->getLastName()));
+					QMessageBox::warning(nullptr, tr("Warning"), tr("Could not find club %1 of runner %2 %3 in the club database!").arg(stream.attributes().value("name").toString()).arg(current_runner->getFirstName()).arg(current_runner->getLastName()));
 			
 			}
 			else if (stream.name() == "Merge")
@@ -286,14 +286,14 @@ Runner* RunnerDB::getByID(int id)
 	
 	std::map<int, Runner*>::iterator id_it = id_map.find(id);
 	if (id_it == id_map.end())
-		return NULL;
+		return nullptr;
 	else
 		return id_it->second;
 }
 
 void RunnerDB::addRunner(Runner* data, bool setNewID)
 {
-	assert(findRunner(*data) == NULL && "Tried to add a runner who is already in the database!");
+	assert(findRunner(*data) == nullptr && "Tried to add a runner who is already in the database!");
 	
 	int row = static_cast<int>(runners.size());
 	int count = 1;
@@ -325,7 +325,7 @@ Runner* RunnerDB::findRunner(const Runner& data)
 		if (*runners[i] == data)
 			return runners[i];
 	}
-	return NULL;
+	return nullptr;
 }
 Runner* RunnerDB::findRunner(const QString& first_name, const QString& last_name, int year, bool isMale)
 {
@@ -338,7 +338,7 @@ Runner* RunnerDB::findRunner(const QString& first_name, const QString& last_name
 			runners[i]->isMale() == isMale)
 			return runners[i];
 	}
-	return NULL;
+	return nullptr;
 }
 std::vector< Runner* > RunnerDB::findRunnersInClub(Club* club)
 {
@@ -418,7 +418,7 @@ Runner* RunnerDB::getItem(const QModelIndex& index) const
 			return item;
 	}
 	
-	return NULL;
+	return nullptr;
 }
 
 void RunnerDB::clubsChangedInRow(int row)
@@ -638,7 +638,7 @@ RunnerTable::RunnerTable()
 }
 RunnerTable::~RunnerTable()
 {
-	setModel(NULL);
+	setModel(nullptr);
 	delete sortedModel;
 	
 	//delete clubDelegate;

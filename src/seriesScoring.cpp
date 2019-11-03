@@ -36,7 +36,7 @@
 
 SeriesScoring::SeriesScoring(const QString& _fileName) : fileName(_fileName)
 {
-	result = NULL;			// no result calculated yet
+	result = nullptr;			// no result calculated yet
 	result_dirty = false;	// ... but no races have been added either
 	
 	// set defaults
@@ -125,7 +125,7 @@ bool SeriesScoring::loadFromFile(QWidget* dialogParent)
 	
 	ProblemWidget* problemWidget = new ProblemWidget();
 	
-	SeriesRaceResult* current_result = NULL;
+	SeriesRaceResult* current_result = nullptr;
 	int current_result_number;
 	bool use_ids = false;
 	
@@ -188,7 +188,7 @@ bool SeriesScoring::loadFromFile(QWidget* dialogParent)
 		{
 			if (current_result)
 				resultMap.insert(std::make_pair(current_result_number, current_result));
-			current_result = NULL;
+			current_result = nullptr;
 			result_dirty = stream.attributes().value("dirty") == "yes";
 		}
 		else if (stream.name() == "Settings")
@@ -229,7 +229,7 @@ void SeriesScoring::recalculateResult()
 	if (it == resultMap.end())
 	{
 		// No single result exists ...
-		result = NULL;
+		result = nullptr;
 		return;
 	}
 	
@@ -316,7 +316,7 @@ void SeriesScoring::recalculateResult()
 				if (runmapit->first.first != onlyCategory)
 				{
 					only_one_category = false;
-					onlyCategory = NULL;
+					onlyCategory = nullptr;
 					break;
 				}
 			}
@@ -348,7 +348,7 @@ void SeriesScoring::recalculateResult()
 						result->setData(row, colCategory, qVariantFromValue<void*>(onlyCategory));
 						result->setData(row, colRank, QVariant(-1));
 						result->setData(row, colRunner, qVariantFromValue<void*>(*rit));
-						result->setData(row, colClub, qVariantFromValue<void*>(((*rit)->getNumClubs() > 0) ? (*rit)->getClub(0) : NULL));	// NOTE: here, we just take the first club. Should not be a mayor problem as this is a corner case anyway
+						result->setData(row, colClub, qVariantFromValue<void*>(((*rit)->getNumClubs() > 0) ? (*rit)->getClub(0) : nullptr));	// NOTE: here, we just take the first club. Should not be a mayor problem as this is a corner case anyway
 						
 						runnerToRow.insert(std::make_pair(std::make_pair(onlyCategory, *rit), row));
 						giveOrganizerBonus(row, column, colPointsStart, result);
@@ -557,7 +557,7 @@ AbstractCategory* SeriesScoring::findInternCategory(const QString& name)
 			return *it;
 	}
 	
-	return NULL;
+	return nullptr;
 }
 void SeriesScoring::cleanupCategories()
 {
@@ -726,7 +726,7 @@ SeriesScoringDB::SeriesScoringDB()
 	QStringList myScorings = dir.entryList(nameFilters, QDir::Files | QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDir::Name);
 	
 	for (int i = 0; i < myScorings.size(); ++i)
-		scorings.insert(myScorings.at(i).left(myScorings.at(i).size() - 4), NULL);
+		scorings.insert(myScorings.at(i).left(myScorings.at(i).size() - 4), nullptr);
 	
 	// TODO: dir watcher
 }
@@ -735,7 +735,7 @@ SeriesScoring* SeriesScoringDB::getOrLoadScoring(const QString& name, QWidget* d
 {
 	Scorings::iterator it = scorings.find(name);
 	if (it == scorings.end())
-		return NULL;
+		return nullptr;
 	
 	if (*it)
 		return *it;
@@ -745,7 +745,7 @@ SeriesScoring* SeriesScoringDB::getOrLoadScoring(const QString& name, QWidget* d
 	if (!loadedScoring->loadFromFile(dialogParent))
 	{
 		delete loadedScoring;
-		return NULL;
+		return nullptr;
 	}
 	scorings.insert(name, loadedScoring);
 	

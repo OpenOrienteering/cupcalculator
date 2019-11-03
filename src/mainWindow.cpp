@@ -108,7 +108,7 @@ CalculateScoringTab::CalculateScoringTab(Event* _event, QWidget* parent) : QWidg
 	importResultsButton = new QPushButton(QIcon("images/open.png"), tr("Import results ..."));
 	closeEventButton = new QPushButton(tr("Close event"));
 	closeEventButton->setEnabled(false);
-	resultsTable = new ResultsTable(NULL);	// IMPORTANT NOTE: When changing anything in this list, the calculated results must be cleared! Consider this scenario: a club in this list is deleted, but still contained in the calculated scorings. Now the club can be deleted in the DB because it doesn't look in the calculated tables, but it is still referenced!
+	resultsTable = new ResultsTable(nullptr);	// IMPORTANT NOTE: When changing anything in this list, the calculated results must be cleared! Consider this scenario: a club in this list is deleted, but still contained in the calculated scorings. Now the club can be deleted in the DB because it doesn't look in the calculated tables, but it is still referenced!
 	QLabel* eventYearLabel = new QLabel(tr("Year of event:"));
 	eventYearEdit = new QLineEdit();
 	eventYearEdit->setValidator(new QIntValidator(eventYearEdit));
@@ -134,7 +134,7 @@ CalculateScoringTab::CalculateScoringTab(Event* _event, QWidget* parent) : QWidg
 	QGroupBox* viewScoringsGroup = new QGroupBox(tr("3. Export scorings"));
 	QLabel* scoringLabel = new QLabel(tr("Scoring:"));
 	viewScoringCombo = new QComboBox();
-	scoringTable = new ResultsTable(NULL);
+	scoringTable = new ResultsTable(nullptr);
 	addToSeriesScoringButton = new QPushButton(tr("Add to series scoring ..."));
 	exportScoringButton = new QPushButton(QIcon("images/save.png"), tr("Export scoring ..."));
 	
@@ -253,7 +253,7 @@ void CalculateScoringTab::removeScoringClicked()
 }
 void CalculateScoringTab::currentScoringChanged(QListWidgetItem* current, QListWidgetItem* previous)
 {
-	bool enable = current != NULL;
+	bool enable = current != nullptr;
 	editScoringButton->setEnabled(enable);
 	deleteScoringButton->setEnabled(enable);
 }
@@ -320,8 +320,8 @@ void CalculateScoringTab::importResultsClicked()
 }
 void CalculateScoringTab::closeEventClicked()
 {
-	resultsTable->setModel(NULL);
-	event->setResultList(NULL);
+	resultsTable->setModel(nullptr);
+	event->setResultList(nullptr);
 	viewScoringCombo->clear();
 	event->clearScoringLists();
 	
@@ -377,7 +377,7 @@ void CalculateScoringTab::addToSeriesScoringClicked()
 	
 	//if (addToSeriesScoringDialog.exec() == QDialog::Accepted)
 	addToSeriesScoringDialog.exec();
-	if (addToSeriesScoringDialog.getNewSeriesRaceResult() != NULL)
+	if (addToSeriesScoringDialog.getNewSeriesRaceResult() != nullptr)
 	{
 		SeriesScoringDialog scoringDialog(addToSeriesScoringDialog.getAddedToScoring(), this);
 		scoringDialog.setWindowModality(Qt::WindowModal);
@@ -413,7 +413,7 @@ void CalculateScoringTab::viewScoringListChanged(int index)
 {
 	if (index < 0)
 	{
-		scoringTable->setModel(NULL);
+		scoringTable->setModel(nullptr);
 		exportScoringButton->setEnabled(false);
 		addToSeriesScoringButton->setEnabled(false);
 		return;
@@ -443,7 +443,7 @@ bool CalculateScoringTab::importResultsFromCSV(CSVFile* file, bool show_import_d
 	int num_runners = (int)importDialog.colFirstName->size();
 	results->addRaceTimesColumns(num_runners);
 	Runner** runners = new Runner*[num_runners];
-	int* runner_times = NULL;
+	int* runner_times = nullptr;
 	if (num_runners > 1)
 		runner_times = new int[num_runners];
 	
@@ -489,7 +489,7 @@ bool CalculateScoringTab::importResultsFromCSV(CSVFile* file, bool show_import_d
 			}
 		}
 		
-		Club* club = NULL;
+		Club* club = nullptr;
 		if (clubName.isEmpty())
 		{
 			if (importDialog.skip_empty_club_rows)
@@ -532,7 +532,7 @@ bool CalculateScoringTab::importResultsFromCSV(CSVFile* file, bool show_import_d
 				name.toInt(&no_runner);
 			if (no_runner)
 			{
-				runners[i] = NULL;
+				runners[i] = nullptr;
 				if (num_runners > 1)
 					runner_times[i] = -1;
 				continue;
@@ -934,7 +934,7 @@ RunnerDatabaseTab::RunnerDatabaseTab(MainWindow* mainWindow, QWidget* parent): Q
 }
 RunnerDatabaseTab::~RunnerDatabaseTab()
 {
-	clubView->setModel(NULL);
+	clubView->setModel(nullptr);
 }
 
 void RunnerDatabaseTab::addClicked()
@@ -1179,7 +1179,7 @@ void SeriesScoringTab::editClicked()
 
 void SeriesScoringTab::currentSeriesChanged(QListWidgetItem* current, QListWidgetItem* previous)
 {
-	bool enable = current != NULL;
+	bool enable = current != nullptr;
 	editButton->setEnabled(enable);
 	deleteButton->setEnabled(enable);
 }

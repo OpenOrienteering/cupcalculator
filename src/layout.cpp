@@ -31,8 +31,8 @@ Layout::Layout(const QString& filename) : filename(filename)
 	// set defaults
 	has_background_color = false;
 	background_color = Qt::white;
-	background_image = NULL;
-	background_image_cache = NULL;
+	background_image = nullptr;
+	background_image_cache = nullptr;
 	owns_background_image = false;
 	aspect = 4 / 3.0f;
 }
@@ -42,7 +42,7 @@ Layout::Layout(const Layout& other)
 	has_background_color = other.has_background_color;
 	background_color = other.background_color;
 	background_image = other.background_image;
-	background_image_cache = NULL;
+	background_image_cache = nullptr;
 	owns_background_image = false;
 	
 	for (std::map<QString, Rect*>::const_iterator it = other.rects.begin(); it != other.rects.end(); ++it)
@@ -71,12 +71,12 @@ Layout::~Layout()
 Layout::Point* Layout::getPointByID(const QString& id)
 {
 	std::map<QString, Point*>::iterator it = points.find(id);
-	return (it == points.end()) ? NULL : it->second;
+	return (it == points.end()) ? nullptr : it->second;
 }
 Layout::Rect* Layout::getRectByID(const QString& id)
 {
 	std::map<QString, Rect*>::iterator it = rects.find(id);
-	return (it == rects.end()) ? NULL : it->second;
+	return (it == rects.end()) ? nullptr : it->second;
 }
 
 QFont Layout::qFontFromFont(Layout::Font* font_data, int display_height)
@@ -156,7 +156,7 @@ bool Layout::loadFromFile()
 	QFile file("my layouts/" + filename + ".xml");
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 	{
-		QMessageBox::warning(NULL, tr("Error"), tr("Could not load layout: %1 because the file could not be opened!").arg(filename));
+		QMessageBox::warning(nullptr, tr("Error"), tr("Could not load layout: %1 because the file could not be opened!").arg(filename));
 		return false;
 	}
 	
@@ -296,8 +296,8 @@ Layout::Font* Layout::getFont(const QString& name)
 	std::map<QString, Font*>::iterator it = fonts.find(name);
 	if (it == fonts.end())
 	{
-		QMessageBox::warning(NULL, tr("Error while loading layout"), tr("Cannot find font %1!").arg(name));
-		return NULL;
+		QMessageBox::warning(nullptr, tr("Error while loading layout"), tr("Cannot find font %1!").arg(name));
+		return nullptr;
 	}
 	
 	return it->second;
@@ -321,7 +321,7 @@ LayoutDB::LayoutDB()
 	QStringList myLayouts = dir.entryList(nameFilters, QDir::Files | QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDir::Name);
 	
 	for (int i = 0; i < myLayouts.size(); ++i)
-		layouts.insert(myLayouts.at(i).left(myLayouts.at(i).size() - 4), NULL);
+		layouts.insert(myLayouts.at(i).left(myLayouts.at(i).size() - 4), nullptr);
 	
 	// TODO: dir watcher
 }
@@ -329,7 +329,7 @@ Layout* LayoutDB::getOrLoadLayout(const QString& name, QWidget* dialogParent)
 {
 	Layouts::iterator it = layouts.find(name);
 	if (it == layouts.end())
-		return NULL;
+		return nullptr;
 	
 	if (*it)
 		return *it;
@@ -339,7 +339,7 @@ Layout* LayoutDB::getOrLoadLayout(const QString& name, QWidget* dialogParent)
 	if (!loadedLayout->loadFromFile())
 	{
 		delete loadedLayout;
-		return NULL;
+		return nullptr;
 	}
 	layouts.insert(name, loadedLayout);
 	

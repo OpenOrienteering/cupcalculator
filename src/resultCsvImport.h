@@ -38,7 +38,7 @@ class CSVImportDialog : public QDialog
 Q_OBJECT
 public:
 	
-	CSVImportDialog(CSVFile* file, QWidget* parent = NULL);
+	CSVImportDialog(CSVFile* file, QWidget* parent = nullptr);
 	~CSVImportDialog();
 	
 	CSVFile::ColumnIndexes* colFirstName;
@@ -65,7 +65,7 @@ public slots:
 	
 private:
 	
-	void addRow(CSVFile::ColumnIndexes** id, QString desc, bool required, bool use_default, QString default_item, CSVFile::ColumnIndexes** backup_id = NULL);
+	void addRow(CSVFile::ColumnIndexes** id, QString desc, bool required, bool use_default, QString default_item, CSVFile::ColumnIndexes** backup_id = nullptr);
 	
 	int current_row;
 	QGridLayout* rows_layout;

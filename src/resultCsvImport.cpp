@@ -202,7 +202,7 @@ void CSVImportDialog::addRow(CSVFile::ColumnIndexes** id, QString desc, bool req
 	
 	int selection = 0;
 	if (!required)
-		box->addItem(tr("[none]"), qVariantFromValue<void*>(NULL));
+		box->addItem(tr("[none]"), qVariantFromValue<void*>(nullptr));
 	for (CSVFile::ColumnMap::iterator it = file->beginColumns(); it != file->endColumns(); ++it)
 	{
 		QString name = it->first;
@@ -230,7 +230,7 @@ void CSVImportDialog::addRow(CSVFile::ColumnIndexes** id, QString desc, bool req
 		widget_vector.push_back(backup_box);
 		
 		int selection = 0;
-		backup_box->addItem(tr("[none]"), qVariantFromValue<void*>(NULL));
+		backup_box->addItem(tr("[none]"), qVariantFromValue<void*>(nullptr));
 		for (CSVFile::ColumnMap::iterator it = file->beginColumns(); it != file->endColumns(); ++it)
 		{
 			QString name = it->first;

@@ -198,7 +198,7 @@ class ResultsTable : public QTableView
 Q_OBJECT
 public:
 	
-	ResultsTable(ResultList* results, QWidget* parent = 0);
+	ResultsTable(ResultList* results, QWidget* parent = nullptr);
 	~ResultsTable();
 	
     virtual void setModel(QAbstractItemModel* model);
@@ -209,7 +209,7 @@ class ResultsTree : public QTreeView
 Q_OBJECT
 public:
 	
-	ResultsTree(ResultList* results, int groupByCol, int sortByCol, QWidget* parent = 0);
+	ResultsTree(ResultList* results, int groupByCol, int sortByCol, QWidget* parent = nullptr);
 	~ResultsTree();
 	
 	virtual void setModel(QAbstractItemModel* model);
@@ -219,7 +219,7 @@ private:
 	class GroupSortProxyModel : public QAbstractProxyModel
 	{
 	public:
-		GroupSortProxyModel(int groupByCol, QObject* parent = NULL);
+		GroupSortProxyModel(int groupByCol, QObject* parent = nullptr);
         virtual ~GroupSortProxyModel();
 		
         virtual void setSourceModel(QAbstractItemModel* sourceModel);

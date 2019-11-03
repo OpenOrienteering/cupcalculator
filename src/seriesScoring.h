@@ -141,7 +141,7 @@ public:
 	bool saveToFile(const QString path_prefix = "");
 	
 	/// Returns the scoring with the given name; loads it if it is not loaded yet.
-	/// Returns NULL if there was an error loading the scoring.
+	/// Returns nullptr if there was an error loading the scoring.
 	SeriesScoring* getOrLoadScoring(const QString& name, QWidget* dialogParent);
 	
 	/// Appends #2, #3, ... in case the desiredName is already used until an unused name is found
@@ -180,7 +180,7 @@ private:
 	/// Appends #2, #3, ... in case the desiredName is already used until an unused name is found
 	QString getUnusedName(const QString& desiredName);
 	
-	/// The value can be NULL if the scoring is not loaded yet
+	/// The value can be nullptr if the scoring is not loaded yet
 	Scorings scorings;
 };
 

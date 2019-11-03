@@ -51,7 +51,7 @@ class ScoringDialog : public QDialog
 Q_OBJECT
 public:
 	
-	ScoringDialog(Scoring* _scoring, QWidget* parent = NULL);
+	ScoringDialog(Scoring* _scoring, QWidget* parent = nullptr);
 	~ScoringDialog();
 	
 	void createSteps();
@@ -91,7 +91,7 @@ class GeneralPage : public QWidget
 Q_OBJECT
 public:
 	
-	GeneralPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = NULL);
+	GeneralPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = nullptr);
 	
 public slots:
 	
@@ -115,7 +115,7 @@ class PointListWidget : public QListWidget
 {
 Q_OBJECT
 public:
-	PointListWidget(ScoringCalculationPage* page, QWidget* parent = NULL) : QListWidget(parent), page(page) {}
+	PointListWidget(ScoringCalculationPage* page, QWidget* parent = nullptr) : QListWidget(parent), page(page) {}
 public slots:
 	void updateList();
 private:
@@ -129,7 +129,7 @@ Q_OBJECT
 friend class PointListWidget;
 public:
 	
-	ScoringCalculationPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = NULL);
+	ScoringCalculationPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = nullptr);
     virtual ~ScoringCalculationPage();
 	
 	/// Shows or hides the ruleset part of this page
@@ -238,7 +238,7 @@ class LimitRunnersPage : public QWidget
 Q_OBJECT
 public:
 	
-	LimitRunnersPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = NULL);
+	LimitRunnersPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = nullptr);
 	virtual ~LimitRunnersPage();
 	
 public slots:
@@ -266,7 +266,7 @@ class AdjustCategoriesPage : public QWidget
 Q_OBJECT
 public:
 	
-	AdjustCategoriesPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = NULL);
+	AdjustCategoriesPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = nullptr);
 	virtual ~AdjustCategoriesPage();
 	
 	void updateRulesetCombo(bool keepSelection);
@@ -302,7 +302,7 @@ class TeamScoringPage : public QWidget
 Q_OBJECT
 public:
 	
-	TeamScoringPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = NULL);
+	TeamScoringPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = nullptr);
 	virtual ~TeamScoringPage();
 	
 public slots:
@@ -325,7 +325,7 @@ class EmptyPage : public QWidget
 Q_OBJECT
 public:
 	
-	EmptyPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = NULL);
+	EmptyPage(Scoring* _scoring, ScoringDialog* _dialog, QWidget* parent = nullptr);
 	
 private:
 	

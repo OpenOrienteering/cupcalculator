@@ -39,7 +39,7 @@ const int COLUMN_COUNT = 3;
 
 // ### Club ###
 
-Club::Club(const QString& _name) : name(_name), country(NULL), province(NULL)
+Club::Club(const QString& _name) : name(_name), country(nullptr), province(nullptr)
 {
 }
 Club::~Club()
@@ -117,8 +117,8 @@ bool ClubDB::loadFromFile()
 		if (stream.name() == "Club")
 		{
 			Club* new_club = new Club(stream.attributes().value("name").toString());
-			Location* country = NULL;
-			Location* province = NULL;
+			Location* country = nullptr;
+			Location* province = nullptr;
 			
 			QStringRef ref = stream.attributes().value("country");
 			if (!ref.isEmpty())
@@ -165,7 +165,7 @@ Club* ClubDB::getByID(int id)
 	
 	std::map<int, Club*>::iterator id_it = id_map.find(id);
 	if (id_it == id_map.end())
-		return NULL;
+		return nullptr;
 	else
 		return id_it->second;
 }
@@ -190,7 +190,7 @@ Club* ClubDB::findClub(const QString& name)
 			return clubs[i];
 	}
 	
-	return NULL;
+	return nullptr;
 }
 void ClubDB::findSimilarClubs(QString name, std::vector< Club* >& out)
 {
@@ -210,7 +210,7 @@ Club* ClubDB::findClubAt(Location* location, Club* exclude)
 			return clubs[i];
 	}
 	
-	return NULL;
+	return nullptr;
 }
 QString ClubDB::getUnusedName(const QString& desiredName)
 {
@@ -230,7 +230,7 @@ QString ClubDB::getUnusedName(const QString& desiredName)
 
 void ClubDB::addClub(Club* club, bool setNewID)
 {
-	assert(findClub(club->getName()) == NULL && "Tried to add a club whose name is already used by another club!");
+	assert(findClub(club->getName()) == nullptr && "Tried to add a club whose name is already used by another club!");
 	
 	int row = static_cast<int>(clubs.size());
 	int count = 1;
@@ -271,7 +271,7 @@ Club* ClubDB::getItem(const QModelIndex& index) const
 			return item;
 	}
 	
-	return NULL;
+	return nullptr;
 }
 
 int ClubDB::rowCount(const QModelIndex& parent) const
@@ -395,7 +395,7 @@ ClubTable::ClubTable()
 }
 ClubTable::~ClubTable()
 {
-	setModel(NULL);
+	setModel(nullptr);
 	delete sortedModel;
 }
 

@@ -106,7 +106,7 @@ public:
 	typedef QMap<QString, Layout*> Layouts;
 	
 	/// Returns the layout with the given name; loads it if it is not loaded yet.
-	/// Returns NULL if there was an error loading it.
+	/// Returns nullptr if there was an error loading it.
 	Layout* getOrLoadLayout(const QString& name, QWidget* dialogParent);
 	
 	inline Layouts::iterator begin() {return layouts.begin();}
@@ -124,7 +124,7 @@ private:
 	
 	LayoutDB();
 	
-	/// The value can be NULL if the layout is not loaded yet
+	/// The value can be nullptr if the layout is not loaded yet
 	Layouts layouts;
 };
 

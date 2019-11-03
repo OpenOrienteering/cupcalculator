@@ -142,7 +142,7 @@ QString pointsToString(int points, int decimal_places, int decimal_factor)
 		return "(" + number + ")";
 }
 
-DoubleValidator::DoubleValidator(double bottom, double top, int decimals) : QDoubleValidator(bottom, top, decimals, NULL)
+DoubleValidator::DoubleValidator(double bottom, double top, int decimals) : QDoubleValidator(bottom, top, decimals, nullptr)
 {
 	// Don't cause confusion, accept only English formatting
 	setLocale(QLocale(QLocale::English));

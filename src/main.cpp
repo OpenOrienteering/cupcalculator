@@ -41,7 +41,7 @@ void saveProgramSettings();
 
 int main(int argc, char** argv)
 {
-	qsrand((uint)time(NULL));
+	qsrand((uint)time(nullptr));
 	
 	// Create application
 	QApplication qapp(argc, argv);
@@ -77,7 +77,7 @@ int main(int argc, char** argv)
 	catch (...)
 	{
 		QString crash_dir = "crash_dump";
-		QMessageBox::critical(NULL, qApp->translate("main", "Sorry!"), qApp->translate("main", "The program has crashed. It will now try to save all databases and all opened scorings in the \"%1\" subdirectory. You can try to use them by replacing the original ones with them.").arg(crash_dir));
+		QMessageBox::critical(nullptr, qApp->translate("main", "Sorry!"), qApp->translate("main", "The program has crashed. It will now try to save all databases and all opened scorings in the \"%1\" subdirectory. You can try to use them by replacing the original ones with them.").arg(crash_dir));
 		
 		QDir curDir;
 		curDir.mkdir(crash_dir);
@@ -179,6 +179,6 @@ void saveProgramSettings()
 #include "Windows.h"
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	return main(0, NULL);
+	return main(0, nullptr);
 }
 #endif

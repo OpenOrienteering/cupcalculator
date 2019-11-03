@@ -258,7 +258,7 @@ bool Scoring::loadFromFile(QWidget* dialogParent)
 	ProblemWidget* problemWidget = new ProblemWidget();
 	
 	rulesets.clear();	// Delete standard ruleset
-	Ruleset* last_ruleset = NULL;
+	Ruleset* last_ruleset = nullptr;
 	bool use_ids = false;
 	
 	QXmlStreamReader stream(&file);
@@ -284,8 +284,8 @@ bool Scoring::loadFromFile(QWidget* dialogParent)
 			limit_regions = true;
 		else if (stream.name() == "AllowedRegion")
 		{
-			Location* country = NULL;
-			Location* province = NULL;
+			Location* country = nullptr;
+			Location* province = nullptr;
 			
 			QStringRef ref;
 			if (use_ids)
@@ -341,8 +341,8 @@ bool Scoring::loadFromFile(QWidget* dialogParent)
 					warn_conflict = false;
 				}
 				
-				Location* country = NULL;
-				Location* province = NULL;
+				Location* country = nullptr;
+				Location* province = nullptr;
 				
 				QStringRef ref = stream.attributes().value("country");
 				if (!ref.isEmpty())
@@ -520,7 +520,7 @@ Ruleset* Scoring::findRuleset(const QString& name)
 		if (rulesets[i]->name == name)
 			return rulesets[i];
 	}
-	return NULL;
+	return nullptr;
 }
 
 CustomCategory* Scoring::addCustomCategory()
@@ -614,8 +614,8 @@ void Scoring::calculateHandicappedTimes(ResultList* results, std::vector< Result
 	int colHandicappedTime = results->addColumn(ResultList::ColumnTime, tr("Handicapped time"));
 	
 	bool no_category_yet = true;
-	AbstractCategory* current_category = NULL;
-	Ruleset* current_ruleset = NULL;
+	AbstractCategory* current_category = nullptr;
+	Ruleset* current_ruleset = nullptr;
 	int num_rows = results->rowCount();
 	for (int i = 0; i < num_rows; ++i)
 	{
@@ -679,8 +679,8 @@ void Scoring::applyCustomCategories(ResultList* results, CustomCategoryToRuleset
 	
 	// Change categories to custom categories
 	bool no_category_yet = true;
-	AbstractCategory* current_category = NULL;
-	AbstractCategory* resulting_category = NULL;	// either the original category or a custom category
+	AbstractCategory* current_category = nullptr;
+	AbstractCategory* resulting_category = nullptr;	// either the original category or a custom category
 	
 	int num_rows = results->rowCount();
 	for (int i = 0; i < num_rows; ++i)
@@ -733,7 +733,7 @@ ResultList* Scoring::limitRunners(ResultList* results, bool include_all)
 			if (include && limit_regions)
 			{
 				Location* location = club->getProvince();
-				if (location == NULL)
+				if (location == nullptr)
 					location = club->getCountry();
 				
 				if (!isAllowedRegion(location))
@@ -808,8 +808,8 @@ ResultList* Scoring::calculatePoints(ResultList* results, std::vector< ResultLis
 	double previous_points = -1;
 	int previous_point_rank = -1;
 	bool no_category_yet = true;
-	AbstractCategory* current_category = NULL;
-	Ruleset* current_ruleset = NULL;
+	AbstractCategory* current_category = nullptr;
+	Ruleset* current_ruleset = nullptr;
 	std::map< Club*, int > runnersPerClub;
 	bool excluded_category = false;
 	
@@ -1030,7 +1030,7 @@ ResultList* Scoring::calculateTeamScoring(ResultList* points, std::vector< Resul
 		//	continue;
 		
 		AbstractCategory* cat = static_cast<AbstractCategory*>(points->getData(i, points->getCategoryColumn()).value<void*>());
-		assert(cat != NULL);
+		assert(cat != nullptr);
 		if (teamExcludeCategories.contains(cat->name, Qt::CaseInsensitive))
 			continue;	// NOTE: could speed this up if it would be *really* neccessary, also see below ...
 		if (categoryToColumn.find(cat) == categoryToColumn.end())
@@ -1046,9 +1046,9 @@ ResultList* Scoring::calculateTeamScoring(ResultList* points, std::vector< Resul
 	}
 	
 	if (categoryToColumn.size() == 0)
-		return NULL;
+		return nullptr;
 	
-	std::vector<double>* categoryResultLists = NULL;
+	std::vector<double>* categoryResultLists = nullptr;
 	if (show_single_results_in_category_listing)
 		categoryResultLists = new std::vector<double>[clubToRow.size() * categoryToColumn.size()];
 	
@@ -1098,7 +1098,7 @@ ResultList* Scoring::calculateTeamScoring(ResultList* points, std::vector< Resul
 	}
 	
 	// Find maximum number of results in every column
-	int* maxResultsPerColumn = NULL;
+	int* maxResultsPerColumn = nullptr;
 	if (categoryResultLists)
 	{
 		int num_rows = (int)clubToRow.size();
@@ -1274,7 +1274,7 @@ ScoringDB::ScoringDB()
 	QStringList myScorings = dir.entryList(nameFilters, QDir::Files | QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDir::Name);
 	
 	for (int i = 0; i < myScorings.size(); ++i)
-		scorings.insert(myScorings.at(i).left(myScorings.at(i).size() - SCORING_SUFFIX.size()), NULL);
+		scorings.insert(myScorings.at(i).left(myScorings.at(i).size() - SCORING_SUFFIX.size()), nullptr);
 	
 	// TODO: dir watcher
 }
@@ -1283,7 +1283,7 @@ Scoring* ScoringDB::getOrLoadScoring(const QString& name, QWidget* dialogParent)
 {
 	Scorings::iterator it = scorings.find(name);
 	if (it == scorings.end())
-		return NULL;
+		return nullptr;
 	
 	if (*it)
 		return *it;
@@ -1293,7 +1293,7 @@ Scoring* ScoringDB::getOrLoadScoring(const QString& name, QWidget* dialogParent)
 	if (!loadedScoring->loadFromFile(dialogParent))
 	{
 		delete loadedScoring;
-		return NULL;
+		return nullptr;
 	}
 	scorings.insert(name, loadedScoring);
 	

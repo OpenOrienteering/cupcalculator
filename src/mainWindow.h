@@ -51,7 +51,7 @@ class MainWindow : public QDialog
 Q_OBJECT
 public:
 	
-	MainWindow(QWidget *parent = NULL);
+	MainWindow(QWidget *parent = nullptr);
 	~MainWindow();
 	
 	bool importResultsFromCSV(CSVFile* file, bool show_import_dialog = true);
@@ -73,7 +73,7 @@ class CalculateScoringTab : public QWidget
 Q_OBJECT
 public:
 	
-	CalculateScoringTab(Event* _event, QWidget* parent = 0);
+	CalculateScoringTab(Event* _event, QWidget* parent = nullptr);
 	
 	bool importResultsFromCSV(CSVFile* file, bool show_import_dialog = true);
 	
@@ -125,7 +125,7 @@ class SeriesScoringTab : public QWidget
 Q_OBJECT
 public:
 	
-	SeriesScoringTab(QWidget* parent = NULL);
+	SeriesScoringTab(QWidget* parent = nullptr);
 	
 public slots:
 	
@@ -148,7 +148,7 @@ class ClubDatabaseTab : public QWidget
 Q_OBJECT
 public:
 	
-	ClubDatabaseTab(MainWindow* mainWindow, QWidget* parent = NULL);
+	ClubDatabaseTab(MainWindow* mainWindow, QWidget* parent = nullptr);
 	
 public slots:
 	
@@ -175,7 +175,7 @@ class RunnerDatabaseTab : public QWidget
 Q_OBJECT
 public:
 	
-	RunnerDatabaseTab(MainWindow* mainWindow, QWidget* parent = NULL);
+	RunnerDatabaseTab(MainWindow* mainWindow, QWidget* parent = nullptr);
     virtual ~RunnerDatabaseTab();
 	
 public slots:
@@ -203,7 +203,7 @@ class AboutTab : public QWidget
 {
 Q_OBJECT
 public:
-	AboutTab(MainWindow* mainWindow, QWidget* parent = NULL);
+	AboutTab(MainWindow* mainWindow, QWidget* parent = nullptr);
 	virtual ~AboutTab();
 public slots:
 	void linkClicked(QString link);

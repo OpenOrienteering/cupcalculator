@@ -37,7 +37,7 @@ class ClubDialog : public QDialog
 Q_OBJECT
 public:
 	
-	ClubDialog(Club* _club, QWidget* parent = NULL);
+	ClubDialog(Club* _club, QWidget* parent = nullptr);
 	~ClubDialog();
 	
 	// Overridden methods

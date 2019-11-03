@@ -71,9 +71,9 @@ public:
 	void mergeClubs(Club* src, Club* dest);
 	
 	Club* getItem(const QModelIndex &index) const;
-	bool containsName(const QString& name, Club* exclude = NULL);
+	bool containsName(const QString& name, Club* exclude = nullptr);
 	Club* findClub(const QString& name);
-	Club* findClubAt(Location* location, Club* exclude = NULL);
+	Club* findClubAt(Location* location, Club* exclude = nullptr);
 	void findSimilarClubs(QString name, std::vector<Club*>& out);
 	inline void clubChanged(QModelIndex index)
 	{

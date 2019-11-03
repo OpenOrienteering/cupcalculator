@@ -46,7 +46,7 @@ class SeriesScoringDialog : public QDialog
 Q_OBJECT
 public:
 	
-	SeriesScoringDialog(SeriesScoring* _scoring, QWidget* parent = NULL);
+	SeriesScoringDialog(SeriesScoring* _scoring, QWidget* parent = nullptr);
 	~SeriesScoringDialog();
 	
 	void jumpToRaceResult(SeriesRaceResult* result);
@@ -83,7 +83,7 @@ class SeriesSettingsPage : public QWidget
 Q_OBJECT
 public:
 	
-	SeriesSettingsPage(SeriesScoring* _scoring, SeriesScoringDialog* _dialog, QWidget* parent = NULL);
+	SeriesSettingsPage(SeriesScoring* _scoring, SeriesScoringDialog* _dialog, QWidget* parent = nullptr);
 	
 public slots:
 	
@@ -116,7 +116,7 @@ class SeriesRacesPage : public QWidget
 Q_OBJECT
 public:
 	
-	SeriesRacesPage(SeriesScoring* _scoring, SeriesScoringDialog* _dialog, QWidget* parent = NULL);
+	SeriesRacesPage(SeriesScoring* _scoring, SeriesScoringDialog* _dialog, QWidget* parent = nullptr);
 	
 	void jumpToRaceResult(SeriesRaceResult* result);
 	
@@ -156,7 +156,7 @@ class SeriesResultsPage : public QWidget
 Q_OBJECT
 public:
 	
-	SeriesResultsPage(SeriesScoring* _scoring, SeriesScoringDialog* _dialog, QWidget* parent = NULL);
+	SeriesResultsPage(SeriesScoring* _scoring, SeriesScoringDialog* _dialog, QWidget* parent = nullptr);
 	
 	void activated();
 	
@@ -181,7 +181,7 @@ class AddToSeriesScoringDialog : public QDialog
 Q_OBJECT
 public:
 	
-	AddToSeriesScoringDialog(ResultList* _result_list, QWidget* parent = 0);
+	AddToSeriesScoringDialog(ResultList* _result_list, QWidget* parent = nullptr);
 	inline SeriesRaceResult* getNewSeriesRaceResult() {return new_result;}
 	inline SeriesScoring* getAddedToScoring() {return added_to_scoring;}
 	
@@ -213,7 +213,7 @@ class ChangeRaceNumberDialog : public QDialog
 Q_OBJECT
 public:
 	
-	ChangeRaceNumberDialog(SeriesScoring* scoring, const QString& race_name, QWidget* parent = 0);
+	ChangeRaceNumberDialog(SeriesScoring* scoring, const QString& race_name, QWidget* parent = nullptr);
 	
 	inline int getNumber() const {return number;}
 	

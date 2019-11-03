@@ -77,9 +77,9 @@ ClubDialog::ClubDialog(Club* _club, QWidget* parent) : QDialog(parent, Qt::Windo
 	nameEdit->setText(club->getName());
 	nameEdit->selectAll();
 	setLocationText();
-	if (club->getProvince() != NULL)
+	if (club->getProvince() != nullptr)
 		selectLocation(club->getProvince());
-	else if (club->getCountry() != NULL)
+	else if (club->getCountry() != nullptr)
 		selectLocation(club->getCountry());
 	
 	updateActions();
@@ -134,7 +134,7 @@ void ClubDialog::setLocationText()
 	
 	if (club->getProvince())
 	{
-		assert((club->getCountry() != NULL) && "Province set for a club, but no country!");
+		assert((club->getCountry() != nullptr) && "Province set for a club, but no country!");
 		text += club->getProvince()->getName() + ", " + club->getCountry()->getName() + "</b>";
 	}
 	else if (club->getCountry())
@@ -150,9 +150,9 @@ void ClubDialog::locationSelected()
 	
 	QModelIndex index = locationView->selectionModel()->currentIndex();
 	if (!index.isValid())
-		club->setLocation(NULL, NULL);
+		club->setLocation(nullptr, nullptr);
 	else if (index.parent() == QModelIndex())
-		club->setLocation(locationDB.getItem(locationDB.getSortModel()->mapToSource(index)), NULL);
+		club->setLocation(locationDB.getItem(locationDB.getSortModel()->mapToSource(index)), nullptr);
 	else
 		club->setLocation(locationDB.getItem(locationDB.getSortModel()->mapToSource(index.parent())), locationDB.getItem(locationDB.getSortModel()->mapToSource(index)));
 	
@@ -245,7 +245,7 @@ void ClubDialog::removeLocationClicked()
 	QAbstractItemModel* model = locationView->model();
 	Location* index_location = locationDB.getItem(locationDB.getSortModel()->mapToSource(index));
 	
-	if (clubDB.findClubAt(index_location, club) != NULL)
+	if (clubDB.findClubAt(index_location, club) != nullptr)
 	{
 		QMessageBox::warning(this, APP_NAME, tr("The location %1 you want to delete is still referenced by at least one club. You must delete the references first!").arg(index_location->getName()));
 		return;
@@ -254,7 +254,7 @@ void ClubDialog::removeLocationClicked()
 	for (int i = 0; i < num_children; ++i)
 	{
 		Location* sub_location = index_location->getChild(i);
-		if (clubDB.findClubAt(sub_location, club) != NULL)
+		if (clubDB.findClubAt(sub_location, club) != nullptr)
 		{
 			QMessageBox::warning(this, APP_NAME, tr("The sub-location %1 you want to delete is still referenced by at least one club. You must delete the references first!").arg(sub_location->getName()));
 			return;

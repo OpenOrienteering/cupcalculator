@@ -135,7 +135,7 @@ void ScoringDialog::changePage(QListWidgetItem* current, QListWidgetItem* previo
 }
 void ScoringDialog::createSteps()
 {
-	QWidget* selected_page = NULL;
+	QWidget* selected_page = nullptr;
 	QListWidgetItem* cur_item = stepsList->currentItem();
 	if (cur_item)
 		selected_page = cur_item->data(Qt::UserRole).value<QWidget*>();
@@ -1085,7 +1085,7 @@ void LimitRunnersPage::locationChecked(QTreeWidgetItem* item, int column)
 	
 	disconnect(locationWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(locationChecked(QTreeWidgetItem*,int)));
 	
-	if (item->parent() == NULL)
+	if (item->parent() == nullptr)
 	{
 		// Top-level changed, update children
 		Qt::CheckState state = item->checkState(0);
@@ -1255,7 +1255,7 @@ void AdjustCategoriesPage::categoryChanged(QListWidgetItem* current, QListWidget
 	react_to_changes = false;
 	
 	CustomCategory* cat = getCurrentCategory();
-	bool enable = cat != NULL;
+	bool enable = cat != nullptr;
 	
 	nameEdit->setEnabled(enable);
 	sourceEdit->setEnabled(enable);
@@ -1311,8 +1311,8 @@ void AdjustCategoriesPage::rulesetChanged(int index)
 
 CustomCategory* AdjustCategoriesPage::getCurrentCategory()
 {
-	if (categoriesList->currentItem() == NULL)
-		return NULL;
+	if (categoriesList->currentItem() == nullptr)
+		return nullptr;
 	
 	return static_cast<CustomCategory*>(categoriesList->currentItem()->data(Qt::UserRole).value<void*>());
 }
@@ -1320,7 +1320,7 @@ void AdjustCategoriesPage::updateRulesetCombo(bool keepSelection)
 {
 	disconnect(rulesetCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(rulesetChanged(int)));
 	
-	Ruleset* selection = NULL;
+	Ruleset* selection = nullptr;
 	if (keepSelection && rulesetCombo->currentIndex() != -1)
 		selection = static_cast<Ruleset*>(rulesetCombo->itemData(rulesetCombo->currentIndex(), Qt::UserRole).value<void*>());
 	

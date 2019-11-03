@@ -158,7 +158,7 @@ ResultList::ResultList(QXmlStreamReader* stream, bool use_ids, SeriesScoring* sc
 						Runner* runner = runnerDB.findRunner(first_name, last_name, year, isMale);
 						if (!runner)
 						{
-							QMessageBox::warning(NULL, tr("Error"), tr("Error while loading series scoring: cannot find runner %1 %2 in runner database!").arg(first_name).arg(last_name));
+							QMessageBox::warning(nullptr, tr("Error"), tr("Error while loading series scoring: cannot find runner %1 %2 in runner database!").arg(first_name).arg(last_name));
 							return;
 						}
 						columns[cur_column][cur_row] = qVariantFromValue<void*>(runner);
@@ -171,7 +171,7 @@ ResultList::ResultList(QXmlStreamReader* stream, bool use_ids, SeriesScoring* sc
 					{
 						temp = stream->attributes().value("v").toString();
 						if (temp == "")
-							columns[cur_column][cur_row] = qVariantFromValue<void*>(NULL);
+							columns[cur_column][cur_row] = qVariantFromValue<void*>(nullptr);
 						else
 						{
 							Club* club = clubDB.getByID(stream->attributes().value("i").toString().toInt());
@@ -185,13 +185,13 @@ ResultList::ResultList(QXmlStreamReader* stream, bool use_ids, SeriesScoring* sc
 					{
 						temp = stream->attributes().value("v").toString();
 						if (temp == "")
-							columns[cur_column][cur_row] = qVariantFromValue<void*>(NULL);
+							columns[cur_column][cur_row] = qVariantFromValue<void*>(nullptr);
 						else
 						{
 							Club* club = clubDB.findClub(temp);
 							if (!club)
 							{
-								QMessageBox::warning(NULL, tr("Error"), tr("Error while loading series scoring: cannot find club %1 in runner database!").arg(temp));
+								QMessageBox::warning(nullptr, tr("Error"), tr("Error while loading series scoring: cannot find club %1 in runner database!").arg(temp));
 								return;
 							}
 							columns[cur_column][cur_row] = qVariantFromValue<void*>(club);
@@ -411,7 +411,7 @@ void ResultList::calculateRanks(int baseColumn, int statusColumn, bool ascending
 	if (column_rank >= 0)
 	{
 		int cur_rank = 1;
-		AbstractCategory* cur_cat = NULL;
+		AbstractCategory* cur_cat = nullptr;
 		int cur_value = -1;
 		int rank_step = 1;
 		for (int i = 0; i < num_rows; ++i)
@@ -421,7 +421,7 @@ void ResultList::calculateRanks(int baseColumn, int statusColumn, bool ascending
 			else if (keepNegativeRankings && columns[column_rank][i].toInt() < 0)
 				continue;
 			
-			AbstractCategory* cat = (column_category >= 0) ? reinterpret_cast<AbstractCategory*>(columns[column_category][i].value<void*>()) : NULL;
+			AbstractCategory* cat = (column_category >= 0) ? reinterpret_cast<AbstractCategory*>(columns[column_category][i].value<void*>()) : nullptr;
 			if (cat != cur_cat)
 			{
 				cur_rank = 1;
@@ -603,7 +603,7 @@ QVariant* ResultList::getItem(const QModelIndex& index) const
 			return item;
 	}
 	
-	return NULL;
+	return nullptr;
 }
 
 int ResultList::rowCount(const QModelIndex& parent) const
@@ -834,7 +834,7 @@ ResultsTable::ResultsTable(ResultList* results, QWidget* parent) : QTableView(pa
 }
 ResultsTable::~ResultsTable()
 {
-	setModel(NULL);
+	setModel(nullptr);
 }
 void ResultsTable::setModel(QAbstractItemModel* model)
 {
@@ -859,12 +859,12 @@ ResultsTree::ResultsTree(ResultList* results, int groupByCol, int sortByCol, QWi
 }
 ResultsTree::~ResultsTree()
 {
-	QTreeView::setModel(NULL);
+	QTreeView::setModel(nullptr);
 	delete groupSortModel;
 }
 void ResultsTree::setModel(QAbstractItemModel* model)
 {
-	QTreeView::setModel(NULL);
+	QTreeView::setModel(nullptr);
 	groupSortModel->setSourceModel(model);
 	QTreeView::setModel(groupSortModel);
 }

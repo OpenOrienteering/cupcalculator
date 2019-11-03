@@ -27,7 +27,7 @@
 
 Event::Event()
 {
-	resultList = NULL;
+	resultList = nullptr;
 }
 Event::~Event()
 {
@@ -67,7 +67,7 @@ Category* Event::findCategory(const QString& name)
 		if (categories[i]->name.compare(name, Qt::CaseSensitive) == 0)
 			return categories[i];
 	}
-	return NULL;
+	return nullptr;
 }
 int Event::getNumCategories()
 {

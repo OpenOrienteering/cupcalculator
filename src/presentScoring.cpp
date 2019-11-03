@@ -52,14 +52,14 @@ PresentationWidget::PresentationWidget(PresentScoringController* controller, Lay
 	
 	elapsed_time = 0;
 	
-	current_list = NULL;
-	current_list_img = NULL;
-	current_slide = NULL;
+	current_list = nullptr;
+	current_list_img = nullptr;
+	current_slide = nullptr;
 	current_slide_alpha = 0;
 	current_slide_dirty = true;
-	previous_list = NULL;
-	previous_list_img = NULL;
-	previous_slide = NULL;
+	previous_list = nullptr;
+	previous_list_img = nullptr;
+	previous_slide = nullptr;
 	previous_slide_alpha = 0;
 	
 	// NOTE: Members must be initialized before calling show(), as this will call resizeEvent()
@@ -181,7 +181,7 @@ void PresentationWidget::resizeEvent(QResizeEvent* event)
 	delete current_list_img;
 	delete previous_slide;
 	delete previous_list_img;
-	previous_list_img = NULL;
+	previous_list_img = nullptr;
 	
 	const float aspect = 4 / 3.0f;
 	if (height() * aspect >= width())
@@ -264,14 +264,14 @@ void PresentationWidget::drawCurrentSlide()
 QPixmap* PresentationWidget::createResultListPixmap(ResultList* list, bool calc_delta_scroll)
 {
 	if (!list)
-		return NULL;
+		return nullptr;
 	if (list->rowCount() <= 0)
-		return NULL;
+		return nullptr;
 	Layout::Rect* list_rect = layout->getRectByID("content");
 	if (!list_rect)
-		return NULL;
+		return nullptr;
 	
-	QPixmap* result = NULL;
+	QPixmap* result = nullptr;
 	
 	QFont font_normal = layout->qFontFromFont(list_rect->font_normal, display_height);
 	QFont font_strong = layout->qFontFromFont(list_rect->font_strong, display_height);
@@ -293,7 +293,7 @@ QPixmap* PresentationWidget::createResultListPixmap(ResultList* list, bool calc_
 			int runners_this_row = 0;
 			for (int c = list->getFirstRunnerColumn(); c <= list->getLastRunnerColumn(); c += 2)
 			{
-				if (list->getData(r, c).value<void*>() != NULL)
+				if (list->getData(r, c).value<void*>() != nullptr)
 					++runners_this_row;
 			}
 			if (runners_this_row > num_runners_per_result)
@@ -532,7 +532,7 @@ void PresentationWidget::nextAnimationFrame()
 	{
 		previous_slide_alpha = qMax(0.0f, previous_slide_alpha - BLEND_SPEED * dt);
 		if (previous_slide_alpha == 0)
-			previous_list = NULL;
+			previous_list = nullptr;
 		dirty = true;
 	}
 	if (current_scroll < current_scroll_target)
@@ -782,7 +782,7 @@ PresentScoringController::PresentScoringController(Scoring* scoring, Layout* lay
 	current_page = 0;
 	
 	delete translator;
-	widget = new PresentationWidget(this, layout, QSize(1024, 768), true, window, NULL);
+	widget = new PresentationWidget(this, layout, QSize(1024, 768), true, window, nullptr);
 }
 PresentScoringController::~PresentScoringController()
 {

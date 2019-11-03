@@ -29,7 +29,7 @@
 
 CSVFile::CSVFile(const QString& path, const QChar _separator, const QChar _stringDelimiter, bool escape_minus)
 {
-	stream = NULL;
+	stream = nullptr;
 	file = new QFile(path);
 
 	error = NoError;
@@ -39,8 +39,8 @@ CSVFile::CSVFile(const QString& path, const QChar _separator, const QChar _strin
 }
 CSVFile::CSVFile(QString* string, const QChar _separator, const QChar _stringDelimiter, bool escape_minus)
 {
-	stream = NULL;
-	file = NULL;
+	stream = nullptr;
+	file = nullptr;
 	this->string = string;
 	
 	error = NoError;
@@ -141,7 +141,7 @@ std::vector< int >* CSVFile::getColumnVector(const QString& name)
 {
 	ColumnMap::iterator it = columnMap.find(name);
 	if (it == columnMap.end())
-		return NULL;
+		return nullptr;
 	else
 		return &it->second;
 }

@@ -72,15 +72,15 @@ void TestScoringTool::fixedPointCalculation()
 	scoring->setLimitClubs(true);
 	
 	Club* club = clubDB.findClub("Club B");
-	QVERIFY(club != NULL);
+	QVERIFY(club != nullptr);
 	scoring->setAllowedClub(club, true);
 	QVERIFY(scoring->isAllowedClub(club));
 	club = clubDB.findClub("Club A");
-	QVERIFY(club != NULL);
+	QVERIFY(club != nullptr);
 	scoring->setAllowedClub(club, true);
 	QVERIFY(scoring->isAllowedClub(club));
 	club = clubDB.findClub("Club C");
-	QVERIFY(club != NULL);
+	QVERIFY(club != nullptr);
 	scoring->setAllowedClub(club, true);
 	QVERIFY(scoring->isAllowedClub(club));
 	
@@ -154,15 +154,15 @@ void TestScoringTool::timeRatioCalculation()
 	scoring->setLimitClubs(true);
 	
 	Club* club = clubDB.findClub("Club B");
-	QVERIFY(club != NULL);
+	QVERIFY(club != nullptr);
 	scoring->setAllowedClub(club, true);
 	QVERIFY(scoring->isAllowedClub(club));
 	club = clubDB.findClub("Club A");
-	QVERIFY(club != NULL);
+	QVERIFY(club != nullptr);
 	scoring->setAllowedClub(club, true);
 	QVERIFY(scoring->isAllowedClub(club));
 	club = clubDB.findClub("Club C");
-	QVERIFY(club != NULL);
+	QVERIFY(club != nullptr);
 	scoring->setAllowedClub(club, true);
 	QVERIFY(scoring->isAllowedClub(club));
 	
@@ -241,15 +241,15 @@ void TestScoringTool::timeRatioCalculationFormula3()
 		scoring->setLimitClubs(true);
 		
 		Club* club = clubDB.findClub("Club B");
-		QVERIFY(club != NULL);
+		QVERIFY(club != nullptr);
 		scoring->setAllowedClub(club, true);
 		QVERIFY(scoring->isAllowedClub(club));
 		club = clubDB.findClub("Club A");
-		QVERIFY(club != NULL);
+		QVERIFY(club != nullptr);
 		scoring->setAllowedClub(club, true);
 		QVERIFY(scoring->isAllowedClub(club));
 		club = clubDB.findClub("Club C");
-		QVERIFY(club != NULL);
+		QVERIFY(club != nullptr);
 		scoring->setAllowedClub(club, true);
 		QVERIFY(scoring->isAllowedClub(club));
 		
@@ -326,15 +326,15 @@ void TestScoringTool::timePointCalculation()
 	scoring->setLimitClubs(true);
 	
 	Club* club = clubDB.findClub("Club B");
-	QVERIFY(club != NULL);
+	QVERIFY(club != nullptr);
 	scoring->setAllowedClub(club, true);
 	QVERIFY(scoring->isAllowedClub(club));
 	club = clubDB.findClub("Club A");
-	QVERIFY(club != NULL);
+	QVERIFY(club != nullptr);
 	scoring->setAllowedClub(club, true);
 	QVERIFY(scoring->isAllowedClub(club));
 	club = clubDB.findClub("Club C");
-	QVERIFY(club != NULL);
+	QVERIFY(club != nullptr);
 	scoring->setAllowedClub(club, true);
 	QVERIFY(scoring->isAllowedClub(club));
 	
@@ -384,7 +384,7 @@ void TestScoringTool::checkResults(ResultList* result_list, const QString& oracl
 	}
 	// Check ordering of results
 	int prev_rank = -1;
-	AbstractCategory* current_category = NULL;
+	AbstractCategory* current_category = nullptr;
 	for (int i = 0; i < result_list->rowCount(); ++i)
 	{
 		AbstractCategory* category = static_cast<AbstractCategory*>(result_list->getData(i, result_list->getCategoryColumn()).value<void*>());
