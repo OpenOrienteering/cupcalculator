@@ -88,18 +88,18 @@ public:
 	bool referencesRunner(Runner* runner);
 	
 	inline void setCountOnlyBestRuns(const bool value) {count_only_best_runs = value; result_dirty = true;}
-	inline const bool getCountOnlyBestRuns() const {return count_only_best_runs;}
+	inline bool getCountOnlyBestRuns() const {return count_only_best_runs;}
 	inline void setNumCountingRuns(const int value) {num_counting_runs = value; result_dirty = true;}
-	inline const int getNumCountingRuns() const {return num_counting_runs;}
+	inline int getNumCountingRuns() const {return num_counting_runs;}
 	
 	inline void setOrganizerBonusType(const int value) {organizer_bonus_type = value; result_dirty = true;}
-	inline const int getOrganizerBonusType() const {return organizer_bonus_type;}
+	inline int getOrganizerBonusType() const {return organizer_bonus_type;}
 	inline void setOrganizerBonusFixed(const FPNumber& value) {organizer_bonus_fixed = value; result_dirty = true;}
 	inline const FPNumber& getOrganizerBonusFixed() const {return organizer_bonus_fixed;}
 	inline void setOrganizerBonusPercentage(const FPNumber& value) {organizer_bonus_percentage = value; result_dirty = true;}
 	inline const FPNumber& getOrganizerBonusPercentage() const {return organizer_bonus_percentage;}
 	inline void setOrganizerBonusCountingRuns(const int value) {organizer_bonus_counting_runs = value; result_dirty = true;}
-	inline const int getOrganizerBonusCountingRuns() const {return organizer_bonus_counting_runs;}
+	inline int getOrganizerBonusCountingRuns() const {return organizer_bonus_counting_runs;}
 	
 	inline ResultList* getResult() const {return result;}
 	inline bool isResultDirty() const {return result_dirty;}
