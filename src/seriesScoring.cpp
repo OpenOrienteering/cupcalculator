@@ -688,6 +688,7 @@ void SeriesScoring::changeResultNumber(int src, int dest)
 	resultMap.erase(it);
 	bool success = resultMap.insert(std::make_pair(dest, race_result)).second;
 	assert(success);
+	Q_UNUSED(success)
 	
 	result_dirty = true;
 }

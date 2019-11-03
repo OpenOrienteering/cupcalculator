@@ -73,8 +73,6 @@ class QHBoxLayout;
 class QVBoxLayout;
 QT_END_NAMESPACE
 
-const int INDENT_SPACING = 12;
-
 const QString SCORING_FILE_SUFFIX = "xml";
 
 // ### ScoringDialog ###

@@ -979,7 +979,7 @@ RunnerDatabaseTab::~RunnerDatabaseTab()
 
 void RunnerDatabaseTab::addClicked()
 {
-	QModelIndex index = runnerList->selectionModel()->currentIndex();
+	//QModelIndex index = runnerList->selectionModel()->currentIndex();
 	QAbstractItemModel* model = &runnerDB;
 	
 	int row;
