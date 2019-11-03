@@ -19,7 +19,7 @@
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-project(CupCalculator VERSION 1.1.1 LANGUAGES CXX)
+project(CupCalculator VERSION 1.1.2 LANGUAGES CXX)
 set(PROJECT_COPYRIGHT "(C) 2019 The OpenOrienteering developers")
 set(PROJECT_VERSION_DISPLAY "${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}" CACHE STRING
   "Project version string to be displayed"
