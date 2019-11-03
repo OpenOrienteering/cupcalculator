@@ -1064,7 +1064,7 @@ LimitRunnersPage::LimitRunnersPage(Scoring* _scoring, ScoringDialog* _dialog, QW
 		
 		++i;
 		index = model->index(i, 0);
-	};
+	}
 	
 	limitRegionsCheck->setCheckState(scoring->getLimitRegions() ? Qt::Checked : Qt::Unchecked);
 	locationWidget->setEnabled(scoring->getLimitRegions());
@@ -1090,7 +1090,7 @@ LimitRunnersPage::LimitRunnersPage(Scoring* _scoring, ScoringDialog* _dialog, QW
 		
 		++i;
 		index = model->index(i, 0);
-	};
+	}
 	
 	delete clubSortedModel;
 	limitClubsCheck->setCheckState(scoring->getLimitClubs() ? Qt::Checked : Qt::Unchecked);
