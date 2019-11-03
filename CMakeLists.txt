@@ -56,6 +56,12 @@ install(FILES "README.md"
   RENAME README.txt
   DESTINATION "${CMAKE_INSTALL_DOCDIR}"
 )
+if(MAKE_BUNDLE)
+	install(FILES "copyright"
+	  RENAME openorienteering-cupcalculator-${PROJECT_VERSION}.txt
+	  DESTINATION "${CMAKE_INSTALL_DOCDIR}/licensing"
+	)
+endif()
 
 
 # Actual build

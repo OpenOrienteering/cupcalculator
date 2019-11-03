@@ -1,0 +1,29 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: OpenOrienteering CupCalculator
+Upstream-Contact: https://github.com/OpenOrienteering/cupcalculator/issues
+Source: https://github.com/OpenOrienteering/cupcalculator/releases
+Comment: This package is provided and maintained by OpenOrienteering.
+ This package is not part of the Debian distribution.
+
+Files: *
+Copyright: 2011-2012 Thomas Schöps
+           2018-2019 Kai Pastor
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ version 3 can be found in "/usr/share/common-licenses/GPL-3".
+
+Files: COPYING 
+Copyright: 2007 Free Software Foundation, Inc.
+License: FSF-license-license
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
