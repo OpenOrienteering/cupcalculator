@@ -465,10 +465,12 @@ void SeriesScoring::recalculateResult()
 
 void SeriesScoring::giveOrganizerBonus(int row, int column, int first_point_column, ResultList* result)
 {
-	double bonus;
+	double bonus = 0;
 	
 	if (organizer_bonus_type == FixedOrganizerBonus)
+	{
 		bonus = organizer_bonus_fixed.toDouble();
+	}
 	else if (organizer_bonus_type == PercentageOrganizerBonus)
 	{
 		std::multiset<double, std::greater<double> > best_points;
@@ -497,7 +499,9 @@ void SeriesScoring::giveOrganizerBonus(int row, int column, int first_point_colu
 			bonus = (bonus / num_results) * (organizer_bonus_percentage.toDouble() / 100);
 	}
 	else
+	{
 		assert(false);
+	}
 	
 	result->setData(row, column, -(static_cast<int>(bonus * result->getDecimalFactor() + 0.5)));
 }

@@ -608,7 +608,7 @@ bool CalculateScoringTab::importResultsFromCSV(CSVFile* file, bool show_import_d
 			raceTime = getCorrectedTime(time_text);
 		
 		// Read state
-		ResultList::ResultType resultType;
+		auto resultType = ResultList::ResultOk;
 		if (importDialog.colState)
 		{
 			int sportsoftwareResultId = file->getValue(importDialog.colState->at(0)).toInt();
@@ -623,9 +623,7 @@ bool CalculateScoringTab::importResultsFromCSV(CSVFile* file, bool show_import_d
 			case 5:	resultType = ResultList::ResultOvertime;		break;
 			}
 		}
-		else
-			resultType = ResultList::ResultOk;
-				
+		
 		// Add result list entry
 		int row = results->addRow();
 		results->setData(row, results->getCategoryColumn(), qVariantFromValue<void*>(category));
