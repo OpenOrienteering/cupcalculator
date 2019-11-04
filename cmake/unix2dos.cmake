@@ -17,11 +17,22 @@
 #    along with OpenOrienteering.  If not, see <http://www.gnu.org/licenses/>.
 
 
+# Script mode
+if(UNIX2DOS_FILE)
+	file(READ "${UNIX2DOS_FILE}" content)
+	string(REGEX REPLACE "\r*\n" "\r\n" content "${content}")
+	file(WRITE "${UNIX2DOS_FILE}" "${content}")
+	return()
+endif()
+
+
+set(UNIX2DOS_ENABLED   "${WIN32}" CACHE BOOL "Convert line endings for Windows")
+
+
 if(COMMAND unix2dos)
 	# include guard
 	return()
-elseif(NOT WIN32)
-	# no-op if not building for Windows
+elseif(NOT UNIX2DOS_ENABLED)
 	function(UNIX2DOS)
 	endfunction()
 	function(UNIX2DOS_INSTALLED)
@@ -30,44 +41,37 @@ elseif(NOT WIN32)
 endif()
 
 
-message(STATUS "Enabling unix2dos")
+# Windows-only
 
-find_program(UNIX2DOS_COMMAND
-  NAMES unix2dos
-  DOC "Filepath of the unix2dos executable"
-)
-find_program(SED_COMMAND
-  NAMES gsed sed
-  DOC "Filepath of the sed executable"
-)
-if(NOT UNIX2DOS_COMMAND AND NOT SED_COMMAND)
-	message(WARNING "unix2dos or sed are required to convert text files for Windows")
-endif()
-mark_as_advanced(UNIX2DOS_COMMAND)
-mark_as_advanced(UNIX2DOS_SED_COMMAND)
+set(UNIX2DOS_LIST_FILE "${CMAKE_CURRENT_LIST_FILE}")
 
 
-# On Windows, convert the files matching the given pattern from UNIX to Windows
-# line endings. Cf. CMake's file(GLOB ...) for the pattern syntax
+# Convert the files matching the given pattern to Windows line endings.
+# Cf. CMake's file(GLOB ...) for the pattern syntax
+
 function(UNIX2DOS)
-	file(GLOB files ${ARGN} LIST_DIRECTORIES false)
+	file(GLOB files LIST_DIRECTORIES false ${ARGN})
 	foreach(file ${files})
-		if(UNIX2DOS_COMMAND)
-			execute_process(COMMAND "${UNIX2DOS_COMMAND}" -ascii --quiet "${file}")
-		elseif(UNIX2DOS_SED_COMMAND)
-			execute_process(
-			  COMMAND "${UNIX2DOS_SED_COMMAND}" -e "s,\\r*$,\\r," -i -- "${file}"
-			  COMMAND "${CMAKE_COMMAND}" -E remove -f "${file}--"
-			)
+		execute_process(
+		  COMMAND "${CMAKE_COMMAND}" "-DUNIX2DOS_FILE=${file}" -P "${UNIX2DOS_LIST_FILE}"
+		  RESULT_VARIABLE result
+		  ERROR_VARIABLE error
+		)
+		if(NOT result EQUAL 0)
+			message(FATAL_ERROR "${error}")
 		endif()
 	endforeach()
 endfunction()
 
 
+# At installation time, convert the files matching the given installation path
+# pattern from UNIX to Windows line endings.
+# Cf. CMake's file(GLOB ...) for the pattern syntax
+
 function(UNIX2DOS_INSTALLED)
 	set(code
-	  "list(APPEND CMAKE_MODULE_PATH \"${PROJECT_SOURCE_DIR}/cmake\")"
-	  "include(\"unix2dos\")"
+	  "set(UNIX2DOS_ENABLED ON CACHE BOOL \"Convert line endings for Windows\")"
+	  "include(\"${UNIX2DOS_LIST_FILE}\")"
 	)
 	foreach(pattern ${ARGN})
 		list(APPEND code "unix2dos(\"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${pattern}\")")
@@ -75,3 +79,4 @@ function(UNIX2DOS_INSTALLED)
 	string(REPLACE ";" "\n  " code "${code}")
 	install(CODE "${code}")
 endfunction()
+
